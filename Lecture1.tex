@@ -21,6 +21,9 @@
   Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0 \implies f(x) \neq o(g(n))$, we can say that $f(x) = o(g(n)) \iff \Lim{n \to \infty} \frac{f(n)}{g(n)}=0$ which is what was needed to be proven.
 
 \end{proof}
+
+
+
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.2} Let $\mathcal{M}_n$ = ($M_n$,$+_n$,$\mathrm{x}_n$,$0_n$,$\mathrm{I}_n$). Then we have $\mathcal{M}_n$ is a ring with identity element $\mathrm{I}_n$ if and only if $\mathcal{R}$ is ring with 1.
 \begin{proof}
@@ -107,11 +110,17 @@ Lastly, if we consider the example of matrix addition above it can be seen that 
 Thus we can conclude that if $\mathcal{R}$ is a ring with identity, $\mathcal{M}$ also is.\\
 The opposite direction, that when $\mathcal{R}$ is not a ring with identity $\mathcal{M}$ is easily noticed, since all the operations in $\mathcal{M}$ rely on properties of operations in  $\mathcal{R}$ in order to fulfill conditions of a ring.
 \end{proof}
+
+
+
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.3} Show that the definition of $+$ and $\cdot$ over $\mathbb{Z}_m$ are independent of the choice of the representation.
 \begin{proof}
 Sadly I have no idea how to prove this at current point.
 \end{proof}
+
+
+
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.4} Prove or disprove: Let $(G, \circ)$ be any Abelian group, let $a \in G$, and let $n, m \in \mathbb{N}$. If $a$ has the order $n$ then $a^m=e$ if and only if $m \equiv 0$ mod $n$.
 \begin{proof}
@@ -119,11 +128,18 @@ Suppose that $a$ has the order $n$. That would mean that $n$ is a smallest posit
 Now let's suppose that $m \equiv 0$ mod $n$ and $a^m=e$, this would mean that $m$ is either order of the group $G$ or a number larger than the one that is order. Next we have two cases $m=n$ and $m \neq n$. In first case, $n=m$ is order of $G$, and the exercises has been proven.\\
 The second case is such that we can rewrite $m$ as $m=c\cdot n$ for some integer $c$, due to it being divisible by n. Considering $a^m=e$ we can rewrite it as ${a^n}^c$ which in turn we can write as $a^n=e^{1/c}$ which is equal to writing $a^n=e$, meaning $n$ is order of $a$.
 \end{proof}
+
+
+
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.5} Show that $\sum_{k=0}^{998} k^3$ is divisible by 999.
 \begin{proof}
-Since for $k=0$ $k3$ also equals 0, we can rewrite the following sum as $\sum_{k=1}^{998} k^3$. Now, according to Faulhaber's Formula we can express $\sum_{k=1}^{998} k^3$ as $\frac{998^2 999^2}{4}$ due to $\sum_{k=1}^{n} k^3=\left( \frac{n(n+1)}{2}\right)^2$. From there we see that this equals $499^2 \cdot 999^2$ which is obviously divisible by 999.
+Since for $k=0$ $k3$ also equals 0, we can rewrite the following sum as $\sum_{k=1}^{998} k^3$. Now, according to $Faulhaber's\ Formula^1$ we can express $\sum_{k=1}^{998} k^3$ as $\frac{998^2 999^2}{4}$ due to $\sum_{k=1}^{n} k^3=\left( \frac{n(n+1)}{2}\right)^2$. From there we see that this equals $499^2 \cdot 999^2$ which is obviously divisible by 999.
 \end{proof}
+\footnote{Faulhaber's Formula - https://mathworld.wolfram.com/FaulhabersFormula.html}
+
+
+
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.6} Show that every integer written in decimal representation is divisible by 3 if and only if the sum of its digits is divisible by 3.
 \begin{proof}
@@ -133,14 +149,135 @@ Suppose we have a number $X$ with $n$ digits, we can write it as $X=x_n x_{n-1}x
  $X = x_0 + x_1 \cdot (9 + 1) + x_2 \cdot (99 + 1) + x_3 \cdot (999 + 1)...$\\\\
  Or differently: \\\\
  $X = 9x_1 + 99x_2 + 999x_3 + ... + (x_0 + x_1 + x_2 + x_3 + ... + x_n)$ \\\\
- It is easy to notice that all the coefficients in the polynomial outside of parenthesis are multiples of 9 and thus divisible by 3, the only thing that is left to check for divisibility is polynomial within the parenthesis which is: \\\\
+ It is easy to notice that all the coefficients in the polynomial outside of parenthesis are multiples of 9 and thus divisible by 3, the only thing that is left to check for divisibility is polynomial within the parenthesis: \\\\
  $ x_0 + x_1 + x_2 + x_3 + ... x_{n-2} + x_{n-1} + x_n$ \\\\
  Which is coincidentally a sum of all $n$ digits of the number $X$. So, $X$ is divisible by 3 if and only if a sum of its n digits is divisible by 3. 
 \end{proof}
+
+
+
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.7} Derive a criterion for the divisibility by 3 for the integers written in binary representation.
 \begin{proof}
-	
+In order to write criterion for divisibility we will first write some numbers that are divisible by 3 as binary:\\
+If we take $2^n$ values, we know that $2^0 = 1$ which is congruent 1 mod 3, and $2^1 = 2$ which is congruent 2 mod 3, or differently -1 mod 3. If we write binary numbers so that digit in even position multiplies -1 and the one in odd position multiplies 1, if we add them together we will get a number which, if divisible by 3, tells us that the binary number is divisible by 3. For example if we take number 309, we can write it as:\\
+\begin{center}
+$1 \cdot 1 + 0 \cdot (-1) + 0 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 + 0 \cdot (-1) + 1  \cdot 1 + 0 \cdot (-1) + 1 \cdot 1$ = 3
+\end{center} 
+Which is divisible by 3, thus 309 is divisible by 3. We have a table of first 30 numbers out of which 10 are divisible by 3: \\
+\begin{center}
+\begin{tabular}{ c c c c c  }
+Decimal & Binary & Number of 1s in odd position & Number of 1s in even position & Difference \\
+ 1 & $0001_2$ & 1 & 0 & 1 \\ 
+ 2 & $0010_2$ & 0 & 1 & -1 \\ 
+ 3 & $0011_2$ & 1 & 1 & 0 \\   
+ 4 & $0100_2$ & 1 & 0 & 1 \\ 
+ 5 & $0101_2$ & 2 & 0 & 2 \\ 
+ 6 & $0110_2$ & 1 & 1 & 0 \\ 
+ 7 & $0111_2$ & 2 & 1 & 1 \\ 
+ 8 & $1000_2$ & 0 & 1 & -1 \\ 
+ 9 & $1001_2$ & 1 & 1 & 0 \\ 
+ 10 & $1010_2$ & 0 & 2 & -2 \\ 
+ 11 & $1011_2$ & 1 & 2 & -1 \\ 
+ 12 & $1100_2$ & 1 & 1 & 0 \\ 
+ 13 & $1101_2$ & 2 & 1 & 1 \\ 
+ 14 & $1110_2$ & 1 & 2 & -1 \\ 
+ 15 & $1111_2$ & 2 & 2 & 0 \\ 
+ 16 & $0001\ 0000_2$ & 1 & 0 & 1 \\ 
+ 17 & $0001\ 0001_2$ & 2 & 0 & 2 \\ 
+ 18 & $0001\ 0010_2$ & 1 & 1 & 0 \\ 
+ 19 & $0001\ 0011_2$ & 2 & 1 & 1 \\ 
+ 20 & $0001\ 0100_2$ & 2 & 0 & 2 \\ 
+ 21 & $0001\ 0101_2$ & 3 & 0 & 3 \\ 
+ 22 & $0001\ 0110_2$ & 2 & 1 & 1 \\ 
+ 23 & $0001\ 0111_2$ & 3 & 1 & 2 \\ 
+ 24 & $0001\ 1000_2$ & 1 & 1 & 0 \\ 
+ 25 & $0001\ 1001_2$ & 2 & 1 & 1 \\ 
+ 26 & $0001\ 1010_2$ & 1 & 2 & -1 \\ 
+ 27 & $0001\ 1011_2$ & 2 & 2 & 0 \\ 
+ 28 & $0001\ 1100_2$ & 2 & 1 & 1 \\ 
+ 29 & $0001\ 1101_2$ & 3 & 1 & 2 \\ 
+ 30 & $0001\ 1110_2$ & 2 & 2 & 0
+\end{tabular}
+\end{center}
+So mathematically we can write:
+\begin{center}
+	$\sum_{r=0}^{n} 2^{r}b_{r} \equiv \sum_{r=0}^{n} {(-1)}^{r}b_{r}$
+\end{center}
+Where $b_{r}$ the bits since $2 \equiv -1$ mod 3. Thus coming to a criterion for divisibility of a binary number by 3.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.8} Compute the last two digits of $7^{50}$.
+\begin{proof}
+	If we calculate the first five powers of 7 we see that:
+\begin{center}
+	$7^1 = 7$\\
+	$7^2 = 49$\\
+	$7^3 = 343$\\
+	$7^4 = 2401$\\
+	$7^5 = 16907$
+\end{center}
+Because $7^5$ ends with 07, we know that cyclicity will occur, meaning that the last two digits will start repeating after 4 steps. Meaning that since $50 \equiv 2$ mod 4, we know that the last two digits of $7^{50}$ are going to be the same as in $7^2$, which is 49.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.9} Show that $3^{22}-2^{20}$ is divisible by 7.
+\begin{proof}
+Knowing that $3^2 \equiv 2$ mod 7, we have: \\
+\begin{center}
+	$3^{22}-2^{20} = {3^{2}}^{11}-2^{20} \equiv 2^{11} - 2^{20} \equiv {-2}^{11}(2^9-1)$
+\end{center}
+Now, we have $2^3 \equiv 1$ mod 7, so this implies:
+ \begin{center}
+	${-2}^{11}(2^9-1) \equiv {-2}^{11}(1-1) = 0$
+\end{center}
+Looking at this, we can claim that $3^{22}-2^{20}$ is divisible by 7.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.10} Determine for which $n \in \mathbb{N}$ the number $891^n - 403^n$ is divisible by 61.
+\begin{proof}
+We begin by looking at $n$ values from 1 to 6, and taking two numbers $a$ and $b$ such that $a, b \in \mathbb{N}$: \\
+$n=1$
+\begin{center}
+	$a^1 - b^1 = a - b$
+\end{center}
+$n=2$
+\begin{center}
+	$a^2 - b^2 = (a - b)(a + b)$
+\end{center}
+$n=3$
+\begin{center}
+	$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$
+\end{center}
+$n=4$
+\begin{center}
+	$a^4 - b^4 = (a - b)(a + b)(x^2 + y^2)$
+\end{center}
+$n=5$
+\begin{center}
+	$a^5 - b^5 = (a - b)(a^4 + a^{3}b + a^{2}b^{2} + ab^{3} + b^{4})$
+\end{center}
+$n=6$
+\begin{center}
+	$a^6 - b^6 = (a - b)(a + b)(a^2 + ab + b^2)(a^2 - ab + b^2)$
+\end{center}
+In a more general form we have following formula if n is an odd number: 
+\begin{center}
+	$a^{2n+1} - b^{2n-1} = (a - b)\sum_{j=0}^{2n}a^{2n-j}b^j$
+\end{center}
+\noindent And if n is an even number:
+\begin{center}
+	$a^{2n} - b^{2n} = (a - b)(a + b)\sum_{j=0}^{n-1}a^{2(n-j-1)}b^{2j}$
+\end{center}
+What is common for both formulae is the $(a - b)$ part. In the case of numbers 891 and 403, we can calculate that $891-403=488$ which is $488 \equiv 0$ mod 61, or in other words divisible by 61. So, due to the $(891-403)$ being present in both formulae, whether $n$ is odd or even, we can conclude that $891^n - 403^n$ is divisible by 61 for any $n \in \mathbb{N}$.
 \end{proof}
 
 
