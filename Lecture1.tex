@@ -120,12 +120,28 @@ Now let's suppose that $m \equiv 0$ mod $n$ and $a^m=e$, this would mean that $m
 The second case is such that we can rewrite $m$ as $m=c\cdot n$ for some integer $c$, due to it being divisible by n. Considering $a^m=e$ we can rewrite it as ${a^n}^c$ which in turn we can write as $a^n=e^{1/c}$ which is equal to writing $a^n=e$, meaning $n$ is order of $a$.
 \end{proof}
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.5} Show that $\sum_{k=0}^{998} k^{3}$ is divisible by 999.
+\noindent \textbf{Exercise 1.5} Show that $\sum_{k=0}^{998} k^3$ is divisible by 999.
+\begin{proof}
+Since for $k=0$ $k3$ also equals 0, we can rewrite the following sum as $\sum_{k=1}^{998} k^3$. Now, according to Faulhaber's Formula we can express $\sum_{k=1}^{998} k^3$ as $\frac{998^2 999^2}{4}$ due to $\sum_{k=1}^{n} k^3=\left( \frac{n(n+1)}{2}\right)^2$. From there we see that this equals $499^2 \cdot 999^2$ which is obviously divisible by 999.
+\end{proof}
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.6} Show that every integer written in decimal representation is divisible by 3 if and only if the sum of its digits is divisible by 3.
+\begin{proof}
+Suppose we have a number $X$ with $n$ digits, we can write it as $X=x_n x_{n-1}x_{n-2}...x_2x_1x_0$ which we can then write as \\\\
+ $X=x_0+x_1 \cdot 10 + x_2 \cdot 100 ... + x_{n-1} \cdot 10^{n-1} + x_n \cdot 10^n$ \\\\
+ Which can further be rewritten as: \\\\
+ $X = x_0 + x_1 \cdot (9 + 1) + x_2 \cdot (99 + 1) + x_3 \cdot (999 + 1)...$\\\\
+ Or differently: \\\\
+ $X = 9x_1 + 99x_2 + 999x_3 + ... + (x_0 + x_1 + x_2 + x_3 + ... + x_n)$ \\\\
+ It is easy to notice that all the coefficients in the polynomial outside of parenthesis are multiples of 9 and thus divisible by 3, the only thing that is left to check for divisibility is polynomial within the parenthesis which is: \\\\
+ $ x_0 + x_1 + x_2 + x_3 + ... x_{n-2} + x_{n-1} + x_n$ \\\\
+ Which is coincidentally a sum of all $n$ digits of the number $X$. So, $X$ is divisible by 3 if and only if a sum of its n digits is divisible by 3. 
+\end{proof}
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.7} Derive a criterion for the divisibility by 3 for the integers written in binary representation.
 \begin{proof}
 	
 \end{proof}
-
-
 
 
 \end{document}
