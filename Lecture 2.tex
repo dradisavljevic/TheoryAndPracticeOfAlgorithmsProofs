@@ -24,13 +24,41 @@
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.5} Use the Chinese Remainder Theorem to find a solution (or show one does not exist) for the following sets of equations.
+\noindent \textbf{Exercise 2.2} Use the Chinese Remainder Theorem to find a solution (or show one does not exist) for the following sets of equations.
 \begin{center}
 (1) $x \equiv 3$ mod $2879$, $x \equiv 4$ mod $3541$, $x \equiv 2$ mod $5333$;\\
 (2) $x \equiv 10$ mod $19271$, $x \equiv 3$ mod $7343$, $x \equiv 8$ mod $9973$.
 \end {center}
 \begin{proof}
+Let's begin by solving the first problem:
+\begin{center}
+(1)\\
+$x \equiv 3$ mod $2879$, $x \equiv 4$ mod $3541$, $x \equiv 2$ mod $5333$\\
+$r_1 = 3$, $r_2 = 4$, $r_3 = 2$\\
+$M = 2879 \cdot 3541 \cdot 5333=54367476487$\\
+$M_1 = 18884153$, $M_2 = 15353707$, $M_3 = 10194539$\\
+$18884153x_1 \equiv 1$ mod $2879$, $15353707x_2 \equiv 1$ mod $3541$, $10194539x_3 \equiv 1$ mod $5333$ $\implies$ $x_1 = 1574$, $x_2 = 1129$, $x_3 = 717$\\
+$x = r_{1}M_{1}x_{1} + r_{2}M_{2}x_{2} + r_{3}M_{3}x_{3}$ $\implies$\\
+$x = 3 \cdot 18884153 \cdot 1574 + 4 \cdot 15353707 \cdot 1129 + 2 \cdot 10194539 \cdot 717$ $\implies$\\
+$x = 103851354220$
+\end{center}
+And for the second one:
+\begin{center}
+(2)\\
+$x \equiv 10$ mod $19271$, $x \equiv 4$ mod $7343$, $x \equiv 8$ mod $9973$\\
+$r_1 = 10$, $r_2 = 4$, $r_3 = 8$\\
+Since $19271$ and $7343$ are not relatively coprime (They are both divisible by 7) and $10 \not \equiv 4$ mod 7 we can't solve this system through CRT.
+\end{center}
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.3} Show the following:
+Let $a, c \in \mathbb{Z}$ and let $b \in \mathbb{N}, b \geq 2$. Then the linear congruence $ax \equiv c$ mod $b$ is solvable if and only if gcd($a$,$b$) divides $c$. Moreover if $d$ = gcd($a$,$b$) and $d \mid c$ then there are precisely $d$ solutions in $\mathbb{Z}_{b}$ for $ax \equiv c$ mod $b$.
+\begin{proof}
 	
 \end{proof}
+
 
 \end{document}
