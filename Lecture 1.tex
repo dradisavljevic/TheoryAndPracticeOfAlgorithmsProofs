@@ -11,7 +11,7 @@
 }
 
 \begin{document}
-\subtitle{Lecture I}\\
+\subtitle{Lecture I}
 \noindent \textbf{Exercise 1.1} Prove or disprove the following: $f(x) = o(g(n))$ if and only if $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$.
 \begin{proof}
   Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches 0. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
