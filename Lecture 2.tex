@@ -47,7 +47,9 @@ And for the second one:
 (2)\\
 $x \equiv 10$ mod $19271$, $x \equiv 4$ mod $7343$, $x \equiv 8$ mod $9973$\\
 $r_1 = 10$, $r_2 = 4$, $r_3 = 8$\\
-Since $19271$ and $7343$ are not relatively coprime (They are both divisible by 7) and $10 \not \equiv 4$ mod 7 we can't solve this system through CRT.
+Since $19271$ and $7343$ are not relatively prime (They are both divisible by 7), we can rewrite the system as: \\
+$x \equiv 10$ mod $2753$, $x \equiv 10$ mod $7$, $x \equiv 4$ mod $1049$, $x \equiv 4$ mod $7$, $x \equiv 8$ mod $9973$\\
+However, since $10 \not \equiv 4$ mod 7, there are no solutions to this system.
 \end{center}
 \end{proof}
 
@@ -57,8 +59,30 @@ Since $19271$ and $7343$ are not relatively coprime (They are both divisible by 
 \noindent \textbf{Exercise 2.3} Show the following:
 Let $a, c \in \mathbb{Z}$ and let $b \in \mathbb{N}, b \geq 2$. Then the linear congruence $ax \equiv c$ mod $b$ is solvable if and only if gcd($a$,$b$) divides $c$. Moreover if $d$ = gcd($a$,$b$) and $d \mid c$ then there are precisely $d$ solutions in $\mathbb{Z}_{b}$ for $ax \equiv c$ mod $b$.
 \begin{proof}
+By \textbf{Euclidean Algorithm} we have that there are $y, z \in \mathbb{Z}$ such that $ay + bz = 1$, so after multiplying by $c$ we have that $ayc + bzc = c$. Since $ax \equiv c$ mod $b$ means that $ax$ equals $c$ plus some multiply of $b$, we can rewrite it as $ax = c + bk$ for some $k \in  \mathbb{Z}$. In this case, $x = yc$ and $k = -zc$. The existence of solutions $y$ and $z$ requires that there is $d$ = gcd($a$, $b$) that divides $c$, which is what needed proof. \\
+Additionally, from $ax - bk = c$ it is visible that if $d \nmid c$ there are no solutions. Now all that is left is to show that there are precisely $d$ solutions in $\mathbb{Z}_b$. If we have one solution $x_0$ we can write the equation:
+\begin{center}
+$x = x_0 + \frac{b}{d}t$
+\end{center}
+If we suppose that we have two solutions they are congruent to mod $b$:
+\begin{center}
+$x_0 + \frac{b}{d}t_1 \equiv x_0 + \frac{b}{d}t_2$ mod $b$ $\implies$ $\frac{b}{d}t_1 \equiv \frac{b}{d}t_2$ mod $b$
+\end{center}
+Since $\frac{b}{d}$ divides both sides and we have that gcd($\frac{b}{d}$, $b$) = $\frac{b}{d}$ we have:
+\begin{center}
+	$t_1 \equiv t_2$ mod $d$
+\end{center}
+Which shows that there are distinct solutions to equation $x = x_0 + \frac{b}{d}t$ as many as there are residues to the modulo of $d$, or in other words, exactly $d$ solutions.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.4} Determine the complexity of computing all solutions of $ax \equiv c$ mod $b$ in dependence on the length of the input $a, c \in \mathbb{Z}$ and $b \in \mathbb{N}, b \geq 2$.
+\begin{proof}
 	
 \end{proof}
+
 
 
 \end{document}
