@@ -80,9 +80,34 @@ Which shows that there are distinct solutions to equation $x = x_0 + \frac{b}{d}
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.4} Determine the complexity of computing all solutions of $ax \equiv c$ mod $b$ in dependence on the length of the input $a, c \in \mathbb{Z}$ and $b \in \mathbb{N}, b \geq 2$.
 \begin{proof}
-	
+Sadly at this point I don't know how to prove this.
 \end{proof}
 
 
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.5} Study the problem to compute all integer solutions of \textbf{linear Diophantine equations}, i.e., equations of the form $ax + by = c$ for $a, b, c \in \mathbb{Z}$
+\begin{proof}
+The Diophantine equation is the polynomial equation in which the coefficients are integers and Diophantine equations whose solutions we seek in the set of integers or natural numbers. The most basic Diophantine equation is the linear case. We can write $ax + by = c$ where $a, b, c \in \mathbb{Z}$. An example of Diophantine equation problem is given in \textbf{Exercise 2.3}. Couple of theorems related to Diophantine equations follow: \\
+Let $a$,$b$, and $c$ be integers with $a$ and $b$ both not zero. The linear Diophantine equation
+\begin{center}
+$ax + by = c$
+\end{center}
+has a solution if and only if $d$ = gcd($a$, $b$) divides $c$.\\
+Let $a$ and $b$ be integers with $d$ = gcd($a$, $b$). The equation $ax + by = c$ has no integral solution if $d$ doesn’t divide $c$. If $d \mid c$, then there are infinitely many integral solutions. Moreover, if $x = x_0$, $y = y_0$ is a particular solution of the equation, then all solutions are given by 
+\begin{center}
+$x = x_0 + \frac{b}{d}n,\ y=y_0 - \frac{a}{d}n,$
+\end{center}
+Where $n$ is an integer.\\
+If $a_1, a_2,..., a_n$ are non zero positive integers, then the equation $a_1x_1 + a_2x_2 +...+ a_nx_n = c$ has an integral solution if and only if $d$ = ($a_1, a_2,..., a_n$) divides $c$. Furthermore, when there is a solution, there are infinitely many solutions.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.6} Hiroko has $10\ 000$ Yen and has to buy eggs, chicken pieces, or turkey. An egg costs 25 Yen, a chicken piece 100 Yen and a turkey 2500 Yen. Hiroko has to buy 100 items of at least two different types and to spend all her money. What is she buying?
+\begin{proof}
+This problem is a bit ambiguously defined. So for the time being it will remain unsolved.
+\end{proof}
 
 \end{document}
