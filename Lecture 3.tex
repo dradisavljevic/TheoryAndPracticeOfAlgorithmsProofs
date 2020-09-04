@@ -37,6 +37,42 @@ From $r' - r	= q(u - u')$ we have that deg $(r' - r)$ = deg $q$ + deg $(u - u')$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.2} Let $p = 19$ and consider the finite group $\mathbb{Z}^{*}_{p}$. Determine the order of every element in $\mathbb{Z}^{*}_{p}$, and list all the generators of $\mathbb{Z}^{*}_{p}$.
 \begin{proof}
-Sadly I have no idea how to prove this at current point.
+Since $p=19$ is prime, we know that order of the group is ($p$ - 1) = 18 according to \textbf{Corollary 3.2} from slide 51. Since $\mathbb{Z}^{*}_{p}$ is a finite group, every member also has finite order, according to \textbf{Theorem 3.1} from slide 2. According to \textbf{Lagrange's Theorem}\footnote{Lagrange's Theorem - https://crypto.stanford.edu/pbc/notes/group/lagrange.html} order of elements in $\mathbb{Z}^{*}_{p}$ divides the order of $\mathbb{Z}^{*}_{p}$. Since the numbers that divide 18 are: 1, 2, 3, 6, 9 and 18, we will check for them when we test for order.\\
+Order is smallest number $n$ such that $a^n=1$, where 1 is the identity element for multiplicative group. We will now test for order of every element in $\mathbb{Z}^{*}_{p}$:\\
+\begin{center}
+$1^1 = 1 \implies ord(1) = 1$\\
+$2^1 = 2, 2^2 = 4, 2^3 = 8, 2^6 = 7, 2^9 = 18, 2^{18} = 1$ mod 19 $\implies ord(2) = 18$\\
+$3^1 = 3, 3^2 = 9, 3^3 = 8, 3^6 = 7, 3^9 = 18, 3^{18} = 1$ mod 19 $\implies ord(3) = 18$\\
+$4^1 = 4, 4^2 = 16, 4^3 = 7, 4^6 = 11, 4^9 = 1$ mod 19 $\implies ord(4) = 9$\\
+$5^1 = 5, 5^2 = 6, 5^3 = 11, 5^6 = 7, 5^9 = 1$ mod 19 $\implies ord(5) = 9$\\
+$6^1 = 6, 6^2 = 17, 6^3 = 7, 6^6 = 11, 6^9 = 1$ mod 19 $\implies ord(6) = 9$\\
+$7^1 = 7, 7^2 = 11, 7^3 = 1$ mod 19 $\implies ord(7) = 3$\\
+$8^1 = 8, 8^2 = 7, 8^3 = 18, 8^6 = 1$ mod 19 $\implies ord(8) = 6$\\
+$9^1 = 9, 9^2 = 5, 9^3 = 7, 9^6 = 11, 9^9 = 1$ mod 19 $\implies ord(9) = 9$\\
+$10^1 = 10, 10^2 = 5, 10^3 = 12, 10^6 = 11, 10^9 = 18, 10^{18} = 1$ mod 19 $\implies ord(10) = 18$\\
+$11^1 = 11, 11^2 = 7, 11^3 = 1$ mod 19 $\implies ord(11) = 3$\\
+$12^1 = 12, 12^2 = 11, 12^3 = 18, 12^6 = 1$ mod 19 $\implies ord(12) = 6$\\
+$13^1 = 13, 13^2 = 17, 13^3 = 12, 13^6 = 11, 13^9 = 18, 13^{18} = 1$ mod 19 $\implies ord(13) = 18$\\
+$14^1 = 14, 14^2 = 6, 14^3 = 8, 14^6 = 7, 14^9 = 18, 14^{18} = 1$ mod 19 $\implies ord(14) = 18$\\
+$15^1 = 15, 15^2 = 16, 15^3 = 12, 15^6 = 11, 15^9 = 18, 15^{18} = 1$ mod 19 $\implies ord(15) = 18$\\
+$16^1 = 16, 16^2 = 9, 16^3 = 11, 16^6 = 7, 16^9 = 1$ mod 19 $\implies ord(16) = 9$\\
+$17^1 = 17, 17^2 = 4, 17^3 = 11, 17^6 = 7, 17^9 = 1$ mod 19 $\implies ord(17) = 9$\\
+$18^1 = 18, 18^2 = 1$ mod 19 $\implies ord(18) = 2$\\
+\end{center}
+So in total, there is one element with order 1 (1), one element with order 2 (18), 2 elements with order 3 (7, 11), 2 elements with order 6 (8, 12), 6 elements with order 9 (4, 5, 6, 9, 16 and 17) and 6 elements with order 18 (2, 3, 10, 13, 14, 15).
+According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many different generators. Since up to 18 there are 6 numbers that are relatively prime to 18 (1, 5, 7, 11, 13, 17), we know that there are 6 generators of $\mathbb{Z}^{*}_{p}$. We first test for 2:
+\begin{center}
+[2, 4, 8, 16, 13, 7, 14, 9, 18, 17, 15, 11, 3, 6, 12, 5, 10, 1]
+\end{center}
+ Since all the elements of $\mathbb{Z}^{*}_{p}$ are present, we can claim that 2 is a generator. Since we know that 2 is a generator, according to \textbf{Theorem 3.6} from slide 40, we can get other generators by raising 2 to the relatively prime numbers of 18:  $2^{5} \equiv 13$ mod 19, $2^{7} \equiv 14$ mod 19, $2^{11} \equiv 15$ mod 19, $2^{13} \equiv 3$ mod 19 and $2^{17} \equiv 10$ mod 19. So the list of generators would be: 2, 3, 10, 13, 14, 15. Which are also all the numbers with order of 18.
 \end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 3.3} Consider the group $\mathbb{Z}^{*}_{31}$. How many elements of this group have order 1, 7, 11, and 30, respectively?
+\begin{proof}
+	
+\end{proof}
+
 \end{document}
