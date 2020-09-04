@@ -107,7 +107,88 @@ If $a_1, a_2,..., a_n$ are non zero positive integers, then the equation $a_1x_1
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.6} Hiroko has $10\ 000$ Yen and has to buy eggs, chicken pieces, or turkey. An egg costs 25 Yen, a chicken piece 100 Yen and a turkey 2500 Yen. Hiroko has to buy 100 items of at least two different types and to spend all her money. What is she buying?
 \begin{proof}
-This problem is a bit ambiguously defined. So for the time being it will remain unsolved.
+Since the problem states that Hiroko needs to buy 100 items, we can write:
+\begin{center}
+$e+c+t = 100$	
+\end{center}
+Where $e$ is the number of eggs, $c$ is number of chicken pieces and $t$ is number of turkeys. Because Hiroko needs to spend all her money, we also have following equation:
+\begin{center}
+$25e+100c+2500t=10000$	
+\end{center}
+Where 25, 100 and 2500 are price expressed in Yen for eggs, chicken pieces and turkey respectively.\\
+This problem is one that involves \textbf{Diophantine equations} which have been shortly described as part of \textbf{Exercise 2.5}, since we have more unknowns than we have equations. What is worth noting before we start is also a condition that Hiroko needs to buy at least 2 different types of groceries, so we can't have that two different variables are 0.\\
+We start by multiplying the first equation by 100 and then subtracting it from the second one, which gives us:
+\begin{center}
+$-75e+2400t = 0$	
+\end{center}
+From here we have that $e$ is equal to:
+\begin{center}
+$e = 32t$	
+\end{center}
+Which tells us that both $e$ and $t$ can't be zero, because it would lead to Hiroko buying only chicken. First thing we can do is have $t=1$, this would lead to $e=32$ and from first equation we have that $c=67$, which causes Hiroko to spend exactly 10000 Yen, meaning this is one of the solutions. Since these equations often have multiple solutions, we can try another value of $t$. For $t=2$ we have $e=64$ and $c=34$, which when multiplied by price value of every item gives us exactly 10000 Yen, meaning it is another solution. If $t=3$, this gives us $e=96$ and $c=1$, which also when we multiply with prices gives 10000 Yen, so we get it as a third solution.\\
+Due to the price of turkey being 2500 Yen, Hiroko can only buy up to 4 turkeys, but buying 4 would cause her to spend all her money on them, without buying other items. So in conclusion, this set of equations has 3 solutions:
+\begin{center}
+$e=32,\ c=67,\ t=1$\\
+$e=64,\ c=34,\ t=2$\\
+$e=96,\ c=1,\ t=3$	
+\end{center}
 \end{proof}
 
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.7} Prove or disprove: Let ($G$, $\circ$) be any Abelian group, let $a, b \in G$ and $m,n \in \mathbb{N}$ be such that ord($a$) = $n$ and ord($b$) = $m$ and gcd($m,n$) = $1$. Then ($a \circ b$) has the order $mn$.
+\begin{proof}
+By definition of order we have that $a^n=e$ and $b^m=e$ (\textbf{Definition 1.5}). Since gcd($m$, $n$) = 1, we can also say that $m$ and $n$ are relatively prime (\textbf{Definition 2.3}). If we power $(a \circ b)$ to $mn$ we have the following equation:
+\begin{center}
+$(a \circ b)^{mn}=(a^{mn} \circ b^{mn})$
+\end{center}
+Since group is Abelian. We can further write it as:
+\begin{center}
+$(a^{mn} \circ b^{mn})=((a^n)^m \circ (b^m)^n)=e \circ e=e$
+\end{center}
+Where $e$ is a neutral element. This implies that order of $(a \circ b)$, which we will mark as $p$ divides $mn$. Next we can write:
+\begin{center}
+$(a \circ b)^p=(a^{p} \circ b^{p})=e$
+\end{center}
+We can further write that:
+\begin{center}
+$e=e^n=(a^{pn} \circ b^{pn})= (e \circ b^{pn}) =b^{pn}$
+\end{center}
+From $b^{pn}=e=b^m$ we can tell that $m$ divides $pn$. Since $n$ and $m$ are relatively prime, we have that $m$ divides $p$. Similarly if we write:
+\begin{center}
+$e = e^m=(a^{pm} \circ b^{pm})= (a^{pm} \circ e) =a^{pm}$
+\end{center}
+This implies that $n$ which is order of $a$ divides $pm$. Since $n$ and $m$ are relatively prime, we have that $n$ divides $p$. Meaning that $mn$ divides $p$. Since $p$ divides $mn$ and $mn$ divides $p$, we have that $mn=p$, so order of $(a \circ b)$ is $mn$.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.8} Prove or disprove: Let ($G$, $\circ$) be any Abelian group, let $a \in G$ and let $k, n \in \mathbb{N}$ be such that ord($a$) = $n$. Then $a^{k}$ has the order $n/gcd(n,k)$.
+\begin{proof}
+Let's start by marking gcd($n$, $k$) = $d$. Then since group is Abelian we have that:
+\begin{center}
+$(a^k)^{\frac{n}{d}} = (a^n)^{\frac{k}{d}}= e^{\frac{k}{d}} = e$
+\end{center}
+This tells us that ord($a^k$) $\leq \frac{n}{d}$. Next let's assume there is $m \in \mathbb{N}$ such that $(a^k)^m=a^{km}=e$, and let it be order of $a^k$, from which we have that $n \mid km$ so we also have that $\frac{n}{d} \mid \frac{km}{d}$. Since gcd($\frac{n}{d}$, $\frac{k}{d}$) = 1 it follows that $\frac{n}{d} \div m$ from where we have that $\frac{n}{d} \leq m$. Since $\frac{n}{d}$ is both less than equal and greater than equal than order of $a^k$ we can say that ord($a^k$) = $\frac{n}{d}$ which is what needed proving.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 2.9} Show that $n^5 - n \equiv 0$ mod 30 for every $n \in \mathbb{N}$.
+\begin{proof}
+If we take that $n \in \mathbb{N}$ and factorize the expression we get:
+\begin{center}
+$n^5 - n = n \cdot (n^2 - 1) \cdot (n^2 + 1) = n \cdot (n - 1) \cdot (n + 1) \cdot (n^2 + 1)$	
+\end{center}
+Since the expression has product of three consecutive integers, namely $n$, $n+1$ and $n-1$ we can tell that the expression is divisible by both 2 and 3, meaning that it is also divisible by their product which is 6.\\
+In order to prove that $n^5 - n$ is also divisible by 5, which is needed to prove that it is always divisible by 30 (Since it is divisible by both 6 and 5, it is then divisible by 30), we can go about this 2 ways. First one is using \textbf{Fermat's Little Theorem}\footnote{Fermat's Little Theorem - https://mathworld.wolfram.com/FermatsLittleTheorem.html} which says that $a^p \equiv a$ mod $p$, so it can be generalized to $n^5 \equiv n$ mod 5. The other way is by further factorizing the expression $n^5 - n$ like so:
+\begin{center}
+$n^5 - n = n \cdot (n^2 - 1) \cdot (n^2 + 1) = n \cdot (n^2 - 1) \cdot (n^2 - 4 + 5) = n \cdot (n^2 - 1) \cdot (n^2 - 4) + 5 \cdot n \cdot (n^2 - 1) = (n - 2) \cdot (n -1) \cdot n \cdot (n + 1) \cdot (n + 2) + 5$
+\end{center}
+Which is a product of 5 consecutive integers and a constant that is divisible by 5. Since this is a product of 5 consecutive integers, one of them must be divisible by 5, one has to be divisible by 3 and one has to be divisible 2. Since $n^5 - n$ is divisible by 5 and 6, it is then also always divisible for 30, for any $n \in \mathbb{N}$, which is what needed proof.
+
+\end{proof}
 \end{document}
