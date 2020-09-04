@@ -184,7 +184,7 @@ If we take that $n \in \mathbb{N}$ and factorize the expression we get:
 $n^5 - n = n \cdot (n^2 - 1) \cdot (n^2 + 1) = n \cdot (n - 1) \cdot (n + 1) \cdot (n^2 + 1)$	
 \end{center}
 Since the expression has product of three consecutive integers, namely $n$, $n+1$ and $n-1$ we can tell that the expression is divisible by both 2 and 3, meaning that it is also divisible by their product which is 6.\\
-In order to prove that $n^5 - n$ is also divisible by 5, which is needed to prove that it is always divisible by 30 (Since it is divisible by both 6 and 5, it is then divisible by 30), we can go about this 2 ways. First one is using \textbf{Fermat's Little Theorem}\footnote{Fermat's Little Theorem - https://mathworld.wolfram.com/FermatsLittleTheorem.html} which says that $a^p \equiv a$ mod $p$, so it can be generalized to $n^5 \equiv n$ mod 5. The other way is by further factorizing the expression $n^5 - n$ like so:
+In order to prove that $n^5 - n$ is also divisible by 5, which is needed to prove that it is always divisible by 30 (Since it is divisible by both 6 and 5, it is then divisible by 30), we can go about this 2 ways. First one is using \textbf{Fermat's Little Theorem}\footnote{Fermat's Little Theorem - https://mathworld.wolfram.com/FermatsLittleTheorem.html} which says that $a^p \equiv a$ mod $p$, if $p$ is a prime number. Since 5 is prime, it can be applied to $n^5 \equiv n$ mod 5. The other way is by further factorizing the expression $n^5 - n$ like so:
 \begin{center}
 $n^5 - n = n \cdot (n^2 - 1) \cdot (n^2 + 1) = n \cdot (n^2 - 1) \cdot (n^2 - 4 + 5) = n \cdot (n^2 - 1) \cdot (n^2 - 4) + 5 \cdot n \cdot (n^2 - 1) = (n - 2) \cdot (n -1) \cdot n \cdot (n + 1) \cdot (n + 2) + 5$
 \end{center}
