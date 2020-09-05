@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage{amsmath,amsthm,amssymb,graphicx}
+
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\LARGE#1\end{center}
+    \vskip0.5em}%
+}
+
+\begin{document}
+\subtitle{Lecture IV}
+\noindent \textbf{Exercise 4.1} Find an irreducible polynomial of degree 2 over $\mathbb{Z}_{7}$.
+\begin{proof}
+Polynomials of degree 2 or 3 are irreducible iff they have no roots\footnote{Theorem and proof that polynomials of degree 2 or 3 are irreducible iff they have no roots - http://mathonline.wikidot.com/reducible-and-irreducible-polynomials-over-a-field}. If we take a look at elements in $\mathbb{Z}_{7}$, and square them, we can see that there are no nonzero squares other than 1, 2 and 4 mod 7. So, the following polynomials have no solutions in $\mathbb{Z}_{7}$:
+\begin{center}
+$x^2 - 3 = 0$\\
+$x^2 - 5 = 0$\\
+$x^2 - 6 = 0$	
+\end{center}
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 4.2} Find out whether or not there is a finite field having 8 elements. In case your answer is affirmative, construct such a finite field.
+\begin{proof}
+Since 8 is a power of a prime number ($2^3$), we know that finite field with 8 elements exists. Since 8 is a power of 2, we will use field $\mathbb{Z}_{2}[x]$ as a prime field to construct our finite field of 8 elements. Since it is prime to the power of 3, we will need an irreducible polynomial of 3rd degree to construct our field. Since polynomials of degree 2 or 3 are irreducible iff they have no roots, so we need to find a polynomial that has no roots. For example $x^3 + x + 1$, if we test it for elements of $\mathbb{Z}_{2}[x]$
+\begin{center}
+$p(0) = 1 \neq 0$\\
+$p(1) = 1 \neq 0$	
+\end{center}
+So this is a polynomial we can use (other option would be $x^3 + x^2 + 1$). We form the field by using $\frac{\mathbb{Z}_{2}[x]}{x^3 + x + 1}$. In this field, if we introduce a relation that $x^3 = x + 1$ we can construct a table of elements below:
+\begin{center}
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{ c c c c c c c c c  }
+\textbf{Product mod $p(x)$} & \textbf{0} & \textbf{1} & \textbf{$x$} & \textbf{$x$+1} & \textbf{$x^2$} & \textbf{$x^2$ + 1} & \textbf{$x^2$ + $x$} & \textbf{$x^2+x+1$} \\ 
+\textbf{0} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\textbf{1} & 0 & 1 & $x$ & $x+1$ & $x^2$ & $x^2$ + 1 & $x^2$ + $x$ & $x^2$ + $x$ + 1 \\
+\textbf{$x$} & 0 & $x$ & $x^2$ & $x^2+x$ & $x$ + 1 & 1 & $x^2$ + $x$ + 1 & $x^2$ + 1 \\
+\textbf{$x$ + 1} & 0 & $x$ + 1 & $x^2$ + $x$ & $x^2$ + 1 & $x^2$ + $x$ + 1 & $x^2$ & 1 & $x$ \\
+\textbf{$x^2$} & 0 & $x^2$ & $x$ + 1 & $x^2$ + $x$ + 1 & $x^2$ + $x$ & $x$ & $x^2$ + 1 & 1 \\
+\textbf{$x^2$ + 1} & 0 & $x^2$ + 1 & 1 & $x^2$ & $x$ & $x^2$ + $x$ + 1 & $x$ + 1 & $x^2$ + $x$ \\
+\textbf{$x^2$+$x$} & 0 & $x^2$ + $x$ & $x^2$ + $x$ + 1 & 1 & $x^2$ + 1 & $x$ + 1 & $x$ & $x^2$ \\
+\textbf{$x^2$+$x$ + 1} & 0 & $x^2$ + $x$ + 1 & $x^2$ + 1 & $x$ & 1 & $x^2$ + $x$ & $x^2$ & $x$ + 1
+\end{tabular}}
+\end{center}
+Since field relies on operations from the prime field we used, it satisfies all the conditions of the field. From the above table it is also visible which elements are inverses of which element.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 4.3} Find out whether or not there is a finite field having 27, 36, 51, and 2401 elements, respectively. Justify your answer.
+\begin{proof}
+While finite fields with 27 and 2401 elements exist, there are no finite fields with 36 or 51 elements. Reason for this lies in the definition of \textbf{Finite fields}\footnote{Finite Fields - https://mathworld.wolfram.com/FiniteField.html}. The order of a finite field is always a prime or a power of a prime. Since 27 and 2401 are powers of primes, 3 and 7 respectively ($3^3,\ 7^4$) we can say that fields with 27 and 2401 elements exist. On the other hand, both 36 and 51 are neither a prime nor powers of prime, so we can say that no such finite field with 36 or 51 elements exists.
+\end{proof}
+\end{document}
