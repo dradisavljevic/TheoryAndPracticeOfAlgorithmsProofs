@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsmath,amsthm,amssymb, polynom}
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -37,7 +37,7 @@ From $r' - r	= q(u - u')$ we have that deg $(r' - r)$ = deg $q$ + deg $(u - u')$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.2} Let $p = 19$ and consider the finite group $\mathbb{Z}^{*}_{p}$. Determine the order of every element in $\mathbb{Z}^{*}_{p}$, and list all the generators of $\mathbb{Z}^{*}_{p}$.
 \begin{proof}
-Since $p=19$ is prime, we know that order of the group is ($p$ - 1) = 18 according to \textbf{Corollary 3.2} from slide 51. Since $\mathbb{Z}^{*}_{p}$ is a finite group, every member also has finite order, according to \textbf{Theorem 3.1} from slide 2. According to \textbf{Lagrange's Theorem}\footnote{Lagrange's Theorem - https://crypto.stanford.edu/pbc/notes/group/lagrange.html} order of elements in $\mathbb{Z}^{*}_{p}$ divides the order of $\mathbb{Z}^{*}_{p}$. Since the numbers that divide 18 are: 1, 2, 3, 6, 9 and 18, we will check for them when we test for order.\\
+Since $p=19$ is a prime number, we know that order of the group is ($p$ - 1) = 18 according to \textbf{Corollary 3.2} from slide 51. Also, since $\mathbb{Z}^{*}_{p}$ is a finite group, every member also has finite order, according to \textbf{Theorem 3.1} from slide 2. According to \textbf{Lagrange's Theorem}\footnote{Lagrange's Theorem - https://crypto.stanford.edu/pbc/notes/group/lagrange.html} order of every element in $\mathbb{Z}^{*}_{p}$ divides the order of $\mathbb{Z}^{*}_{p}$. Since the numbers that divide 18 are: 1, 2, 3, 6, 9 and 18, we will check for them when we test for order.\\
 Order is smallest number $n$ such that $a^n=1$, where 1 is the identity element for multiplicative group. We will now test for order of every element in $\mathbb{Z}^{*}_{p}$:\\
 \begin{center}
 $1^1 = 1 \implies ord(1) = 1$\\
@@ -64,7 +64,7 @@ According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many d
 \begin{center}
 [2, 4, 8, 16, 13, 7, 14, 9, 18, 17, 15, 11, 3, 6, 12, 5, 10, 1]
 \end{center}
- Since all the elements of $\mathbb{Z}^{*}_{p}$ are present, we can claim that 2 is a generator. Since we know that 2 is a generator, according to \textbf{Theorem 3.6} from slide 40, we can get other generators by raising 2 to the relatively prime numbers of 18:  $2^{5} \equiv 13$ mod 19, $2^{7} \equiv 14$ mod 19, $2^{11} \equiv 15$ mod 19, $2^{13} \equiv 3$ mod 19 and $2^{17} \equiv 10$ mod 19. So the list of generators would be: 2, 3, 10, 13, 14, 15. Which are also all the numbers with order of 18.
+ Since all the elements of $\mathbb{Z}^{*}_{p}$ are present, we can tell that 2 is a generator. Since we know that 2 is a generator, according to \textbf{Theorem 3.6} from slide 40, we can get other generators by raising 2 to the relatively prime numbers of 18:  $2^{5} \equiv 13$ mod 19, $2^{7} \equiv 14$ mod 19, $2^{11} \equiv 15$ mod 19, $2^{13} \equiv 3$ mod 19 and $2^{17} \equiv 10$ mod 19. So the list of generators would be: 2, 3, 10, 13, 14, 15. Which are also all the numbers with order of 18.
 \end{proof}
 
 
@@ -72,7 +72,54 @@ According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many d
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.3} Consider the group $\mathbb{Z}^{*}_{31}$. How many elements of this group have order 1, 7, 11, and 30, respectively?
 \begin{proof}
-	
+Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 3.2} from slide 51. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with $ord(7)$ and $ord(11)$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
+According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many different generators. There are 8 different numbers that are relatively prime to 31 (as a result of the $\varphi$ function - 3, 11, 12, 13, 17, 21, 22, 24, and all of them are generators, meaning they have order of 30 ($\varphi(30)=8$). (This can be tested by establishing 3 is a generator and then raising 3 to the power of those relatively prime numbers)\\
+So there are 1, 0, 0 and 8 elements with order of 1, 7, 11 and 30 respectively.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 3.4} Let $p(x) = x^3 - 9x^2 + 23x - 15$ and let $q(x) = x^3 - 14x^2 + 59x - 70$ be polynomials from $\mathbb{Q}[x]$. Compute gcd($p$, $q$) in monic form and determine polynomials $u$, $v \in \mathbb{Q}[x]$ such that gcd($p$, $q$) = $pu = qv$.
+\begin{proof}
+In order to solve this problem we can apply \textbf{Euclidean algorithm} for polynomials. First we start by dividing $q(x)$ by $p(x)$:
+\begin{center}
+$\polylongdiv{x^3 - 14x^2 + 59x - 70}{x^3 - 9x^2 + 23x - 15}$\\
+$\implies q(x) = 1 \cdot p(x) - (5x^2 - 36x + 55)$
+\end{center}
+Where $(5x^2 - 36x + 55)$ is the remainder. Following the Euclidean algorithm, we now divide our quotient, which is $p(x)$ with our remainder. So we have:
+\begin{center}
+$\polylongdiv{x^3 - 9x^2 + 23x - 15}{5x^2 - 36x + 55}$\\
+$ \implies p(x) = \frac{1}{5} \cdot (x - \frac{9}{5}) \cdot (5x^2 - 36x + 55) - \frac{24}{25} \cdot (x-5)$
+\end{center}
+Since we still have a remainder in $(x-5)$ we are still not done, so we again divide quotient with the remainder and get:
+\begin{center}
+$\polylongdiv{5x^2 - 36x + 55}{x-5}$\\
+$\implies (5x^2 - 36x + 55) = (5x - 11) \cdot (x-5)$
+\end{center}
+Since now there is no remainder and only quotient, we know that according to Euclidean algorithm our $gcd(p,q)= (x-5)$. Now all that is left is to express it in the monic form. Since we have our two factorized equations:
+\begin{center}
+$q(x) = 1 \cdot p(x) - (5x^2 - 36x + 55)$\\
+$p(x) = \frac{1}{5} \cdot (x - \frac{9}{5}) \cdot (5x^2 - 36x + 55) - \frac{24}{25} \cdot (x-5)$
+\end{center}
+We can express $(x-5)$ from there as:
+\begin{center}
+$(x-5) = -\frac{25}{24}  \cdot p(x) + \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot (5x^2 - 36x + 55)$	
+\end{center}
+From the equation for $q(x)$ we have that $(5x^2 - 36x + 55) = p(x) - q(x)$, so we can further substitute and get:
+\begin{center}
+$(x-5) = -\frac{25}{24} \cdot p(x) + \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot (p(x)-q(x))$\\
+$\implies (x-5) = -\frac{25}{24} \cdot p(x) + \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot p(x) - \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot q(x)$ \\
+$\implies (x-5) = \frac{5}{24} \cdot (-5 + x - \frac{9}{5}) \cdot p(x) - \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot q(x)$\\
+$\implies (x-5) = \frac{5}{24} \cdot (x - \frac{34}{5}) \cdot p(x) - \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot q(x)$\\
+$\implies (x-5) = \frac{1}{24} \cdot (5x - 34) \cdot p(x) - \frac{1}{24} \cdot (5x - 9) \cdot q(x)$
+\end{center}
+So the monic form is finally equal to:
+\begin{center}
+$ (x-5) = \frac{1}{24} \cdot (5x - 34) \cdot p(x) - \frac{1}{24} \cdot (5x - 9) \cdot q(x)$
+\end{center}
+Where polynomials $u$ and $v$ are $u=\frac{1}{24}(5x - 34)$ and $v=-\frac{1}{24}(5x - 9)$ over a ring of rational numbers $\mathbb{Q}[x]$.
+
 \end{proof}
 
 \end{document}
