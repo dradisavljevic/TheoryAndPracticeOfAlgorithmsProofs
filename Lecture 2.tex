@@ -80,7 +80,10 @@ Which shows that there are distinct solutions to equation $x = x_0 + \frac{b}{d}
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.4} Determine the complexity of computing all solutions of $ax \equiv c$ mod $b$ in dependence on the length of the input $a, c \in \mathbb{Z}$ and $b \in \mathbb{N}, b \geq 2$.
 \begin{proof}
-Sadly at this point I don't know how to prove this.
+Since according to \textbf{Theorem 2.9} from slide 33, time complexity of calculating modular inverse can be computed in time $\mathcal{O}(max\{log\ a, log\ m\}^3)$, in this case complexity would be:
+\begin{center}
+$\mathcal{O}(max\{log\ a, log\ c, log\ b\}^3)$
+\end{center}
 \end{proof}
 
 
