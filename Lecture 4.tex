@@ -26,12 +26,12 @@ $x^2 - 6 = 0$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 4.2} Find out whether or not there is a finite field having 8 elements. In case your answer is affirmative, construct such a finite field.
 \begin{proof}
-Since 8 is a power of a prime number ($2^3$), we know that finite field with 8 elements exists. Since 8 is a power of 2, we will use field $\mathbb{Z}_{2}[x]$ as a prime field to construct our finite field of 8 elements. Since it is prime to the power of 3, we will need an irreducible polynomial of 3rd degree to construct our field. Since polynomials of degree 2 or 3 are irreducible iff they have no roots, so we need to find a polynomial that has no roots. For example $x^3 + x + 1$, if we test it for elements of $\mathbb{Z}_{2}[x]$
+Since 8 is a power of a prime number ($2^3$), we know that finite field with 8 elements exists. Since 8 is a power of 2, we need a 3rd degree polynomial $f$ which is irreducible over $\mathbb{Z}_{2}[x]$. Since polynomials of degree 2 or 3 are irreducible iff they have no roots, so we need to find a polynomial that has no roots. We take $x^3 + x + 1$, if we test it for elements of $\mathbb{Z}_{2}[x]$
 \begin{center}
 $p(0) = 1 \neq 0$\\
 $p(1) = 1 \neq 0$	
 \end{center}
-So this is a polynomial we can use (other option would be $x^3 + x^2 + 1$). We form the field by using $\frac{\mathbb{Z}_{2}[x]}{x^3 + x + 1}$. In this field, if we introduce a relation that $x^3 = x + 1$ we can construct a table of elements below:
+Meaning the said polynomial is irreducible and can be taken for the purpose (other option would be $x^3 + x^2 + 1$). We form the field by using $\frac{\mathbb{Z}_{2}[x]}{x^3 + x + 1}$. In this field, if we introduce a relation that $x^3 = x + 1$ we can construct a table of elements (elements are possible residuals of our polynomial $x^3 + x + 1$) below:
 \begin{center}
 \centering
 \resizebox{\textwidth}{!}{\begin{tabular}{ c c c c c c c c c  }
