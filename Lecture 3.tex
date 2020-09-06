@@ -1,16 +1,12 @@
 \documentclass{article}
 
-\usepackage{amsmath,amsthm,amssymb, polynom}
+\usepackage{amsmath,amsthm,amssymb, polynom, titling}
 
-\newcommand{\subtitle}[1]{%
-  \posttitle{%
-    \par\end{center}
-    \begin{center}\LARGE#1\end{center}
-    \vskip0.5em}%
-}
+\title{\vspace{-2cm}Lecture III\vspace{-2cm}}
+\date{}
 
 \begin{document}
-\subtitle{Lecture III}
+\maketitle
 \noindent \textbf{Exercise 3.1} Let $\mathbb{F}$ be a field. Then $\mathbb{F}[x]$ is a commutative ring with 1. Furthermore, it is not difficult to see that division with remainder generalizes to polynomials as follows: Let $p$, $q \in \mathbb{F}[x]$ such that $q \neq0$. Then there are uniquely determined polynomials $u$, $r \in \mathbb{F}[x]$ such that
 \begin{center}
 $p = uq + r$, where deg $r<$ deg $q$.	

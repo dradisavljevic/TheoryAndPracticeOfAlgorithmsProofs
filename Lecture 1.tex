@@ -1,17 +1,13 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsmath,amsthm,amssymb,titling, graphicx}
 
 \newcommand{\Lim}[1]{\raisebox{0.5ex}{{$\displaystyle \lim_{#1}\;$}}}
-\newcommand{\subtitle}[1]{%
-  \posttitle{%
-    \par\end{center}
-    \begin{center}\LARGE#1\end{center}
-    \vskip0.5em}%
-}
+\title{\vspace{-2cm}Lecture I\vspace{-2cm}}
+\date{}
 
 \begin{document}
-\subtitle{Lecture I}
+\maketitle
 \noindent \textbf{Exercise 1.1} Prove or disprove the following: $f(x) = o(g(n))$ if and only if $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$.
 \begin{proof}
   Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches 0. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
@@ -166,6 +162,8 @@ $1 \cdot 1 + 0 \cdot (-1) + 0 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 + 0 \cdot (-1) 
 \end{center} 
 Which is divisible by 3, thus 309 is divisible by 3. We have a table of first 30 numbers out of which 10 are divisible by 3: \\
 \begin{center}
+\centering
+\resizebox{\textwidth}{!}{
 \begin{tabular}{ c c c c c  }
 Decimal & Binary & Number of 1s in odd position & Number of 1s in even position & Difference \\
  1 & $0001_2$ & 1 & 0 & 1 \\ 
@@ -198,7 +196,7 @@ Decimal & Binary & Number of 1s in odd position & Number of 1s in even position 
  28 & $0001\ 1100_2$ & 2 & 1 & 1 \\ 
  29 & $0001\ 1101_2$ & 3 & 1 & 2 \\ 
  30 & $0001\ 1110_2$ & 2 & 2 & 0
-\end{tabular}
+\end{tabular}}
 \end{center}
 So mathematically we can write:
 \begin{center}
