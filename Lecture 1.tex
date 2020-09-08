@@ -10,11 +10,11 @@
 \maketitle
 \noindent \textbf{Exercise 1.1} Prove or disprove the following: $f(x) = o(g(n))$ if and only if $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$.
 \begin{proof}
-  Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches 0. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
+Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches 0. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
   
-  Now let $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ meaning that as n increases limit of the fraction $\frac{f(n)}{g(n)}$ equals to either some constant $c$ that is not 0 or approaches infinity. In the first case, where limit yields a constant $c$, it can be written as both $\Lim{n \to \infty} \frac{f(n)}{g(n)}>0$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}<\infty$ meaning that $g(n)$ is both upper and lower bound of $f(n)$, or in other words an exact bound, which can be written as $f(x) = \Theta(g(n))$. Since $g(n)$ is an upper bound of $f(n)$, this means that $f(x) \neq o(g(n))$. In the case of the limit being equal to infinity for a very large n, the statement $g(n) < f(n)$ must hold true, in other words $f(x) = O(g(n))$, which further implies $f(x) \neq o(g(n))$. In both cases we have that if $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ then also $f(x) \neq o(g(n))$. \\
+Now let $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ meaning that as n increases limit of the fraction $\frac{f(n)}{g(n)}$ equals to either some constant $c$ that is not 0 or approaches infinity. In the first case, where limit yields a constant $c$, it can be written as both $\Lim{n \to \infty} \frac{f(n)}{g(n)}>0$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}<\infty$ meaning that $g(n)$ is both upper and lower bound of $f(n)$, or in other words an exact bound, which can be written as $f(x) = \Theta(g(n))$. Since $g(n)$ is an upper bound of $f(n)$, this means that $f(x) \neq o(g(n))$. In the case of the limit being equal to infinity for a very large n, the statement $g(n) < f(n)$ must hold true, in other words $f(x) = O(g(n))$, which further implies $f(x) \neq o(g(n))$. In both cases we have that if $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ then also $f(x) \neq o(g(n))$. \\
   
-  Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0 \implies f(x) \neq o(g(n))$, we can say that $f(x) = o(g(n)) \iff \Lim{n \to \infty} \frac{f(n)}{g(n)}=0$ which is what was needed to be proven.
+Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0 \implies f(x) \neq o(g(n))$, we can say that $f(x) = o(g(n)) \iff \Lim{n \to \infty} \frac{f(n)}{g(n)}=0$ which is what was needed to be proven.
 
 \end{proof}
 
@@ -23,16 +23,16 @@
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.2} Let $\mathcal{M}_n$ = ($M_n$,$+_n$,$\mathrm{x}_n$,$0_n$,$\mathrm{I}_n$). Then we have $\mathcal{M}_n$ is a ring with identity element $\mathrm{I}_n$ if and only if $\mathcal{R}$ is ring with 1.
 \begin{proof}
-  Let $\mathcal{R}$ = ($R$,$\circ$,$\mathcal{*}$,0,1) be a ring with 1. This means that $\mathcal{R}$ has following properties:\\
-  \begin{itemize}
-  \item Both $\circ$ and $\mathcal{*}$ operations are associative and closed over $R$.
-  \item $\circ$ (Additive operation) is commutative.
-  \item $\mathcal{*}$ (Multiplicative operation) is distributive with respect to $\circ$.
-  \item 0 is neutral element with respect to $\circ$.
-  \item 1 is identity element with respect to $\mathcal{*}$.
-  \item For every $a$, where $a \in R$, there is an additive inverse $\neg a$ such that $a\circ\neg a=0$.
-  \end{itemize}
-  $M_n$ is defined as set of $ n\ \mathrm{x}\ n$ matrices over $R$ with $+_n$ and $\mathrm{x}_n$ being square matrix equivalent of additive and multiplicative operations, respectively, present in ring $\mathcal{R}$. Let matrices $\mathcal{A}$ and $\mathcal{B}$ be members of $M_n$ such that
+Let $\mathcal{R}$ = ($R$,$\circ$,$\mathcal{*}$,0,1) be a ring with 1. This means that $\mathcal{R}$ has following properties:\\
+\begin{itemize}
+\item Both $\circ$ and $\mathcal{*}$ operations are associative and closed over $R$.
+\item $\circ$ (Additive operation) is commutative.
+\item $\mathcal{*}$ (Multiplicative operation) is distributive with respect to $\circ$.
+\item 0 is neutral element with respect to $\circ$.
+\item 1 is identity element with respect to $\mathcal{*}$.
+\item For every $a$, where $a \in R$, there is an additive inverse $\neg a$ such that $a\circ\neg a=0$.
+\end{itemize}
+$M_n$ is defined as set of $ n\ \mathrm{x}\ n$ matrices over $R$ with $+_n$ and $\mathrm{x}_n$ being square matrix equivalent of additive and multiplicative operations, respectively, present in ring $\mathcal{R}$. Let matrices $\mathcal{A}$ and $\mathcal{B}$ be members of $M_n$ such that
   $\mathcal{A}= \begin{bmatrix}
  	a & b\\
  	c & d
@@ -112,10 +112,8 @@ The opposite direction, that when $\mathcal{R}$ is not a ring with identity $\ma
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.3} Show that the definition of $+$ and $\cdot$ over $\mathbb{Z}_m$ are independent of the choice of the representation.
 \begin{proof}
-Let $x$, $u$, $v$ and $y$ be integers where we have $x \equiv u$ mod $n$ and $y \equiv v$ mod $n$, then it is also true that $x -u$ and $y - v$ are divisible by $n$. If we put the two equations together we can also see that $(x + y) - (u + v)$ is then also divisible by $n$ and from there we have that $(x+y) \equiv (u+v)$ mod $n$.\\
-We also have that $xy - uv = (x-u)y + u(y-v)$ from where it follows that $xy-uv$ is divisible by $n$ and thus $xy \equiv uv$ mod $n$.\\
-We conclude that there are well-defined operations of addition and
-multiplication on the set $\mathbb{Z}_{n}$ of congruence classes of integers modulo $n$: the sum of the congruence classes of integers $x$ and $y$ is the congruence class of $x+y$, and the product of these congruence classes is the congruence class of $xy$. Thus we can conclude that these operations of addition and multiplication on congruence classes do not depend on the choice of representatives of those congruence classes.
+Let $x$, $u$, $v$ and $y$ be integers where we have $x \equiv u$ mod $m$ and $y \equiv v$ mod $m$, then it is also true that $x -u$ and $y - v$ are divisible by $m$. If we put the two equations together we can also see that $(x + y) - (u + v)$ is then also divisible by $m$ and from there we have that $(x+y) \equiv (u+v)$ mod $m$. We also have that $xy - uv = (x-u)y + u(y-v)$ from where it follows that $xy-uv$ is divisible by $m$ and thus $xy \equiv uv$ mod $m$.\\
+We conclude that there are well-defined operations of addition and multiplication on the set $\mathbb{Z}_{m}$ of congruence classes of integers modulo $m$: the sum of the congruence classes of integers $x$ and $y$ is the congruence class of $x+y$, and the product of these congruence classes is the congruence class of $xy$. If $x$ and $u$ belong to the same congruence class and if $y$ and $v$ belong to the same congruence class, then we have shown that $x+y$ and $u+v$ belong to the same congruence class; we have also shown that $xy$ and $uv$ belong to the same congruence class. Thus we can conclude that these operations of addition and multiplication on congruence classes do not depend on the choice of representatives of those congruence classes.
 \end{proof}
 
 
