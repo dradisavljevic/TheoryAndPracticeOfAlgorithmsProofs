@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, tikz}
+
+\title{\vspace{-2cm}Lecture VIII\vspace{-2cm}}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Exercise 8.1}  Show the equivalence of \textbf{Definitions 8.2 and 8.3}.
+\begin{proof}
+We will start from \textbf{Definitions 8.3}. If we take $\sum_{j=0}^{n-1}\omega^{jk}$ which taking formula from the geometric sum:
+\begin{center}
+$\sum_{j=0}^{n-1}ar^{j}=a\left( \frac{1- r^{n}}{1- r^{k}}\right)$
+\end{center}
+for $a = 1$ and $r = \omega^{k}$ we have:
+\begin{center}
+$\sum_{j=0}^{n-1}\omega^{jk}=\frac{1- \omega^{n}}{1- \omega^{k}}$
+\end{center}
+Considering that denominator can't be 0 and that ${1- \omega^{k}}$ is not a zero divisor for all $1 \leq k < n$ , we can multiply both sides with the denominator getting:
+\begin{center}
+$\left(1- \omega^{k}\right)\sum_{j=0}^{n-1}\omega^{jk}={1- \omega^{n}}=0$
+\end{center}
+This shows that \textbf{Definitions 8.2} implies \textbf{Definitions 8.3}.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 8.2}  Show Assertion (1) of \textbf{Theorem 8.5}.
+\begin{proof}
+Relying on \textbf{Theorem 8.4} on slide 49, we have:
+\begin{center}
+Let $(\widehat{a}_0,...,\widehat{a}_{m-1})^{T} =_{df}F(\vec(a))$ and $(\widehat{b}_0,...,\widehat{b}_{m-1})^{T} =_{df}F(\vec(b))$
+\end{center}
+We can represent it as:
+$$\widehat{a}_l = \sum_{j=0}^{m-1}a_j\psi^{2lj},\ and\ \widehat{b}_l = \sum_{j=0}^{m-1}b_j\psi^{2lj}$$
+consequently having:
+$$\widehat{a}_l\widehat{b}_l = \sum_{j=0}^{m-1}\sum_{k=0}^{m-1}a_jb_k\psi^{2l(j+k)}$$
+From \textbf{Definition 8.8} we set $\vec{a} \otimes \vec{b} =_{df}(c_0,...,c_{m-1})^T$ and furthermore $F\left(\vec{a} \otimes \vec{b}\right) =_{df}(\widehat{c}_0,...,\widehat{c}_{m-1})^T$ then it suffices to show that $F\left(\vec{a} \otimes \vec{b}\right) = F(\vec{a})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{b})$. By \textbf{Definition 8.8} (slide 47) we also get $c_{p}=  \sum_{j=0}^{p}a_{j}b_{p-j}$ for all $ 0 \leq p < 2m-1$, then setting $b_{p-j} =_{df} 0$ for all $p < j$ we have
+$$\widehat{c}_l = \sum_{p=0}^{m-1}c_p\psi^{2lp} =  \sum_{p=0}^{m-1}\sum_{j=0}^{p}a_{j}b_{p-j}\psi^{2lp} =  \sum_{p=0}^{m-1}\sum_{j=0}^{m-1}a_{j}b_{p-j}\psi^{2lp} =  \sum_{j=0}^{m-1}\sum_{p=0}^{m-1}a_{j}b_{p-j}\psi^{2lp}$$
+If we let $k = p-j$ so for $p =0$ we have $ k = -j$, and also we have that $p=k+j$, so for $p = m - 1$ we obtain that $k = m - 1 - j$ thus having:
+$$=  \sum_{j=0}^{m-1}\sum_{k= -j}^{m-1-j}a_{j}b_{k}\psi^{2l(k+j)} = \sum_{j=0}^{m-1}\sum_{k= -j}^{m-1-j}a_{j}b_{k}\psi^{2l(j+k)}$$
+Since $b_{k}=0$ for any $k$, we have that second summations upper index does not depend on $j$, and since $b_{p-j} =_{df} 0$ for all $p < j$ we can set the lower index of second summation to 0 , then we have
+$$\widehat{c}_l  =  \sum_{j=0}^{m-1}\sum_{k= 0}^{m-1}a_{j}b_{k}\psi^{2l(k+j)}=\widehat{a}_l\widehat{b}_l$$
+And the assertion is shown.
+\end{proof}
+\end{document}
