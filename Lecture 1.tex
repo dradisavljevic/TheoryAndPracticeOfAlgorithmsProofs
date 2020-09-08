@@ -112,7 +112,10 @@ The opposite direction, that when $\mathcal{R}$ is not a ring with identity $\ma
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.3} Show that the definition of $+$ and $\cdot$ over $\mathbb{Z}_m$ are independent of the choice of the representation.
 \begin{proof}
-Sadly I have no idea how to prove this at current point.
+Let $x$, $u$, $v$ and $y$ be integers where we have $x \equiv u$ mod $n$ and $y \equiv v$ mod $n$, then it is also true that $x -u$ and $y - v$ are divisible by $n$. If we put the two equations together we can also see that $(x + y) - (u + v)$ is then also divisible by $n$ and from there we have that $(x+y) \equiv (u+v)$ mod $n$.\\
+We also have that $xy - uv = (x-u)y + u(y-v)$ from where it follows that $xy-uv$ is divisible by $n$ and thus $xy \equiv uv$ mod $n$.\\
+We conclude that there are well-defined operations of addition and
+multiplication on the set $\mathbb{Z}_{n}$ of congruence classes of integers modulo $n$: the sum of the congruence classes of integers $x$ and $y$ is the congruence class of $x+y$, and the product of these congruence classes is the congruence class of $xy$. Thus we can conclude that these operations of addition and multiplication on congruence classes do not depend on the choice of representatives of those congruence classes.
 \end{proof}
 
 
