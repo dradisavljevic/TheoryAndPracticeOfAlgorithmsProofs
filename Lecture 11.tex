@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, tikz}
+
+\title{\vspace{-2cm}Lecture XI\vspace{-2cm}}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Exercise 11.1}  Apply  \textbf{Theorems 11.6 and 11.7} to compute $\left(\frac{119}{291}\right)$.
+\begin{proof}
+Computing Jacobi Symbol $\left(\frac{119}{291}\right)$ follows:
+\begin{center}
+\begin{tabular}{ c c c c  }
+$\left(\frac{119}{291}\right)$ & $=$ & $(-1)^{(291-1)(119-1)/4}\left(\frac{291}{119}\right)$ & (\textasteriskcentered\textbf{Theorem 11.6}\textasteriskcentered)\\
+& $ = $ & $ - \left(\frac{291}{119}\right)$ & \\
+& $ = $ & $ - \left(\frac{53}{119}\right)$ & (\textasteriskcentered\textbf{Theorem 11.7} (1)\textasteriskcentered)\\
+& $ = $ & $ - \left(\frac{119}{53}\right) = - \left(\frac{13}{53}\right)$  &\\
+& $ = $ & $ - \left(\frac{53}{13}\right) = - \left(\frac{1}{13}\right)$  &\\
+& $ = $ & $ - 1$ & (\textasteriskcentered\textbf{Theorem 11.7} (2)\textasteriskcentered)\\
+\end{tabular}
+\end{center}
+So Jacobi Symbol here equals to $-1$
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 11.2} Prove the following: Let $p \in \mathbb{N}$ be an odd prime and let $a \in \mathbb{Z}^{*}_{p}$.\\
+(1) $ x^{2} \equiv -1$ mod $p$ is solvable if and only if $p \equiv 1$ mod 4.\\
+(2) If $p \equiv 3$ mod $4$ then either $a$ or $-a$ is a quadratic residue.\\
+(3) If $p \equiv 1$ mod $4$ then either both $a$ and $-a$ are quadratic residues or both are quadratic nonresidues.
+\begin{proof}
+\textbf{( 1 )} What here needs proving is that -1 is quadratic residue modulo $p$ and for which $p$ this is true. For \textbf{Legendre Symbol} that equals 1 (\textbf{Definition 11.1}) this is true. If we look at \textbf{Theorem 11.7} (3) We have that:
+\begin{center}
+$\left(\frac{-1}{Q}\right) = (-1)^{(Q-1)/2}$
+\end{center}
+From here we have that unless $Q \equiv 1$ mod $4$ the exponent won't equal to a positive whole integer (in other words, this equation won't yield $1$ as a solution). Since $p$ is a prime this implies that congruence $x^{2} \equiv -1$ mod $p$ is solvable if and only if $p \equiv 1$ mod $4$, which is what needed proving. \\
+\textbf{( 2 )} From \textbf{Theorem 11.6} we have that:
+\begin{center}
+$\left(\frac{Q}{P}\right) = (-1)^{(P-1)(Q-1)/4}\left(\frac{P}{Q}\right)$
+\end{center}
+After multiplying both sides with$\left(\frac{P}{Q}\right)$ (since Legendre symbol can be either 1 or -1, squaring it on the right hand side yields one, and therefore removes it from the equation) we get:
+\begin{center}
+$\left(\frac{P}{Q}\right)\left(\frac{Q}{P}\right) = (-1)^{(P-1)(Q-1)/4}$
+\end{center}
+Now from solution in ( 1 ) we have that if $p \equiv 3$ mod $4$ then $-1$ is a nonresidue and $p \equiv 1$ mod $4$ then $-1$ is a residue. This implies that in the case of $p \equiv 3$ mod $4$, negative of a residue is a nonresidue and negative of a nonresidue is residue ($1$ is negative of $-1$) which implies that if $p \equiv 3$ mod $4$ either $a$ or $-a$ are residue.
+\textbf{( 3 )} much like with the second claim, if we consider all the information we stated we have that $p \equiv 1$ mod $4$ implies that negative of a residue is also a residue, meaning that in this case if $a$ is residue, $-a$ is also a residue, while in the case $a$ is a nonresidue, then $-a$ is also a nonresidue.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 11.3} Apply the Algorithm PTSS to check whether or not 11981 and 69147, respectively, is prime. Interpret the results obtained.
+\begin{proof}
+We start by checking for 11981. First we will select a number smaller than 11981, say 7, and calculate gcd(7,11981). Since it is 1, we then calculate $7^{(11981-1)/2}$ mod $11981$ and Jacobi symbol $\left(\frac{7}{111981}\right)$, and we get that both are equal. So for 7, it seems that $11981$ is possibly prime. We repeat the test for 100, 751 and 13, and get the same results where Jacobi symbol matches Euler's criterion. So 11981 is possibly prime.\\
+For number 69147 it is obvious to the human eye that it is not prime, as the sum of its digits yields a number divisible by 3, so we will try applying the algorithm for $a=3$. Immediately on the second step we have that gcd(3,69147) is not 1, and we can say that the number is composite.
+\end{proof}
+\end{document}

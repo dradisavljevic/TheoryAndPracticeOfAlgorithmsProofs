@@ -7,7 +7,7 @@
 
 \begin{document}
 \maketitle
-\noindent \textbf{Exercise 8.1}  Show the equivalence of \textbf{Definitions 8.2 and 8.3}.
+\noindent \textbf{Exercise 8.1}  Prove or disprove the equivalence of \textbf{Definitions 8.2 and 8.3}.
 \begin{proof}
 We will start from \textbf{Definitions 8.3}. If we take $\sum_{j=0}^{n-1}\omega^{jk}$ which taking formula from the geometric sum:
 \begin{center}
@@ -21,13 +21,32 @@ Considering that denominator can't be 0 and that ${1- \omega^{k}}$ is not a zero
 \begin{center}
 $\left(1- \omega^{k}\right)\sum_{j=0}^{n-1}\omega^{jk}={1- \omega^{n}}=0$
 \end{center}
-This shows that \textbf{Definitions 8.2} implies \textbf{Definitions 8.3}.
+However, if $R=F_{p}$, then $1 \in R$ is a principal $n$th root of unity in \textbf{Definitions 8.3} but not in \textbf{Definitions 8.2}, thus they are not equivalent.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 8.2}  Show Assertion (1) of \textbf{Theorem 8.5}.
+\noindent \textbf{Exercise 8.2}  Let $\mathfrak{R}$ be a commutative ring with $1$, let $n \in \mathbb{N}^{+}$ be arbitrarily fixed, and let $\omega \in \mathfrak{R}$. Then $\omega$ is said to be a principal $n$th root of unity if\\
+(1) $\omega^{n} =1$;\\
+(2) $\omega^{n/t}-1$ is not a zero-divisor in $\mathfrak{R}$ for every prime divisor $t$ of $n$.\\
+Prove equivalence of the above definition and definition 8.2.
+\begin{proof}
+Assertion (1) is same in both cases, so there is no need proving that part. We will focus on assertion (2) for both definitions. If we start from the claim in \textbf{Definition 8.2} that $1 - w^{k}$ is not a zero divisor. Let $g$ be gcd($k,n$) and let there be some $u,v \in \mathbb{Z}$ such that $uk + vn = g$. Since $k<n$ we have that $1 \leq g < n$, so we have that for prime factor $t$ of $n$ holds that $g$ divides ($n/t$). From here we have that $(1 - \omega^{g})a = (\omega^{n/t}-1)$, so $(1 - \omega^{g})$ would be a zero divisor if $(\omega^{n/t}-1)$ is zero divisor. Using the identity that $uk + vn = g$ we have $(1 - \omega^{uk})=(1 - \omega^{uk}\omega^{vn})=(1 - \omega^{g})$ so we have that $(1 - \omega^{k}) | (1 - \omega^{g})$. Therefore we have that if $1 - \omega^{k}$ is a zero divisor so is the $\omega^{n/t}-1$, and the equivalence is proven.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 8.3} Let $n$ and $\omega$ be positive powers of $2$, and let $m = \omega^{n/2} + 1$. Prove the equivalence of Definitions 8.10 and 8.3 for the ring $\mathbb{Z}_{m}$.
+\begin{proof}
+From exercises 8.1 and 8.2, we have proven equivalences and non equivalences of the theorem. In ring $\mathbb{Z}_{m}$ where $m=\omega^{n/2}+1$ and $\omega$ and $n$ are powers of two, the claim stated at the end of exercise 1 does not hold. So from exercise 1 and exercise two, we have that these two definitions are equivalent. Or rather for setting $(\omega^{n/t}-1)$ we have that $(\omega^{n/t}-1)\sum^{n-1}_{j=0}\omega^{jn/t}=0$, and since $(\omega^{n/t}-1)$ is non zero divisor for every $t$ we have that $\sum^{n-1}_{j=0}\omega^{jn/t}=0$, getting definition 8.3.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 8.4}  Show Assertion (1) of \textbf{Theorem 8.5}.
 \begin{proof}
 Relying on \textbf{Theorem 8.4} on slide 49, we have:
 \begin{center}

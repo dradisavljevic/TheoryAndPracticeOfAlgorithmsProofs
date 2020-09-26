@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling}
+
+\title{\vspace{-2cm}Lecture XV\vspace{-2cm}}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Exercise 15.1}  Every bit-reversal ring is $\frac{1}{2}$-symmetric.
+\begin{proof}
+From the information that we are talking about bit-reversal ring we have that $n=2^{k}$, or that $n$ is a power of $2$. Next, from definition of symmetry we have that for all $l$, such that $\sqrt{n} \leq l \leq n$ where $l$ is length, there are at least $\lfloor cn/l \rfloor$ where c=$\frac{1}{2}$ and $n=2^{k}$, thus giving $\lfloor 2^{k-1}/l \rfloor$ segments in the ring that are order equivalent to $S$, including $S$ itself.\\
+To prove the claim for all $l$ we can assume the upper bound to be $n/2$ instead of $n$ since $\lceil \frac{n/2}{l} \rceil$ is equal to 1 for $l=n/2$. Trivial case is also for $n=1$ so we can assume $n \geq 2$.\\
+The relative order of elements in the interval of length $n/2$ starting at $i$ is the same as the relative order of elements in the ring of length $n/2$, when read from position $i$. We can list intervals of length 4 in a ring of length 8 as follows:
+\begin{center}
+\begin{tabular}{ c c }
+0,4,2,6 & 0,2,1,3 \\
+4,2,6,1 & 2,1,3,0 \\
+2,6,1,5 & 1,3,0,2 \\
+6,1,5,3 & 3,0,2,1 \\
+1,5,3,7 & 0,2,1,3 \\
+5,3,7,0 & 2,1,3,0 \\
+3,7,0,4 & 1,3,0,2 \\
+7,0,4,2 & 3,0,2,1
+\end{tabular}
+\end{center}
+Here we can see that intervals on the left doesn't contain a pair of elements that are different only in their least significant bit. One way to ignore the least significant bit is to divide the numbers by 2, and then we would get intervals on the right.\\
+This property immediately implies a similar property for all intervals of length $l \leq n/2$. The relative order of elements in the interval of length $l$ starting at $i$ is the same as the relative order of elements in the interval of length $l$ starting at $i$ mod $n/2$ in the ring of length $n/2$. By induction, from here we can get that an interval of length $l \leq n/2$ has at least this many order equivalent intervals, thus getting $2\lceil \frac{n/4}{l} \rceil \geq \lceil \frac{n/2}{l} \rceil$, meaning that every bit-reversal ring is in fact $\frac{1}{2}$-symmetric.
+\end{proof}
+\end{document}

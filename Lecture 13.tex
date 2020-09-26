@@ -1,0 +1,31 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling}
+
+\title{\vspace{-2cm}Lecture XIII\vspace{-2cm}}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Exercise 13.1}  Repeat the computation presented in \textbf{Example 13.6} for the case that $a = 13$ is given as $(0, 3, 1)$ as input.
+\begin{proof}
+Let $m = 4^{2} + 1 = 17$ and let $a=13$ be given as input as $(0, 3, 1)$.
+Thus, we obtain:
+\begin{center}
+$\vert x^{+} \vert = (0,0,1,1,0,1)$\\
+$\vert x^{-} \vert = (0,0,0,0,0,0)$
+\end{center}
+and $\vert x^{+} \vert - \vert x^{-} \vert =(0,0,1,1,0,1) =13$ (written as AS-number) (Since we first negate the first number and add it to second, then negating the result, this gives us the first number since the second one is all 0s). So again, for this example, we can omit the computation of other candidates, since 13 is between 0 and our $m$.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 13.2} Prove that there is a uniform family $\left(C_{n}\right)_{n \in \mathbb{N}}$ of Boolean circuits simultaneously achieving depth $O(1)$ and size $O(n)$ which on input any number b given in a radix-4 representation $(x_{n},  \ldots , x_{0})$ computes the radix-4 representation of the product $b2^{l}$, where $l \leq 2n$ is any fixed number.
+\begin{proof}
+Let's consider circuit stated in \textbf{Theorem 13.5}, the first part converts $a_{i}$ where $i = 1, \ldots, n$ into a radix-4 representation. SInce this requires n sub-circuits having depth $O(1)$ and size $O(n)$. In \textbf{Theorem 13.4} we have that conversion from binary into radix-4 can be done in constant depth with linear size. Since the operation we are interested in is multiplication with a power of two, where power of two is fixed such that it is $l \leq 2n$, we can say that $b2^{l} < 4^{n+1}$, so proof of this exercise comes directly from \textbf{Theorem 13.4} assertion (1).
+\begin{center}
+$x_{i} = 2y_{2i+1}+y_{2i}$ where $y_{i} \in {-1, 0, +1}$
+\end{center}
+\end{proof}
+\end{document}

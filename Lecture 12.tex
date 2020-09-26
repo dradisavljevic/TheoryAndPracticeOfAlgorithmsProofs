@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, tikz}
+
+\title{\vspace{-2cm}Lecture XII\vspace{-2cm}}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Exercise 12 a)}  Non-uniform circuit families are unexpectedly powerful, since they can also “compute” non-computable functions like the halting problem.
+\begin{proof}
+The halting problem represents the problem of determining whether the program will finish running or run forever, depending from the description of the program. If we have a language with inputs of arbitrary size we can treat it by a family of circuits, one for each size of input. If these circuits are non-uniform, such that here is no Turing Machine which on input $n$ outputs the circuit for size $n$ inputs, so it allows circuit to solve uncomputable problems, giving answer for a certain encoding of the halting problem.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 12 b)} \tikz\draw[black,fill=black] (0,0) circle (.5ex); is associative. i.e.:
+\begin{center}
+$[(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{1},g_{1})] \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2}) = (p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); [(p_{1},g_{1}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})]$
+\end{center}
+\begin{proof}
+Since the definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex); relies on logical conjunction and logical disjunction ($\left(P_{1},G_{1}\right) \tikz\draw[black,fill=black] (0,0) circle (.5ex); \left(P_{2},G_{2}\right) =_{df} \left(P_{1} \land P_{2}, G_{2} \lor \left(P_{2} \land G_{1} \right) \right)$, we will prove this through using properties of logical operators. It is important to note before we start that both conjunction and disjunction are associative (for example, $(a \land b) \land c = a \land (b \land c)$. We will also use distributive law:
+\begin{center}
+$(a \lor (b \land c)) = ((a \lor b) \land (a \lor c))$\\
+$(a \land (b \lor c)) = ((a \land b) \lor (a \land c))$\\
+\end{center}
+And law of absorbtion:
+\begin{center}
+$(a \lor (a \land b)) =a$\\
+$(a \land (a \lor b)) =a$\\
+\end{center}
+To begin we start with the left hand side of the equation:
+\begin{center}
+$[(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{1},g_{1})] \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2}) $\\
+$\left(p_{0} \land p_{1}, g_{1} \lor \left(p_{1} \land g_{0} \right) \right) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)\\
+$\left(p_{0} \land p_{1} \land p_{2}\right), \left( g_{2} \lor \left(p_{2} \land \left(g_{1} \lor \left(p_{1} \land g_{0} \right) \right) \right) \right)$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)
+\end{center}
+for the time being we will mark $( 1 ) = g_{2} \lor \left(p_{2} \land \left(g_{1} \lor \left(p_{1} \land g_{0} \right) \right) \right)$ and take a look at the right hand sign of the starting equation:
+\begin{center}
+$(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); [(p_{1},g_{1}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})] $\\
+$(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); \left(p_{1} \land p_{2}, g_{2} \lor \left(p_{2} \land g_{1} \right) \right)$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)\\
+$\left(p_{0} \land p_{1} \land p_{2}\right), \left( \left( g_{2} \lor \left(p_{2} \land g_{1} \right) \right) \lor \left(\left(p_{1} \land p_{2}\right) \land g_{0} \right) \right)$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)
+\end{center}
+We can see that the expression to the left of , is same in both cases, so we will take the expression to the right of it and apply distributive and absorption laws, and after simplifying the expression we will get that it equals to $g_{2} \lor \left(p_{2} \land \left(\left(g_{1} \lor p_{1} \right) \land \left( g_{1} \lor g_{0} \right) \right) \right)$, which after applying the distributive law, we get exactly ( 1 ), thus we can say that associative property holds for \tikz\draw[black,fill=black] (0,0) circle (.5ex);.
+\end{proof}
+
+\end{document}
