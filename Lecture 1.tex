@@ -1,18 +1,163 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb,titling, graphicx}
+\usepackage{amsmath, amsthm, amssymb, titling, graphicx, mdframed}
 
 \newcommand{\Lim}[1]{\raisebox{0.5ex}{{$\displaystyle \lim_{#1}\;$}}}
 \title{\vspace{-2cm}Lecture I\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+\begin{definition}
+Let $g$: $\mathbb{N} \to \mathbb{R}_{\geq 0}$ be any function. We define the following sets:\\
+(1) $O(g(n)) =_{df} \{f | f : \mathbb{N} \to \mathbb{R}_{\geq 0}$ there are constants,$c, n_{0} > 0$ such that $0 \leq f(n) \leq cg(n)$ for all $n \geq n_{0} \}$,\\
+(2) $\Omega(g(n)) =_{df} \{f | f : \mathbb{N} \to \mathbb{R}_{\geq 0}$ there are constants $c, n_{0} > 0$ such that $0 \leq cg(n) \leq f(n)$ for all $n \geq n_{0} \}$,\\
+(3) $o(g(n)) =_{df} \{f | f : \mathbb{N} \to \mathbb{R}_{\geq 0}$, for every constant $c > 0$ there exists a constant $n_{0} > 0$ such that $0 \leq f(n) \leq cg(n)$ for all $n \geq n_{0} \}$,\\
+(4) $\Theta(g(n)) =_{df} \{f | f : \mathbb{N} \to \mathbb{R}_{\geq 0}$ there are constants $c_{1}, c_{2}, n_{0} > 0$ such that $0 \leq c_{1}g(n) \leq f(n) \leq c_{2}g(n)$ for all $n \geq n_{0} \}$
+\end{definition}
+$o$ and $O$ represent \textbf{asymptotic upper bound}, $\Omega$ \textbf{asymptotic lower bound} and $\Theta$ represents \textbf{asymptotic tight bound}. To indicate that a function $f$ is a member of $O(g(n))$, we write $f(n) = O(g(n))$.
+
+
+\begin{theorem}
+\textbf{The Master Theorem -} Let $a, b, c \in \mathbb{N}^{+}$, where $n \geq 2$. Then the recursive equation
+\begin{center}
+\[ 
+T(n)=\left\{
+\begin{array}{ll}
+      b, & if\ n=1; \\
+      aT\frac({n}{c})+bn, & for\ all\ n > 1,\\
+\end{array} 
+\right. 
+\]
+\end{center}
+where $n \in \mathbb{N}$ is a power of $c$, has the following solution:
+\begin{center}
+\[ 
+T(n)=\left\{
+\begin{array}{ll}
+      O(n), & if\ a < c; \\
+      O(n \log{n}), & for\ all\ a=c;\\
+      O(n^{\log_{c}{a}}), & for\ all\ a > c. \\
+\end{array} 
+\right. 
+\]
+\end{center}
+\end{theorem}
+
+
+\begin{definition}
+\textbf{Group -} Let $G \neq \emptyset$ be any set, and let $\circ$: $G \times G \to G$ be any binary operation. We call ($G, \circ$) a group if\\
+(1) $(a \circ b) \circ c$ = $a \circ (b \circ c)$ for all $a, b, c \in G$ (i.e., the operator $\circ$ is associative).\\
+(2) There exists a neutral element $e \in G$ such that $a \circ e = e \circ a = a$ for all $a \in G$.\\
+(3) For every $a \in G$ there exists an inverse element $b \in G$ such that $a \circ b = b \circ a$ for all $a,b \in G$.\\
+(4) A group is called Abelian group if $\circ$ is also commutative, i.e., $a \circ b  = b \circ a$ for all $a, b \in G$.\\
+(5) A group is said to be finite if $|G|$ is finite.\\
+(6) If ($G, \circ$) is a finite group then we call $|G|$ the order of ($G, \circ$).
+\end{definition}
+If ($G, \circ$) satisfies the first axiom, we call it a semi-group.
+
+
+\begin{theorem}
+Let ($G, \circ$) be any group.Then we have the following:\\
+(1) The neutral element of ($G, \circ$) is uniquely determined.\\
+(2) For every $a \in G$ the inverse element $b$ of $a$ is uniquely determined.
+\end{theorem}
+
+
+\begin{definition}
+Let ($G, \circ$) be a group and let $S \subseteq G$ be non-empty. Then ($S, \circ$) is said to be a subgroup of ($G, \circ$) if\\
+(1) $a \circ b \in S$ for all $a, b \in S$;\\
+(2) for every $a \in S$ also the inverse $b$ of $a$ is in $S$. 
+\end{definition}
+
+
+\begin{definition}
+A group ($G, \circ$) is said to be a cyclic group if there exists an element $a \in G$ such that $G = \{ a^{n} | n \in \mathbb{Z} \}$. We refer to the element $a$ as a \textbf{generator} of $G$.
+\end{definition}
+
+
+\begin{definition}
+Let ($G, \circ$) be any group with neutral element $e$, and let $a \in G$. The least number $n \in \mathbb{N}^{+}$ such that $a^{n} = e$ is called order of $a$ provided such an $n$ exists. If $a^{n} \neq e$ for all $n \in \mathbb{N}^{+}$ then we define the order of $a$ to be $\infty$. We denote the order of $a$ by ord($a$).
+\end{definition}
+
+
+\begin{theorem}
+Let ($G, \circ$) be a finite group and let ($H, \circ$) be any subgroup of ($G, \circ$). Then the order of ($H, \circ$) divides the order of ($G, \circ$).
+\end{theorem}
+
+
+\begin{corollary}
+Let ($G, \circ$) be any finite group with neutral element $e$, and let $a \in G$ be any element such that $ord(a) \neq \infty$. Then ord($a$) divides $|G|$.
+\end{corollary}
+
+
+\begin{definition}
+\textbf{Ring -} Let $R$ be any non-empty set containing at least two distinguished elements $0$ and $1$, and let $\circ$ and $\mathcal{*}$ be binary operations over $R$ (that is $\circ$: $R \times R \to R$ and $\mathcal{*}$: $R \times R \to R$). Then $\mathcal{R} =(R, \circ, \mathcal{*}, 0, 1)$ is a ring with identity element provided that for all $a,b,c \in R$ the following properties hold:\\
+(1) $(a \circ b) \circ c = a \circ (b \circ c)$ and $(a \mathcal{*} b) \mathcal{*} c = a \mathcal{*} (b \mathcal{*} c)$;\\
+(2) $(a \circ b) = (b \circ a)$ ($\circ$ is commutative);\\
+(3) $(a \circ b) \mathcal{*} c = (a \circ c) \mathcal{*} (b \circ c)$ and $a \mathcal{*} (b \circ c) = (a \mathcal{*} c) \circ (b \mathcal{*} c)$\\
+(4) $a \circ 0 = 0 \circ a = a$ ($0$ is the \textbf{neutral element} with respect to $\circ$);\\
+(5) $a \mathcal{*} 1 = 1 \mathcal{*} a = a$ ($1$ is the \textbf{identity element} with respect to $\mathcal{*}$);\\
+(6) for each $a \in R$ there exists an element $-a \in R$ such tat $a \circ (-a) = (-a) \circ a = 0$ ($-a$ is the \textbf{additive inverse} of $a$).
+\end{definition}
+$\mathcal{R} =(R, \circ, \mathcal{*}, 0, 1)$ is a ring if ($R, \circ$) is an Abelian group, ($R, \mathcal{*}$) is a semi-group, and the laws of distributivity are satisfied. If axiom 5 is satisfied, we call it a ring with identity element. If the multiplicative operation is commutative, then we call ring a \textbf{commutative ring}.
+
+
+\begin{definition}
+\textbf{Field -} Let $F \neq \emptyset$ be any set containing two distinguished elements $0$ and $1$, $0 \neq 1$, and let $\circ$, $\mathcal{*}$: $F \times F \to F$ be two binary operations. We call $\mathbb{F} = (F, \circ, \mathcal{*}$) a field if:\\
+(1) ($F, \circ$) is an Abelian group (with neutral element $0$).\\
+(2) ($F \backslash \{0\}, \mathcal{*}$) is a group (with neutral element $1$).\\
+(3) The following distributive laws are satisfied:
+\begin{center}
+$a \mathcal{*} (b \circ c) = (a \mathcal{*} c) \circ (b \mathcal{*} c)$\\
+$(a \circ b) \mathcal{*} c = (a \circ c) \mathcal{*} (b \circ c)$
+\end{center}
+(4) A field ($F, \circ, \mathcal{*}$) is said to be Abelian (or commutative) if $a \mathcal{*} b = b \mathcal{*} a$ for all $a, b \in F \backslash \{0\}$ holds.
+\end{definition}
+We refer to $0$ as neutral element and $1$ as the identity element. $\mathbb{F}$ is a finite field if $|F|$ is finite.
+
+
+\begin{theorem}
+Let($F, \circ, \mathcal{*}$) be any field. Then we have\\
+(1) $a \mathcal{*} 0 = 0 \mathcal{*} a = 0$ for all $a \in F$;\\
+(2) $a \mathcal{*} b = 0$ iff $a = 0$ or $b = 0$;\\
+(3) for all $a, b \in F$, $a \neq 0$ there is precisely one $x \in F$ such that $a \mathcal{*} x = b$.
+\end{theorem}
+
+
+In equation $a = qm + r$, where $0 \leq r < m$ we call $q$ the \textbf{integer quotient} and $r$ the \textbf{remainder}.\\
+We write $a \equiv b$ mod $m$ iff $m$ divides $a -b$ ($m|(a-b)$). We then say that \textbf{$a$ is congruent $b$ modulo $m$} and refer to $\equiv$ as congruence relation.
+\begin{definition}
+We define addition and multiplication of these equivalence classes by\\
+\begin{center}
+$[a] + [b] =_{df} [a+b]$ $\quad$ and\\
+$[a] \cdot [b] =_{df} [a \cdot b]$. $\qquad$
+\end{center}
+\end{definition}
+From here it is easy to see that ($\mathbb{Z}_{m}, +, \cdot$) constitutes a commutative ring with $1$.
+
+
+\begin{theorem}
+Let $m \in mathbb{N}^{+}$, let $a, b, c, d \in \mathbb{Z}$ be any integers such that $a \equiv b$ mod $m$ and $c \equiv d$ mod $m$, and let $n \in \mathbb{N}$. Then we have the following:\\
+(1) $a + c \equiv b + d$ mod $m$;\\
+(2) $a - c \equiv b - d$ mod $m$;\\
+(3) $ac \equiv bd$ mod $m$;\\
+(4) $a^{n} \equiv b^{n}$ mod $m$.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 1.1} Prove or disprove the following: $f(x) = o(g(n))$ if and only if $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$.
 \begin{proof}
-Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches 0. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
+Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches $0$. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
   
-Now let $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ meaning that as n increases limit of the fraction $\frac{f(n)}{g(n)}$ equals to either some constant $c$ that is not 0 or approaches infinity. In the first case, where limit yields a constant $c$, it can be written as both $\Lim{n \to \infty} \frac{f(n)}{g(n)}>0$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}<\infty$ meaning that $g(n)$ is both upper and lower bound of $f(n)$, or in other words an exact bound, which can be written as $f(x) = \Theta(g(n))$. Since $g(n)$ is an upper bound of $f(n)$, this means that $f(x) \neq o(g(n))$. In the case of the limit being equal to infinity for a very large n, the statement $g(n) < f(n)$ must hold true, in other words $f(x) = O(g(n))$, which further implies $f(x) \neq o(g(n))$. In both cases we have that if $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ then also $f(x) \neq o(g(n))$. \\
+Now let $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ meaning that as $n$ increases limit of the fraction $\frac{f(n)}{g(n)}$ equals to either some constant $c$ that is not $0$ or approaches infinity. In the first case, where limit yields a constant $c$, it can be written as both $\Lim{n \to \infty} \frac{f(n)}{g(n)}>0$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}<\infty$ meaning that $g(n)$ is both upper and lower bound of $f(n)$, or in other words an exact bound, which can be written as $f(x) = \Theta(g(n))$. Since $g(n)$ is an upper bound of $f(n)$, this means that $f(x) \neq o(g(n))$. In the case of the limit being equal to infinity for a very large n, the statement $g(n) < f(n)$ must hold true, in other words $f(x) = O(g(n))$, which further implies $f(x) \neq o(g(n))$. In both cases we have that if $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ then also $f(x) \neq o(g(n))$. \\
   
 Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0 \implies f(x) \neq o(g(n))$, we can say that $f(x) = o(g(n)) \iff \Lim{n \to \infty} \frac{f(n)}{g(n)}=0$ which is what was needed to be proven.
 
@@ -21,90 +166,34 @@ Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.2} Let $\mathcal{M}_n$ = ($M_n$,$+_n$,$\mathrm{x}_n$,$0_n$,$\mathrm{I}_n$). Then we have $\mathcal{M}_n$ is a ring with identity element $\mathrm{I}_n$ if and only if $\mathcal{R}$ is ring with 1.
+\noindent \textbf{Exercise 1.2} 
 \begin{proof}
-Let $\mathcal{R}$ = ($R$,$\circ$,$\mathcal{*}$,0,1) be a ring with 1. This means that $\mathcal{R}$ has following properties:\\
-\begin{itemize}
-\item Both $\circ$ and $\mathcal{*}$ operations are associative and closed over $R$.
-\item $\circ$ (Additive operation) is commutative.
-\item $\mathcal{*}$ (Multiplicative operation) is distributive with respect to $\circ$.
-\item 0 is neutral element with respect to $\circ$.
-\item 1 is identity element with respect to $\mathcal{*}$.
-\item For every $a$, where $a \in R$, there is an additive inverse $\neg a$ such that $a\circ\neg a=0$.
-\end{itemize}
-$M_n$ is defined as set of $ n\ \mathrm{x}\ n$ matrices over $R$ with $+_n$ and $\mathrm{x}_n$ being square matrix equivalent of additive and multiplicative operations, respectively, present in ring $\mathcal{R}$. Let matrices $\mathcal{A}$ and $\mathcal{B}$ be members of $M_n$ such that
-  $\mathcal{A}= \begin{bmatrix}
- 	a & b\\
- 	c & d
- \end{bmatrix}$, $\mathcal{B}= \begin{bmatrix}
- 	e & f\\
- 	g & h
- \end{bmatrix}$ and $\mathcal{C}= \begin{bmatrix}
- 	i & j\\
- 	k & l
- \end{bmatrix}$. Applying the additive and multiplicative operations between these matrices we have: \\\\
- $\begin{pmatrix} \begin{bmatrix}
- 	a & b\\
- 	c & d
- \end{bmatrix}$ $+_n$ $\begin{bmatrix}
- 	e & f\\
- 	g & h
- \end{bmatrix} \end{pmatrix}$ $+_n$ $\begin{bmatrix}
- 	i & j\\
- 	k & l
- \end{bmatrix}$ = $\begin{bmatrix}
- 	a\circ e\circ i & b\circ f\circ j\\
- 	c\circ g\circ k & d\circ h\circ l
- \end{bmatrix}$ \\\\\\
- $ \begin{bmatrix}
- 	a & b\\
- 	c & d
- \end{bmatrix}$ $+_n$ $\begin{pmatrix} \begin{bmatrix}
- 	e & f\\
- 	g & h
- \end{bmatrix}$ $+_n$ $\begin{bmatrix}
- 	i & j\\
- 	k & l
- \end{bmatrix} \end{pmatrix}$ = $\begin{bmatrix}
- 	a\circ e\circ i & b\circ f\circ j\\
- 	c\circ g\circ k & d\circ h\circ l
- \end{bmatrix}$ \\\\\\
-  $\begin{bmatrix}
- 	a & b\\
- 	c & d
- \end{bmatrix}$ $\mathrm{x}_n$ $\begin{bmatrix}
- 	e & f\\
- 	g & h
- \end{bmatrix}$ = $\begin{bmatrix}
- 	(a\mathcal{*} e) \circ (b\mathcal{*} g) & (a\mathcal{*} f) \circ (b\mathcal{*} h)\\
- 	(c\mathcal{*} e) \circ (d\mathcal{*} g) & (c\mathcal{*} f) \circ (d\mathcal{*} h)
- \end{bmatrix}$\\\\\\
-  $\begin{bmatrix}
- 	a & b\\
- 	c & d
- \end{bmatrix}$ $+_n$ $\begin{bmatrix}
- 	0 & 0\\
- 	0 & 0
- \end{bmatrix}$ = $\begin{bmatrix}
- 	a \circ 0 & b \circ 0\\
- 	c \circ 0 & d \circ 0
- \end{bmatrix}$\\\\\\
-  $\begin{bmatrix}
- 	a & b\\
- 	c & d
- \end{bmatrix}$ $\mathrm{x}_n$ $\begin{bmatrix}
- 	1 & 0\\
- 	0 & 1
- \end{bmatrix}$ = $\begin{bmatrix}
- 	(a\mathcal{*} 1) \circ (b\mathcal{*} 0) & (a\mathcal{*} 0) \circ (b\mathcal{*} 1)\\
- 	(c\mathcal{*} 1) \circ (d\mathcal{*} 0) & (c\mathcal{*} 0) \circ (d\mathcal{*} 1)
- \end{bmatrix}$\\\\\\
-From this it can be seen that additive operation is both closed and associative. Additionally it can be seen that additive operation is commutative if the $\circ$ operation is commutative. Due to the fact that multiplication of matrices is associative, it can be deduced that $\mathrm{x}_n$ is associative if both $\circ $ and $\mathcal{*}$ are associative.\\
-Taking into consideration that matrix multiplication is distributive in respect to matrix addition we have that $\mathrm{x}_n$ is distributive in respect to $+_n$ if $\mathcal{*}$ is in respect to $\circ $. \\
-Additionally, we can see from the above equations that $0_n$ is a neutral element with respect to $+_n$ if 0 is neutral element with respect to $\circ$, while $\mathrm{I}_n$ is identity element with respect to $\mathrm{x}_n$ if 1 is identity element with respect to $\mathcal{*}$.\\
-Lastly, if we consider the example of matrix addition above it can be seen that in order for additive inverse to exist, all that is necessary is for the two matrices $\mathcal{A}$ and $\mathcal{B}$ one of them to contain negative elements of the other ones, which relies on elements from $R$ having an additive inverse.\\
-Thus we can conclude that if $\mathcal{R}$ is a ring with identity, $\mathcal{M}$ also is.\\
-The opposite direction, that when $\mathcal{R}$ is not a ring with identity $\mathcal{M}$ is easily noticed, since all the operations in $\mathcal{M}$ rely on properties of operations in  $\mathcal{R}$ in order to fulfill conditions of a ring.
+Let $\mathcal{M}_{n} = (M_{n}, +_{n}, \times_{n}, 0_{n}, I_{n})$. Then we have: $\mathcal{M}_{n}$ is a ring with identity element $I_{n}$ iff $\mathcal{R}$ is ring with 1.\\
+Necessity: Let $\mathcal{R}$ be a ring with $1$. We have to show that $\mathcal{M}_{n}$ is a ring with identity. Let $A$ = ($a_{ij}$), $B$ = ($b_{ij}$), and let $C$ = ($c_{ij}$), where $i,j = 1, \ldots, n$. We start with the associativity of matrix addition. Using that addition in the ring $\mathcal{R}$ we directly obtain
+\begin{center}
+$(A +_{n} B) +_{n} C = ((a_{ij} + b_{ij}) + c_{ij}) = (a_{ij} + (b_{ij} + c_{ij})) = A +_{n} (B +_{n} C),$
+\end{center}
+and the associativity of matrix addition is shown.\\
+Using the commutativity of the ring addition, we also have
+\begin{center}
+$A +_{n} B = (a_{ij} + b_{ij}) = (b_{ij} + a_{ij}) = B +_{n} A,$
+\end{center}
+and so matrix addition is also commutative.\\
+Next, we take into account that $0$ is the neutral element with respect to addition in $\mathcal{R}$. Therefore, using the definition of $0_{n}$ we see that
+\begin{center}
+$A +_{n} 0_{n} = (a_{ij} + 0) = (0 + a_{ij}) = (a_{ij}) = A$.
+\end{center}
+Consequently, the matrix $0_{n}$ is the neutral element with respect to matrix addition.\\
+We claim that $I_{n}$ = ($i_{ij}$) is the identity element with respect matrix multiplication. Using the definition of matrix multiplication and the identity matrix $I_{n}$ as well as the facts that $1$ is the identity in $\mathcal{R}$ and that $0 \cdot a = a \cdot 0 = 0$ for every $a \in R$, this can be seen as follows: For the element at position ($i, j$) we have
+$$A \times_{n} I_{n} = \left( \sum_{k=1}^{n}{a_{ik}i_{kj}}\right) = (a_{ij}) = \left( \sum_{k=1}^{n}{i_{ik}a_{kj}}\right) = A.$$
+Next we show that $-A =_{df} (-a_{ij})$ is the additive inverse of the matrix $A$. Using that $a + (-a) = (-a) +a = 0$ for every $a \in R$, and the definition of matrix addition, we have
+$$A +_{n} (-A) = (a_{ij} + (-a_{ij})) = ((-a_{ij}) + a_{ij}) = 0_{n} .$$
+We continue with the associativity of matrix multiplication. Here we use that the ring multiplication is associative and that the laws of distributivity hold in $\mathcal{R}$. Note that now $i, j, l = 1, \ldots , n$. We obtain for the element at position ($i, l$) of the matrix product the following:
+$$A \times_{n} (B \times_{n} C) = \left(\sum_{j=1}^{n}{a_{ij}} \cdot \left( \sum_{k=1}^{n}{b_{jk}c_{kl}}\right)\right) = \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{a_{ij} \cdot b_{jk} \cdot c_{kl}} \right)=$$\\ $$= \left(\sum_{k=1}^{n}\sum_{j=1}^{n}{a_{ij} \cdot b_{jk} \cdot c_{kl}}\right) = \left( \sum_{k=1}^{n}\left(\sum_{j=1}^{n}{a_{ij} \cdot b_{jk}} \right) \cdot c_{kl} \right) = (A \times_{n} B) \times_{n} C.$$
+To finish the proof of the necessity we also have to show the laws of distributivity for the ring $\mathcal{M}_{n}$. These laws are a direct consequence of the corresponding laws in $\mathcal{R}$. So we show here just one.
+$$(A +_{n} B) \times_{n} C = \left(\sum_{k=1}^{n}{(a_{ik}+b_{ik}) \cdot c_{kj}}\right) = \left(\sum_{k=1}^{n}{a_{ik}c_{kj}+b_{ik}c_{kj})}\right)=$$\\ $$= \left(\sum_{k=1}^{n}{a_{ik}c_{kj}}\right) + \left(\sum_{k=1}^{n}{b_{ik}c_{kj}}\right) = A \times_{n} C +_{n} B \times_{n} C,$$
+and the necessity is shown.\\
+Sufficiency: The sufficiency is trivial, since it suffices to consider $1 \times 1$ matrices.
 \end{proof}
 
 
@@ -121,89 +210,61 @@ We conclude that there are well-defined operations of addition and multiplicatio
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.4} Prove or disprove: Let $(G, \circ)$ be any Abelian group, let $a \in G$, and let $n, m \in \mathbb{N}$. If $a$ has the order $n$ then $a^m=e$ if and only if $m \equiv 0$ mod $n$.
 \begin{proof}
-Suppose that $a$ has the order $n$. That would mean that $n$ is a smallest positive integer for which the statement $a^n=e$ holds true. Next let's suppose that $a^m=e$. This would mean that $a^n \equiv a^m$ mod n, which when applying \textbf{Theorem 1.5} would mean that $\prod_{i=1}^{m} a \equiv \prod_{i=1}^{n} a$ mod n, so $m$ would have to be divisible by $n$, or in other words $m \equiv 0$ mod $n$.\\
-Now let's suppose that $m \equiv 0$ mod $n$ and $a^m=e$, this would mean that $m$ is either order of the group $G$ or a number larger than the one that is order. Next we have two cases $m=n$ and $m \neq n$. In first case, $n=m$ is order of $G$, and the exercises has been proven.\\
-The second case is such that we can rewrite $m$ as $m=c\cdot n$ for some integer $c$, due to it being divisible by n. Considering $a^m=e$ we can rewrite it as ${a^n}^c$ which in turn we can write as $a^n=e^{1/c}$ which is equal to writing $a^n=e$, meaning $n$ is order of $a$.
-\end{proof}
-
-
-
-\noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.5} Show that $\sum_{k=0}^{998} k^3$ is divisible by 999.
-\begin{proof}
-Since for $k=0$ $k3$ also equals 0, we can rewrite the following sum as $\sum_{k=1}^{998} k^3$. Now, according to \textbf{Faulhaber's Formula}\footnote{Faulhaber's Formula - https://mathworld.wolfram.com/FaulhabersFormula.html} we can express $\sum_{k=1}^{998} k^3$ as $\frac{998^2 999^2}{4}$ due to $\sum_{k=1}^{n} k^3=\left( \frac{n(n+1)}{2}\right)^2$. From there we see that this equals $499^2 \cdot 999^2$ which is obviously divisible by 999.
-\end{proof}
-
-
-
-
-\noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.6} Show that every integer written in decimal representation is divisible by 3 if and only if the sum of its digits is divisible by 3.
-\begin{proof}
-Suppose we have a number $X$ with $n$ digits, we can write it as $X=x_n x_{n-1}x_{n-2}...x_2x_1x_0$ which we can then write as \\\\
- $X=x_0+x_1 \cdot 10 + x_2 \cdot 100 ... + x_{n-1} \cdot 10^{n-1} + x_n \cdot 10^n$ \\\\
- Which can further be rewritten as: \\\\
- $X = x_0 + x_1 \cdot (9 + 1) + x_2 \cdot (99 + 1) + x_3 \cdot (999 + 1)...$\\\\
- Or differently: \\\\
- $X = 9x_1 + 99x_2 + 999x_3 + ... + (x_0 + x_1 + x_2 + x_3 + ... + x_n)$ \\\\
- It is easy to notice that all the coefficients in the polynomial outside of parenthesis are multiples of 9 and thus divisible by 3, the only thing that is left to check for divisibility is polynomial within the parenthesis: \\\\
- $ x_0 + x_1 + x_2 + x_3 + ... x_{n-2} + x_{n-1} + x_n$ \\\\
- Which is coincidentally a sum of all $n$ digits of the number $X$. So, $X$ is divisible by 3 if and only if a sum of its n digits is divisible by 3. 
-\end{proof}
-
-
-
-\noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.7} Derive a criterion for the divisibility by 3 for the integers written in binary representation.
-\begin{proof}
-In order to write criterion for divisibility we will first write some numbers that are divisible by 3 as binary:\\
-If we take $2^n$ values, we know that $2^0 = 1$ which is congruent 1 mod 3, and $2^1 = 2$ which is congruent 2 mod 3, or differently -1 mod 3. If we write binary numbers so that digit in even position multiplies -1 and the one in odd position multiplies 1, if we add them together we will get a number which, if divisible by 3, tells us that the binary number is divisible by 3. For example if we take number 309, we can write it as:\\
+Since $n$ is the order of $a$, by \textbf{Definition 5} we have $a^{n} = e$ and
 \begin{center}
-$1 \cdot 1 + 0 \cdot (-1) + 0 \cdot 1 + 1 \cdot (-1) + 1 \cdot 1 + 0 \cdot (-1) + 1  \cdot 1 + 0 \cdot (-1) + 1 \cdot 1$ = 3
-\end{center} 
-Which is divisible by 3, thus 309 is divisible by 3. We have a table of first 30 numbers out of which 10 are divisible by 3: \\
-\begin{center}
-\centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{ c c c c c  }
-Decimal & Binary & Number of 1s in odd position & Number of 1s in even position & Difference \\
- 1 & $0001_2$ & 1 & 0 & 1 \\ 
- 2 & $0010_2$ & 0 & 1 & -1 \\ 
- 3 & $0011_2$ & 1 & 1 & 0 \\   
- 4 & $0100_2$ & 1 & 0 & 1 \\ 
- 5 & $0101_2$ & 2 & 0 & 2 \\ 
- 6 & $0110_2$ & 1 & 1 & 0 \\ 
- 7 & $0111_2$ & 2 & 1 & 1 \\ 
- 8 & $1000_2$ & 0 & 1 & -1 \\ 
- 9 & $1001_2$ & 1 & 1 & 0 \\ 
- 10 & $1010_2$ & 0 & 2 & -2 \\ 
- 11 & $1011_2$ & 1 & 2 & -1 \\ 
- 12 & $1100_2$ & 1 & 1 & 0 \\ 
- 13 & $1101_2$ & 2 & 1 & 1 \\ 
- 14 & $1110_2$ & 1 & 2 & -1 \\ 
- 15 & $1111_2$ & 2 & 2 & 0 \\ 
- 16 & $0001\ 0000_2$ & 1 & 0 & 1 \\ 
- 17 & $0001\ 0001_2$ & 2 & 0 & 2 \\ 
- 18 & $0001\ 0010_2$ & 1 & 1 & 0 \\ 
- 19 & $0001\ 0011_2$ & 2 & 1 & 1 \\ 
- 20 & $0001\ 0100_2$ & 2 & 0 & 2 \\ 
- 21 & $0001\ 0101_2$ & 3 & 0 & 3 \\ 
- 22 & $0001\ 0110_2$ & 2 & 1 & 1 \\ 
- 23 & $0001\ 0111_2$ & 3 & 1 & 2 \\ 
- 24 & $0001\ 1000_2$ & 1 & 1 & 0 \\ 
- 25 & $0001\ 1001_2$ & 2 & 1 & 1 \\ 
- 26 & $0001\ 1010_2$ & 1 & 2 & -1 \\ 
- 27 & $0001\ 1011_2$ & 2 & 2 & 0 \\ 
- 28 & $0001\ 1100_2$ & 2 & 1 & 1 \\ 
- 29 & $0001\ 1101_2$ & 3 & 1 & 2 \\ 
- 30 & $0001\ 1110_2$ & 2 & 2 & 0
-\end{tabular}}
+$a^{l} \neq e$ for all $l \in \{1, \ldots, n-1 \}$.
 \end{center}
-So mathematically we can write:
+If $m=0$ then we have $a^{0}=e$ and $m\equiv 0$ mod $n$. Next suppose any $m \in \mathbb{N}^{+}$ such that $a^{m} = e$. Then using division with remainder, we know that there are $q,r \in \mathbb{N}$ such that $m = nq +r$, where $0 \leq r \leq n-1$. Consequently we obtain
 \begin{center}
-	$\sum_{r=0}^{n} 2^{r}b_{r} \equiv \sum_{r=0}^{n} {(-1)}^{r}b_{r}$
+$a^{m} = a^{nq+r} = (a^{n})q \circ a^{r} = e^{q} \circ a^{r} = e \circ a^{r} = a^{r}$.
 \end{center}
-Where $b_{r}$ the bits since $2 \equiv -1$ mod 3. Thus coming to a criterion for divisibility of a binary number by 3.
+We distinguish the following cases:\\
+Case 1. $r=0$\\
+Then $a^{m} =e$ and $m \equiv 0$ mod $n$.\\
+Case 2. $r \neq 0$\\
+Then by (1) we have $a^{r} \neq e$ and $m \not\equiv 0$ mod $n$.\\
+Consequently, $a^{m} = e$ is possible iff $r=0$, which is equivalent to $m \equiv 0$ mod $n$. Thus, the assertion is true.
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.5} Show that $\sum_{k=0}^{998} k^3$ is divisible by $999$.
+\begin{proof}
+Since for $k=0$ $k3$ also equals $0$, we can rewrite the following sum as $\sum_{k=1}^{998} k^3$. Now, according to \textbf{Faulhaber's Formula}\footnote{Faulhaber's Formula - https://mathworld.wolfram.com/FaulhabersFormula.html} we can express $\sum_{k=1}^{998} k^3$ as $\frac{998^2 999^2}{4}$ due to $\sum_{k=1}^{n} k^3=\left( \frac{n(n+1)}{2}\right)^2$. From there we see that this equals $499^2 \cdot 999^2$ which is obviously divisible by $999$.
+\end{proof}
+
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.6} Show that every integer written in decimal representation is divisible by $3$ if and only if the sum of its digits is divisible by $3$.
+\begin{proof}
+Since the divisibility by 3 is not affected by the sign, it suffices to consider $z= \sum_{i=0}^{n}{z_{i}10^{i}}$, where $z_{i} \in \{0,1,\ldots,0\}$ for all $i = 0, \ldots, n$. Then by the reflexivity of "$\equiv$" we have
+\begin{equation}
+z_{i} \equiv z_{i}\ mod\ 3\ for\ all\ i = 0, \ldots n.
+\end{equation}
+Clearly, $10 \equiv 1$ mod $3$ and thus, Property (4) of \textbf{Theorem 5} implies
+\begin{equation}
+10^{i} \equiv 1^{i} \equiv 1\ mod\ 3\ for\ all\ i = 0, \ldots n.
+\end{equation}
+Next we apply Property (1) of \textbf{Theorem 5} to (1) and (2) exactly $n$ many times and obtain $\sum_{i=0}^{n}{z_{i}10^{i}} \equiv \sum_{i=0}^{n}{z_{i}}$ mod $3$. Hence we have shown that every integer written in decimal notation is divisible by $3$ iff the sum of its digits is divisible by $3$. 
+\end{proof}
+
+
+
+\noindent\rule{12cm}{0.4pt}\\
+\noindent \textbf{Exercise 1.7} Derive a criterion for the divisibility by $3$ for the integers written in binary representation.
+\begin{proof}
+We use the same ideas as in the proof of \textbf{Exercise 1.6}. Let $x$ be given in binary notation. i.e., $z=\sum_{i=0}^{n}{z_{i}2^{i}}$, where $z_{i} \in \{ 0,1 \}$ for all $i = 0, \ldots, n$. Again, we have
+\begin{equation}
+z_{i} \equiv z_{i}\ mod\ 3
+\end{equation}
+as before, but (2) translates into
+\begin{equation}
+2^{i} \equiv (-1)^{i}\ mod\ 3\ for\ all\ i=0, \ldots, n.
+\end{equation}
+Thus, now we obtain $\sum_{i=0}^{n}{z_{i}2^{i}} \equiv \sum_{i=0}^{n}{(-1)^{n}z_{i}}$ mod $3$.
 \end{proof}
 
 
@@ -211,72 +272,32 @@ Where $b_{r}$ the bits since $2 \equiv -1$ mod 3. Thus coming to a criterion for
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.8} Compute the last two digits of $7^{50}$.
 \begin{proof}
-	If we calculate the first five powers of 7 we see that:
+We have to compute $7^{50}$ mod $100$, since this will give us the last two digits. We observe that $7^{4} \equiv 2401 \equiv 1$ mod $100$. Hence, Property (4) of \textbf{Theorem 5} implies that
 \begin{center}
-	$7^1 = 7$\\
-	$7^2 = 49$\\
-	$7^3 = 343$\\
-	$7^4 = 2401$\\
-	$7^5 = 16907$
+$(7^{4})^{12} \equiv 1^{12} \equiv 1$ mod $100$.
 \end{center}
-Because $7^5$ ends with 07, we know that cyclicity will occur, meaning that the last two digits will start repeating after 4 steps. Meaning that since $50 \equiv 2$ mod 4, we know that the last two digits of $7^{50}$ are going to be the same as in $7^2$, which is 49.
+Since $4 \cdot 12 = 48$, we conclude by Property (3) of \textbf{Theorem 5} that
+\begin{center}
+$7^{50} \equiv 7^{48} \cdot 7^{2} \equiv 1 \cdot 49 \equiv 49$ mod $100$.
+\end{center}
+Thus the last two digits of $7^{50}$ are $49$.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.9} Show that $3^{22}-2^{20}$ is divisible by 7.
+\noindent \textbf{Exercise 1.9} Show that $3^{22}-2^{20}$ is divisible by $7$.
 \begin{proof}
-Knowing that $3^2 \equiv 2$ mod 7, we have: \\
-\begin{center}
-	$3^{22}-2^{20} = {3^{2}}^{11}-2^{20} \equiv 2^{11} - 2^{20} \equiv {-2}^{11}(2^9-1)$
-\end{center}
-Now, we have $2^3 \equiv 1$ mod 7, so this implies:
- \begin{center}
-	${-2}^{11}(2^9-1) \equiv {-2}^{11}(1-1) = 0$
-\end{center}
-Looking at this, we can claim that $3^{22}-2^{20}$ is divisible by 7.
+We observe that $2^{3} \equiv 1$ mod $7$ and thus $2^{18} \equiv 1$ mod $7$ (from \textbf{Theorem 5}). Therefore, we have $2^{20} \equiv 4$ mod $7$.\\
+Next $3^{2} \equiv 2$ mod $7$ and so $3^{6} \equiv 2^{3} \equiv 1$ mod $7$. Hence, we obtain $3^{18} \equiv 1$ mod $7$. Finally, since $3^{4} \equiv 4$ mod $7$, we thus have $3^{22} \equiv 4$ mod $7$. Consequently, we directly see that $3^{22} - 2^{20} \equiv 4 -4 \equiv 0$ mod $7$.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 1.10} Determine for which $n \in \mathbb{N}$ the number $891^n - 403^n$ is divisible by 61.
+\noindent \textbf{Exercise 1.10} Determine for which $n \in \mathbb{N}$ the number $891^n - 403^n$ is divisible by $61$.
 \begin{proof}
-We begin by looking at $n$ values from 1 to 6, and taking two numbers $a$ and $b$ such that $a, b \in \mathbb{N}$: \\
-$n=1$
-\begin{center}
-	$a^1 - b^1 = a - b$
-\end{center}
-$n=2$
-\begin{center}
-	$a^2 - b^2 = (a - b)(a + b)$
-\end{center}
-$n=3$
-\begin{center}
-	$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$
-\end{center}
-$n=4$
-\begin{center}
-	$a^4 - b^4 = (a - b)(a + b)(x^2 + y^2)$
-\end{center}
-$n=5$
-\begin{center}
-	$a^5 - b^5 = (a - b)(a^4 + a^{3}b + a^{2}b^{2} + ab^{3} + b^{4})$
-\end{center}
-$n=6$
-\begin{center}
-	$a^6 - b^6 = (a - b)(a + b)(a^2 + ab + b^2)(a^2 - ab + b^2)$
-\end{center}
-In a more general form we have following formula if n is an odd number: 
-\begin{center}
-	$a^{2n+1} - b^{2n-1} = (a - b)\sum_{j=0}^{2n}a^{2n-j}b^j$
-\end{center}
-\noindent And if n is an even number:
-\begin{center}
-	$a^{2n} - b^{2n} = (a - b)(a + b)\sum_{j=0}^{n-1}a^{2(n-j-1)}b^{2j}$
-\end{center}
-What is common for both formulae is the $(a - b)$ part. In the case of numbers 891 and 403, we can calculate that $891-403=488$ which is $488 \equiv 0$ mod 61, or in other words divisible by 61. So, due to the $(891-403)$ being present in both formulae, whether $n$ is odd or even, we can conclude that $891^n - 403^n$ is divisible by 61 for any $n \in \mathbb{N}$.
+Since $891 \equiv 37$ mod $61$ and $403 \equiv 37$ mod 61, by transitivity of the congruence relation we have $891 \equiv 403$ mod $61$. By Property (4) of \textbf{Theorem 5} we conclude that $891^{n}-403^{n}$ is divisible by $61$ for every $n \in \mathbb{N}$.
 \end{proof}
 
 
