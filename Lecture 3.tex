@@ -1,12 +1,78 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, polynom, titling}
+\usepackage{amsmath,amsthm,amssymb, polynom, titling, mdframed}
 
 \title{\vspace{-2cm}Lecture III\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+\begin{theorem}
+If ($G, \circ$) is a finite group, then every element of $G$ has finite order.
+\end{theorem}
+
+
+\begin{theorem}
+\textbf{Euler's Theorem -} Let $n \in \mathbb{N}, n \geq 2$; then $a^{\varphi(n)} \equiv 1$ mod $n$ for all $a \in \mathbb{Z}^{*}_{n}$.
+\end{theorem}
+
+
+\begin{theorem}
+\textbf{Fermat's Little Theorem -} Let $p$ be a prime. Then $a^{p-1} \equiv 1$ mod $p$ for all $a \in \mathbb{Z}^{*}_{p}$.
+\end{theorem}
+
+
+\begin{theorem}
+Let $\mathbb{F}_{q}$ be any finite Abelian field such that $|\mathbb{F}_{q}| = q$. Then it its multiplicative group $\mathbb{F}_{q}^{*}$ we have $a^{q - 1} = 1$ for all $a \in \mathbb{F}^{*}_{q}$. Furthermore, the order of any element $a \in \mathbb{F}^{*}_{q}$ divides $q - 1$.
+\end{theorem}
+
+
+\begin{definition}
+Let $\mathbb{F}$ be a field, let $p \in \mathbb{F}[x]$ be such that $p \neq 0$. If $a \in F$ is such that $p(a) = 0$ then we call $a$ a zero (or root) of $p$ in $\mathbb{F}$.
+\end{definition}
+
+
+\begin{theorem}
+Let $\mathbb{F}$ be any field, and let $p \in \mathbb{F}[x]$ be a polynomial such that $p \neq 0$. Then the polynomial $p$ possesses at most $d$ zeros, where $d = deg\ p$.
+\end{theorem}
+
+
+\begin{corollary}
+Let $\mathbb{F}$ be any field, let $p \in \mathbb{F}[x]$ be a polynomial such that $p \neq 0$, and let $a \in \mathbb{F}$ be such that $p(a) = 0$. Then the polynomial $(x - a)$ divides $p$.
+\end{corollary}
+
+\begin{definition}
+Let $\mathbb{F}$ be any field and let $p \in \mathbb{F}[x]$ be any polynomial. We call $p$ irreducible if $p$ is not divisible by any polynomial of lower degree than deg $p$ except for constants.
+\end{definition}
+
+
+\begin{definition}
+Let $p, q \in \mathbb{F}[x]$, then we call $d \in \mathbb{F}[x]$ a greatest common divisor of $p$ and $q$ if $d$ divides both $p$ and $q$ and if $d$ has the greatest degree among the polynomials having this property. We then write $d = gcd(p, q)$.
+\end{definition}
+
+
+\begin{theorem}
+Let $\mathbb{F}_{q}$ be any finite Abelian field such that $|\mathbb{F}_{q}| = q$. Then $\mathbb{F}_{q}^{*}$ possesses a generator. If $g$ is a generator of $\mathbb{F}_{q}^{*}$ then $g^{l}$ is also a generator iff $gcd(l, q - 1) = 1)$. In particular there are $\varphi (q - 1)$ many different generators of $\mathbb{F}_{q}^{*}$.
+\end{theorem}
+
+
+\begin{corollary}
+If $p$ is prime then $\mathbb{Z}_{p}^{*}$ is a cyclic group of order $p - 1$. If $g$ is a generator of $\mathbb{Z}_{p}^{*}$ then $g^{l}$ is also a generator iff $gcd(l, p - 1) = 1$. In particular there are $\varphi (p - 1)$ many different generators of $\mathbb{Z}_{p}^{*}$.
+\end{corollary}
+
+\begin{theorem}
+There is a sequence of primes $q$ such that the probability that a random $g \in \mathbb{F}_{q}^{*}$ is a generator approaches zero.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 3.1} Let $\mathbb{F}$ be a field. Then $\mathbb{F}[x]$ is a commutative ring with 1. Furthermore, it is not difficult to see that division with remainder generalizes to polynomials as follows: Let $p$, $q \in \mathbb{F}[x]$ such that $q \neq0$. Then there are uniquely determined polynomials $u$, $r \in \mathbb{F}[x]$ such that
 \begin{center}
 $p = uq + r$, where deg $r<$ deg $q$.	
@@ -33,7 +99,7 @@ From $r' - r	= q(u - u')$ we have that deg $(r' - r)$ = deg $q$ + deg $(u - u')$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.2} Let $p = 19$ and consider the finite group $\mathbb{Z}^{*}_{p}$. Determine the order of every element in $\mathbb{Z}^{*}_{p}$, and list all the generators of $\mathbb{Z}^{*}_{p}$.
 \begin{proof}
-Since $p=19$ is a prime number, we know that order of the group is ($p$ - 1) = 18 according to \textbf{Corollary 3.2} from slide 51. Also, since $\mathbb{Z}^{*}_{p}$ is a finite group, every member also has finite order, according to \textbf{Theorem 3.1} from slide 2. According to \textbf{Lagrange's Theorem (Theorem 1.3)} from slide 43, order of every subgroup in $\mathbb{Z}^{*}_{p}$ divides the order of $\mathbb{Z}^{*}_{p}$. Since the numbers that divide 18 are: 1, 2, 3, 6, 9 and 18, we will check for them when we test for order.\\
+Since $p=19$ is a prime number, we know that order of the group is ($p$ - 1) = 18 according to \textbf{Corollary 2}. Also, since $\mathbb{Z}^{*}_{p}$ is a finite group, every member also has finite order, according to \textbf{Theorem 1}. According to \textbf{Lagrange's Theorem (Theorem 3 from Lecture 1)}, order of every subgroup in $\mathbb{Z}^{*}_{p}$ divides the order of $\mathbb{Z}^{*}_{p}$. Since the numbers that divide 18 are: 1, 2, 3, 6, 9 and 18, we will check for them when we test for order.\\
 Order is smallest number $n$ such that $a^n=1$, where 1 is the identity element for multiplicative group. We will now test for order of every element in $\mathbb{Z}^{*}_{p}$:\\
 \begin{center}
 $1^1 = 1 \implies ord(1) = 1$\\
@@ -56,11 +122,11 @@ $17^1 = 17, 17^2 = 4, 17^3 = 11, 17^6 = 7, 17^9 = 1$ mod 19 $\implies ord(17) = 
 $18^1 = 18, 18^2 = 1$ mod 19 $\implies ord(18) = 2$\\
 \end{center}
 So in total, there is one element with order 1 (1), one element with order 2 (18), 2 elements with order 3 (7, 11), 2 elements with order 6 (8, 12), 6 elements with order 9 (4, 5, 6, 9, 16 and 17) and 6 elements with order 18 (2, 3, 10, 13, 14, 15).
-According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many different generators. Since up to 18 there are 6 numbers that are relatively prime to 18 (1, 5, 7, 11, 13, 17), we know that there are 6 generators of $\mathbb{Z}^{*}_{p}$. We first test for 2:
+According to \textbf{Theorem 6}, there are $\varphi(p - 1)$ many different generators. Since up to 18 there are 6 numbers that are relatively prime to 18 (1, 5, 7, 11, 13, 17), we know that there are 6 generators of $\mathbb{Z}^{*}_{p}$. We first test for 2:
 \begin{center}
 [2, 4, 8, 16, 13, 7, 14, 9, 18, 17, 15, 11, 3, 6, 12, 5, 10, 1]
 \end{center}
- Since all the elements of $\mathbb{Z}^{*}_{p}$ are present, we can tell that 2 is a generator. Since we know that 2 is a generator, according to \textbf{Theorem 3.6} from slide 40, we can get other generators by raising 2 to the relatively prime numbers of 18:  $2^{5} \equiv 13$ mod 19, $2^{7} \equiv 14$ mod 19, $2^{11} \equiv 15$ mod 19, $2^{13} \equiv 3$ mod 19 and $2^{17} \equiv 10$ mod 19. So the list of generators would be: 2, 3, 10, 13, 14, 15. Which are also all the numbers with order of 18.
+ Since all the elements of $\mathbb{Z}^{*}_{p}$ are present, we can tell that 2 is a generator. Since we know that 2 is a generator, according to \textbf{Theorem 6}, we can get other generators by raising 2 to the relatively prime numbers of 18:  $2^{5} \equiv 13$ mod 19, $2^{7} \equiv 14$ mod 19, $2^{11} \equiv 15$ mod 19, $2^{13} \equiv 3$ mod 19 and $2^{17} \equiv 10$ mod 19. So the list of generators would be: 2, 3, 10, 13, 14, 15. Which are also all the numbers with order of 18.
 \end{proof}
 
 
@@ -68,8 +134,8 @@ According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many d
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.3} Consider the group $\mathbb{Z}^{*}_{31}$. How many elements of this group have order 1, 7, 11, and 30, respectively?
 \begin{proof}
-Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 3.2} from slide 51. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with $ord(7)$ and $ord(11)$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
-According to \textbf{Theorem 3.6} on slide 40, there are $\varphi(p - 1)$ many different generators. There are 8 different numbers that are relatively prime to 31 (as a result of the $\varphi$ function - 3, 11, 12, 13, 17, 21, 22, 24, and all of them are generators, meaning they have order of 30 ($\varphi(30)=8$). (This can be tested by establishing 3 is a generator and then raising 3 to the power of those relatively prime numbers)\\
+Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 2}. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with $ord(7)$ and $ord(11)$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
+According to \textbf{Theorem 6}, there are $\varphi(p - 1)$ many different generators. There are 8 different numbers that are relatively prime to 31 (as a result of the $\varphi$ function - 3, 11, 12, 13, 17, 21, 22, 24, and all of them are generators, meaning they have order of 30 ($\varphi(30)=8$). (This can be tested by establishing 3 is a generator and then raising 3 to the power of those relatively prime numbers)\\
 So there are 1, 0, 0 and 8 elements with order of 1, 7, 11 and 30 respectively.
 \end{proof}
 
