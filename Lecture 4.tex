@@ -1,12 +1,98 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb,graphicx,titling}
+\usepackage{amsmath,amsthm,amssymb,graphicx,titling, mdframed}
 
 \title{\vspace{-2cm}Lecture IV\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+\begin{definition}
+Let $\mathbb{F} = (F, +, \cdot)$ be any Abelian field. We call the minimum number $c \in \mathbb{N}^{+}$ for which $\sum_{i = 1}^{c} 1 = 0$ the characteristic of $\mathbb{F}$ provided it exists. If there is no $c \in \mathbb{N}^{+}$ such that $\sum_{i=1}^{c} 1 = 0$ then we define the characteristic of $\mathbb{F}$ to be 0.
+\end{definition}
+
+
+\begin{theorem}
+Let $\mathbb{F}_{q}$ be any finite Abelian field. Then char($\mathbb{F}_{q}$) must be a prime number. The characteristic of an infinite Abelian field is either a prime number or it is zero. Moreover, if the characteristic of an Abelian field $\mathbb{F}$ is zero then $F$ must be infinite.
+\end{theorem}
+
+
+\begin{corollary}
+Let $\mathbb{F}_{q}$ be any Abelian field. Then the field integers are closed under multiplication.
+\end{corollary}
+
+
+\begin{theorem}
+In every Abelian field $\mathbb{F}$ of characteristic $p$, where $p \in \mathbb{N}^{+}$, the field integers form a subfield of order $p$ isomorphic to the field $\mathbb{Z}_{p}$.
+\end{theorem}
+
+
+\begin{theorem}
+In every Abelian field $\mathbb{F}$ of characteristic $p$, $p \in \mathbb{N}^{+}$, the equation
+$$(x - a)^{p} = x^{p} - a^{p}$$
+is satisfied for all $x, a \in F$.
+\end{theorem}
+
+
+\begin{corollary}
+In every finite Abelian field $\mathbb{F}$ of characteristic $p$ there does not exist any element that has an order $pk$, where $k \in \mathbb{N}^{+}, k > 1$.
+\end{corollary}
+
+
+\begin{corollary}
+Let $w_{1}, \ldots, w_{k}$ be any elements of an Abelian field $\mathbb{F}$ of characteristic $p$. Then we have $\left( \sum_{i=1}^{k} w_{i} \right)^{p^{n}} = \left( \sum_{i=1}^{k} w_{i}^{p^{n}} \right)$ for all $n \in \mathbb{N}$.
+\end{corollary}
+
+
+\begin{corollary}
+Let $\mathbb{F}$ be any Abelian field of characteristic $p$, and let $k$ be any field integer. Then we have $k^{p^{n}} = k$ for all $n \in \mathbb{N}$.
+\end{corollary}
+
+
+\begin{theorem}
+Let $\mathbb{F}$ be any Abelian field of characteristic p. Then for every $a \in F$ we have the following: The element $a$ is a field integer in $\mathbb{F}$ iff it is a solution of the equation $x^{p} - x = 0$.
+\end{theorem}
+
+
+\begin{corollary}
+Let $\mathbb{F}$ be any Abelian field of characteristic $p$, and let $w \in F$ be such that $w$ is not a field integer. Then we have $w^{p} \neq w$.
+\end{corollary}
+
+
+\begin{theorem}
+Let $\mathbb{F}$ be any Abelian field of characteristic $p$, let $f \in \mathbb{Z}_{p}[x]$ and let $w \in F$ be such that $f(w) = 0$. Then we have $f(w^{p^{n}}) = 0$ for all $n \in \mathbb{N}$.
+\end{theorem}
+
+
+\begin{theorem}
+Let $\mathbb{F}$ be any finite Abelian field of characteristic $p$, let $w \in F$ be any element of order $n$. Furthermore, let $m$ be the order of $p$ in $\mathbb{Z}_{n}^{*}$. Then we have $w^{p^{m}} = w$, and the $m$ elements $w, w^{p}, w^{p^{2}}, \ldots, w^{p^{m-1}}$ are pairwise distinct.
+\end{theorem}
+
+
+\begin{theorem}
+Let $w$ be an element of order $n$ in a finite Abelian field $\mathbb{F}_{q}$ of characteristic $p$, and let $m$ be the order of $p$ in $\mathbb{Z}_{n}^{*}$. Then the coefficients of the $m$th degree polynomial $f(x) = \prod_{i=0}^{m-1}\left( x - w^{p^{i}} \right)$ are field integers. Furthermore, $f$ is irreducible in $\mathbb{Z}_{p}[x]$.
+\end{theorem}
+
+
+\begin{theorem}
+If $w$ is a field element of degree $m$ in a finite Abelian field $\mathbb{F}_{q}$ of characteristic $p$ then the polynomials over the field integers of $\mathbb{F}_{q}$ of degree less than $m$ in $w$ form a subfield $\mathbb{F}_{q}$ that has order $p^{m}$.
+\end{theorem}
+
+
+\begin{theorem}
+The order of every finite Abelian field is a power of its characteristic.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 4.1} Find an irreducible polynomial of degree 2 over $\mathbb{Z}_{7}$.
 \begin{proof}
 Polynomials of degree 2 or 3 are irreducible iff they have no roots\footnote{Theorem and proof that polynomials of degree 2 or 3 are irreducible iff they have no roots - http://mathonline.wikidot.com/reducible-and-irreducible-polynomials-over-a-field}. If we take a look at elements in $\mathbb{Z}_{7}$, and square them, we can see that there are no nonzero squares other than 1, 2 and 4 mod 7. So, the following polynomials have no solutions in $\mathbb{Z}_{7}$:

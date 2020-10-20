@@ -1,15 +1,128 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, titling, tikz}
+\usepackage{amsmath,amsthm,amssymb, titling, tikz, mdframed}
 
 \title{\vspace{-2cm}Lecture VIII\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
 \begin{document}
 \maketitle
-\noindent \textbf{Exercise 8.1}  Prove or disprove the equivalence of \textbf{Definitions 8.2 and 8.3}.
+\section{Lecture Summary}
+\begin{definition}
+\textbf{Primitive $n$th Root of Unity -} Let $n \in \mathbb{N}, n > 1$, be arbitrarily fixed. An element $\omega \in R$ is said to be a primitive $n$th root of unity if \\
+(1) $\omega^{n} = 1$; \\
+(2) $\omega^{k} \neq 1$ for all $k \in \{1, \ldots, n - 1 \}$.
+\end{definition}
+
+
+\begin{definition}
+\textbf{Principal $n$th Root of Unity -} Let $\mathcal{R}$ be a commutative ring with $1$, let $n \in \mathbb{N}, n > 1$, be arbitrarily fixed, and let $\omega \in \mathcal{R}$. Then $\omega$ is said to be a principal $n$th root of unity if \\
+(1) $\omega^{n} = 1$; \\
+(2) $1 - \omega^{k}$ is not a zero-divisor in $\mathcal{R}$ for all $1 \leq k < n$.
+\end{definition}
+
+
+\begin{lemma}
+Let $\mathcal{R}$ be a commutative ring with $1$, let $n \in \mathbb{N}, n >1$, be arbitrarily fixed, and let $\omega \in R$. If $\omega$ is a principal $n$th root of unity then
+$$\sum_{j=0}^{n-1} \omega^{jk} = 0\ for\ all\ 1 \leq k < n$$
+\end{lemma}
+
+
+\begin{definition}
+\textbf{Principal $n$th Root of Unity -} Let $\mathcal{R}$ be a commutative ring with $1$, let $n \in \mathbb{N}, n > 1$, be arbitrarily fixed, and let $\omega \in R \backslash \{1\}$. Then $\omega \in \mathcal{R}$ is said to be a principal $n$th root of unity if \\
+(1) $\omega^{n} = 1$; \\
+(2) $\sum_{j = 0}^{n -1} \omega^{jk} = 0$ for all $1 \leq k < n$.
+\end{definition}
+
+
+\begin{lemma}
+Let $\mathcal{R} = (R, +, \cdot, 0, 1)$ be a commutative ring with $1$. Moreover, let $n = 2^{k}$, where $k \in \mathbb{N}$, $k \geq 1$. Then for all $a \in R$ we have
+$$\sum_{i=0}^{n-1}a^{i} = \prod_{i=0}^{k-1}\left( 1+a^{2^{i}} \right)$$
+\end{lemma}
+
+
+\begin{lemma}
+Let $k \in \mathbb{N}, k > 1$, and let $n = 2^{k}$. Furthermore, let $\omega \in \mathbb{Z}$ and let $m = \omega^{n/2} + 1$. Then for all $1 \leq p < n$ we have in $\mathbb{Z}_{m}$
+$$\sum_{j=0}^{n-1}\omega^{jp} \equiv 0\ mod\ m.$$
+\end{lemma}
+
+
+\begin{theorem}
+Let $n$ and $\omega$ be positive powers of $2$, and let $m = \omega^{n/2} + 1$. Then $n$ possesses a multiplicative inverse in $\mathbb{Z}_{m}$ and $\omega$ is a principal $n$th root of unity in the ring $\mathbb{Z}_{m}$.
+\end{theorem}
+
+
+\begin{theorem}
+Let $\mathcal{R}$ be a commutative ring with $1$, let $n \geq 4$ be a power of $2$, and let $\omega$ be a principal $n$th root of unity such that $\omega^{n/2} = -1$. Then $\omega^{2}$ is a principal $(n/2)$th root of unity.
+\end{theorem}
+
+
+\begin{definition}
+The discrete Fourier transform of the vector $\vec{v}$ is the vector $A\vec{v}$. We also write $F(\vec{v})$ to denote the discrete Fourier transform of the vector $\vec{v}$.
+\end{definition}
+
+
+\begin{theorem}
+The matrix $A$ defined in previous definition is regular.
+\end{theorem}
+
+
+\begin{definition}
+The inverse discrete Fourier transform of the vector $\vec{v}$ is the vector $A^{-1}\vec{v}$. \\
+We also write $F^{-1}(\vec{v})$ to denote the inverse discrete Fourier transform of the vector $\vec{v}$.
+\end{definition}
+
+
+\begin{definition}
+\textbf{Convolution -} Let $\vec{a} = (a_{0}, \ldots, a_{n-1})^{T}$, let $\vec{b} = (b_{0}, \ldots, b_{n-1})^{T}$, and let $a_{k} = b_{k} = 0$ for all $k \geq n$. Then the vector $\vec{a}\ \otimes\ \vec{b} =_{df} (c_{0}, \ldots, c_{2n - 1})^{T}$, where $c_{i} =_{df} \sum_{j=0}^{i}a_{j}b{i-j}$ for all $i = 0, \ldots, 2n -1$ is said to be the convolution of the vectors $\vec{a}$ and $\vec{b}$.
+\end{definition}
+
+
+\begin{theorem}
+\textbf{Convolution Theorem -} Let $\vec{a} = (a_{0}, \ldots, a_{n-1}, 0, \ldots, 0)^{T}$ and $\vec{b} = (b_{0}, \ldots, b_{n-1}, 0, \ldots, 0)^{T}$ by any two vectors of dimension $2n$. Then we have
+$$\vec{a}\ \otimes\ \vec{b} = F^{-1}(F(\vec{a})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{b})).$$
+\end{theorem}
+
+
+\begin{definition}
+Let $\vec{a}$ and $\vec{b}$ be any two vectors of dimension $n$. Then we call the vector $\vec{c} = (c_{0}, \ldots, c_{n-1})^{T}$ and $\vec{d} = (d_{0}, \ldots, d_{n-1})^{T}$ the positive convolution and the negative convolution, respectively if
+$$c_{i} =_{df} \sum_{j=0}^{i}a_{j}b_{i-j} + \sum_{j=i+1}^{n-1}a_{j}b_{n+i-j},\ and$$
+$$d_{i} =_{df} \sum_{j=0}^{i}a_{j}b_{i-j} - \sum_{j=i+1}^{n-1}a_{j}b_{n+i-j},\ i=0, \ldots, n - 1$$
+\end{definition}
+
+
+\begin{lemma}
+Let $\mathcal{R}$ be a commutative ring with $1$, let $n \in \mathbb{N}^{+}$ be such that $n$ has a multiplicative inverse in $\mathcal{R}$, and let $\theta$ be a principal $2n$th root of unity in $\mathcal{R}$. Then we have $\psi^{n} = -1$.
+\end{lemma}
+
+
+\begin{theorem}
+Let $\vec{a}$ and $\vec{b}$ be any two $n$-dimensional vectors. Furthermore, let $\psi$ be a principal $2n$th root of unity, let $\omega = \psi^{2}$, and assume that $n$ has a multiplicative inverse. Then we have \\
+(1) the positive convolution of $\vec{a}$ and $\vec{b}$ equals $F^{-1}(F(\vec{a})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{b}))$; \\
+(2) if $\vec{d} = (d_{0}, \ldots, d_{n-1})^{T}$ is the negative convolution of $\vec{a}$ and $\vec{b}$ and if $\vec{\widehat{a}} = (a_{0}, \psi a_{1}, \ldots, \psi^{n - 1}a_{n - 1})^{T}$, \\
+$\vec{\widehat{b}} = (b_{0}, \psi b_{1}, \ldots, \psi^{n - 1}b_{n - 1})^{T}$, and \\
+$\vec{\widehat{d}} = (d_{0}, \psi d_{1}, \ldots, \psi^{n - 1}d_{n - 1})^{T}$ then $\vec{\widehat{d}} = F^{-1}(F(\vec{\widehat{a}})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{\widehat{b}}))$.
+\end{theorem}
+
+
+\begin{definition}
+Let $\mathcal{R}$ be a commutative ring with $1$. let $n \in \mathbb{N}^{+}$ be arbitrarily fixed, and let $\omega \in \mathcal{R}$. Then $\omega$ is said to be a principal $n$th root of unity if\\
+(1) $\omega^{n} = 1$; \\
+(2) $\omega^{n/t} - 1$ is not a zero-divisor in $\mathcal{R}$ for every prime divisor $t$ of $n$.
+\end{definition}
+
+
+
+\section{Exercises}
+\noindent \textbf{Exercise 8.1}  Prove or disprove the equivalence of \textbf{Definitions 2 and 3}.
 \begin{proof}
-We will start from \textbf{Definitions 8.3}. If we take $\sum_{j=0}^{n-1}\omega^{jk}$ which taking formula from the geometric sum:
+We will start from \textbf{Definitions 3}. If we take $\sum_{j=0}^{n-1}\omega^{jk}$ which taking formula from the geometric sum:
 \begin{center}
 $\sum_{j=0}^{n-1}ar^{j}=a\left( \frac{1- r^{n}}{1- r^{k}}\right)$
 \end{center}
@@ -21,34 +134,31 @@ Considering that denominator can't be 0 and that ${1- \omega^{k}}$ is not a zero
 \begin{center}
 $\left(1- \omega^{k}\right)\sum_{j=0}^{n-1}\omega^{jk}={1- \omega^{n}}=0$
 \end{center}
-However, if $R=F_{p}$, then $1 \in R$ is a principal $n$th root of unity in \textbf{Definitions 8.3} but not in \textbf{Definitions 8.2}, thus they are not equivalent.
+However, if $R=F_{p}$, then $1 \in R$ is a principal $n$th root of unity in \textbf{Definitions 3} but not in \textbf{Definitions 2}, thus they are not equivalent.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 8.2}  Let $\mathfrak{R}$ be a commutative ring with $1$, let $n \in \mathbb{N}^{+}$ be arbitrarily fixed, and let $\omega \in \mathfrak{R}$. Then $\omega$ is said to be a principal $n$th root of unity if\\
-(1) $\omega^{n} =1$;\\
-(2) $\omega^{n/t}-1$ is not a zero-divisor in $\mathfrak{R}$ for every prime divisor $t$ of $n$.\\
-Prove equivalence of the above definition and definition 8.2.
+\noindent \textbf{Exercise 8.2} Prove equivalence of \textbf{Definition 8} and \textbf{Definition 2}.
 \begin{proof}
-Assertion (1) is same in both cases, so there is no need proving that part. We will focus on assertion (2) for both definitions. If we start from the claim in \textbf{Definition 8.2} that $1 - w^{k}$ is not a zero divisor. Let $g$ be gcd($k,n$) and let there be some $u,v \in \mathbb{Z}$ such that $uk + vn = g$. Since $k<n$ we have that $1 \leq g < n$, so we have that for prime factor $t$ of $n$ holds that $g$ divides ($n/t$). From here we have that $(1 - \omega^{g})a = (\omega^{n/t}-1)$, so $(1 - \omega^{g})$ would be a zero divisor if $(\omega^{n/t}-1)$ is zero divisor. Using the identity that $uk + vn = g$ we have $(1 - \omega^{uk})=(1 - \omega^{uk}\omega^{vn})=(1 - \omega^{g})$ so we have that $(1 - \omega^{k}) | (1 - \omega^{g})$. Therefore we have that if $1 - \omega^{k}$ is a zero divisor so is the $\omega^{n/t}-1$, and the equivalence is proven.
+Assertion (1) is same in both cases, so there is no need proving that part. We will focus on assertion (2) for both definitions. If we start from the claim in \textbf{Definition 2} that $1 - w^{k}$ is not a zero divisor. Let $g$ be gcd($k,n$) and let there be some $u,v \in \mathbb{Z}$ such that $uk + vn = g$. Since $k<n$ we have that $1 \leq g < n$, so we have that for prime factor $t$ of $n$ holds that $g$ divides ($n/t$). From here we have that $(1 - \omega^{g})a = (\omega^{n/t}-1)$, so $(1 - \omega^{g})$ would be a zero divisor if $(\omega^{n/t}-1)$ is zero divisor. Using the identity that $uk + vn = g$ we have $(1 - \omega^{uk})=(1 - \omega^{uk}\omega^{vn})=(1 - \omega^{g})$ so we have that $(1 - \omega^{k}) | (1 - \omega^{g})$. Therefore we have that if $1 - \omega^{k}$ is a zero divisor so is the $\omega^{n/t}-1$, and the equivalence is proven.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 8.3} Let $n$ and $\omega$ be positive powers of $2$, and let $m = \omega^{n/2} + 1$. Prove the equivalence of Definitions 8.10 and 8.3 for the ring $\mathbb{Z}_{m}$.
+\noindent \textbf{Exercise 8.3} Let $n$ and $\omega$ be positive powers of $2$, and let $m = \omega^{n/2} + 1$. Prove the equivalence of \textbf{Definitions 8 and 3} for the ring $\mathbb{Z}_{m}$.
 \begin{proof}
-From exercises 8.1 and 8.2, we have proven equivalences and non equivalences of the theorem. In ring $\mathbb{Z}_{m}$ where $m=\omega^{n/2}+1$ and $\omega$ and $n$ are powers of two, the claim stated at the end of exercise 1 does not hold. So from exercise 1 and exercise two, we have that these two definitions are equivalent. Or rather for setting $(\omega^{n/t}-1)$ we have that $(\omega^{n/t}-1)\sum^{n-1}_{j=0}\omega^{jn/t}=0$, and since $(\omega^{n/t}-1)$ is non zero divisor for every $t$ we have that $\sum^{n-1}_{j=0}\omega^{jn/t}=0$, getting definition 8.3.
+From exercises 8.1 and 8.2, we have proven equivalences and non equivalences of the theorem. In ring $\mathbb{Z}_{m}$ where $m=\omega^{n/2}+1$ and $\omega$ and $n$ are powers of two, the claim stated at the end of exercise 1 does not hold. So from exercise 1 and exercise two, we have that these two definitions are equivalent. Or rather for setting $(\omega^{n/t}-1)$ we have that $(\omega^{n/t}-1)\sum^{n-1}_{j=0}\omega^{jn/t}=0$, and since $(\omega^{n/t}-1)$ is non zero divisor for every $t$ we have that $\sum^{n-1}_{j=0}\omega^{jn/t}=0$, getting \textbf{Definition 3}.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 8.4}  Show Assertion (1) of \textbf{Theorem 8.5}.
+\noindent \textbf{Exercise 8.4}  Show Assertion (1) of \textbf{Theorem 5}.
 \begin{proof}
-Relying on \textbf{Theorem 8.4} on slide 49, we have:
+Relying on \textbf{Theorem 4}, we have:
 \begin{center}
 Let $(\widehat{a}_0,...,\widehat{a}_{m-1})^{T} =_{df}F(\vec(a))$ and $(\widehat{b}_0,...,\widehat{b}_{m-1})^{T} =_{df}F(\vec(b))$
 \end{center}
@@ -56,7 +166,7 @@ We can represent it as:
 $$\widehat{a}_l = \sum_{j=0}^{m-1}a_j\psi^{2lj},\ and\ \widehat{b}_l = \sum_{j=0}^{m-1}b_j\psi^{2lj}$$
 consequently having:
 $$\widehat{a}_l\widehat{b}_l = \sum_{j=0}^{m-1}\sum_{k=0}^{m-1}a_jb_k\psi^{2l(j+k)}$$
-From \textbf{Definition 8.8} we set $\vec{a} \otimes \vec{b} =_{df}(c_0,...,c_{m-1})^T$ and furthermore $F\left(\vec{a} \otimes \vec{b}\right) =_{df}(\widehat{c}_0,...,\widehat{c}_{m-1})^T$ then it suffices to show that $F\left(\vec{a} \otimes \vec{b}\right) = F(\vec{a})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{b})$. By \textbf{Definition 8.8} (slide 47) we also get $c_{p}=  \sum_{j=0}^{p}a_{j}b_{p-j}$ for all $ 0 \leq p < 2m-1$, then setting $b_{p-j} =_{df} 0$ for all $p < j$ we have
+From \textbf{Definition 6} we set $\vec{a} \otimes \vec{b} =_{df}(c_0,...,c_{m-1})^T$ and furthermore $F\left(\vec{a} \otimes \vec{b}\right) =_{df}(\widehat{c}_0,...,\widehat{c}_{m-1})^T$ then it suffices to show that $F\left(\vec{a} \otimes \vec{b}\right) = F(\vec{a})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{b})$. By \textbf{Definition 6} we also get $c_{p}=  \sum_{j=0}^{p}a_{j}b_{p-j}$ for all $ 0 \leq p < 2m-1$, then setting $b_{p-j} =_{df} 0$ for all $p < j$ we have
 $$\widehat{c}_l = \sum_{p=0}^{m-1}c_p\psi^{2lp} =  \sum_{p=0}^{m-1}\sum_{j=0}^{p}a_{j}b_{p-j}\psi^{2lp} =  \sum_{p=0}^{m-1}\sum_{j=0}^{m-1}a_{j}b_{p-j}\psi^{2lp} =  \sum_{j=0}^{m-1}\sum_{p=0}^{m-1}a_{j}b_{p-j}\psi^{2lp}$$
 If we let $k = p-j$ so for $p =0$ we have $ k = -j$, and also we have that $p=k+j$, so for $p = m - 1$ we obtain that $k = m - 1 - j$ thus having:
 $$=  \sum_{j=0}^{m-1}\sum_{k= -j}^{m-1-j}a_{j}b_{k}\psi^{2l(k+j)} = \sum_{j=0}^{m-1}\sum_{k= -j}^{m-1-j}a_{j}b_{k}\psi^{2l(j+k)}$$

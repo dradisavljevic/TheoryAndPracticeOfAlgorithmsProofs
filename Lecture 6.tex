@@ -1,0 +1,77 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, mdframed}
+
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{{$\displaystyle \lim_{#1}\;$}}}
+\title{\vspace{-2cm}Lecture VI\vspace{-2cm}}
+\date{}
+
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\section{Lecture Summary}
+\begin{algorithm}
+\textbf{AKS -} \\
+Input: Odd integer $n > 1$ \\
+if ($n$ is of the form $a^{b}$, $b > 1$) output COMPOSITE; \\
+$r := 2$; \\
+while $( r < n )$ \{\\
+\indent if ( $gcd(n,r) \neq 1$ ) output COMPOSITE; \\
+\indent if ( $r$ is prime ) then \\
+\indent \indent let $q$ be the largest prime factor of $r - 1$; \\
+\indent \indent if $( q \geq 4 \sqrt{r} \log(n) )$ \\
+\indent \indent and $( n^{\frac{r - 1}{q}} \not \equiv 1$ mod $r )$ then \\
+\indent \indent \indent break; \\
+$r := r + 1$; \\
+\} \\
+for $a = 1$ to $\lfloor 2 \sqrt{r} \log{n} \rfloor$ do \\
+\indent if $( (X + a)^{n} \not \equiv (X^{n} + a)$ mod $(n, X^{r} - 1) )$ then\\
+\indent output COMPOSITE; \\
+output PRIME;
+\end{algorithm}
+
+
+\begin{lemma}
+Let $p$ be a prime, let $a \in \mathbb{Z}_{p}^{*}$, and let $d = ord(a)$. Then we have\\
+(1) $d$ divides $p - 1$. \\
+(2) If $q$ is a prime such that $q|(p - 1)$ but $q^{2}$ does not divide $p - 1$, then for $s = \frac{p - 1}{q}$ we have
+\begin{center}
+$q|d$ if and only if $a^{s} \not \equiv 1$ mod $p$.
+\end{center}
+\end{lemma}
+
+
+\begin{theorem}
+\textbf{Prime Number Theorem -} The following assertion holds: $\Lim{x \to \infty}{\frac{\pi (x)}{x/ ln\ x}} = 1$
+\end{theorem}
+
+
+\begin{theorem}
+For all $x > 2$ we have 
+\begin{center}
+$\frac{x}{6\log{x}} \leq \pi (x) \leq \frac{8x}{\log(x}$
+\end{center}
+\end{theorem}
+
+
+\begin{theorem}
+\textbf{Fouvry's Theorem -} There is a constant $c > 0$ and a real number $x_{0} > 0 $ such that for all $x \geq x_{0}$ we have $\pi^{**} (x) \geq c \cdot \frac{x}{\log{x}}$.
+\end{theorem}
+
+
+\begin{lemma}
+There exists an $n_{0}$ such that for all $n \geq n_{0}$ there is a prime $r$ satisfying\\
+(1) $r \leq 4096 \cdot (\log(n))^{6}$ \\
+(2) either $r$ divides $n$ or $r$ is $n$-good.
+\end{lemma}
+
+
+\begin{theorem}
+The running time of Algorithm AKS is $O\left( (\log(n))^{17} \right)$
+\end{theorem}
+\end{document}

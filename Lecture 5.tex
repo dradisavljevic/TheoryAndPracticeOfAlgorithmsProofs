@@ -1,18 +1,102 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, titling}
+\usepackage{amsmath,amsthm,amssymb, titling, mdframed}
 
 \title{\vspace{-2cm}Lecture V\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+\begin{theorem}
+Every element in a field $\mathbb{F}$ of order $q$ satisfies the equation $x^{q^{n}} - x = 0$ for every $n \in \mathbb{N}^{+}$.
+\end{theorem}
+
+
+\begin{theorem}
+Every irreducible polynomial of degree $d$ over a field of order $q$ divides $x^{q^{k}} - x$ if $k$ is any multiple of $d$.
+\end{theorem}
+
+
+\begin{theorem}
+In a field of order $q$, the polynomial $x^{q^{k}} - x$ factors into the product of all monic irreducible polynomials whose degrees divide $k$.
+\end{theorem}
+
+
+\begin{theorem}
+If $f(x)$ is an irreducible polynomial of degree $m$ over $\mathbb{Z}_{p}$ and $m$ divides $k \in \mathbb{N}^{+}$, then a field of order $p^{k}$ must contain $m$ roots of $f(x)$.
+\end{theorem}
+
+
+\begin{theorem}
+If $p$ is a prime and $k \in \mathbb{N}^{+}$ then there exists a unique finite field of order $p^{k}$.
+\end{theorem}
+
+
+\begin{theorem}
+Let $n \in \mathbb{N}, n \geq 2$, and $a \in \mathbb{N}^{+}$ be such that $gcd(n, a) = 1$. Then we have the following:
+\begin{center}
+$n$ is prime if and only if $(X + a)^{n} \equiv (X^{n} + a)$ mod $n$
+\end{center}
+\end{theorem}
+
+
+\begin{theorem}
+Modular exponentiation can be computed in time \\ $O(max\{\log{a}, \log{m}, \log{x} \}^{3})$.
+\end{theorem}
+
+
+\begin{definition}
+\textbf{Pseudo Primes -} Let $n \in \mathbb{N}$ be an odd composite number, and let $b \in \mathbb{N}$ such that $gcd(b, n) = 1$. Then $n$ is said to be pseudo-prime to the base $b$ if $b^{n-1} \equiv 1$ mod $n$.
+\end{definition}
+
+
+\begin{theorem}
+Let $n \in \mathbb{N}$ be an odd composite number. Then we have \\
+(1) $n$ is pseudo-prime to the base $b$ with gcd($b,n$) = $1$ if and only if the order $d$ of $b$ in $\mathbb{Z}_{n}^{*}$ divides $n - 1$.\\
+(2) If $n$ is pseudo-prime to the bases $b_{1}$ and $b_{2}$ such that gcd($b_{1}, n$) = $1$ and gcd($b_{2}, n$) = $1$, then $n$ is also pseudo-prime to the bases $b_{1}, b_{2}, b_{1}b_{2}^{-1}$, and $b_{1}^{-1}b_{2}$.\\
+(3) If there is a $b \in \mathbb{Z}_{n}^{*}$ satisfying $b_{n - 1} \not \equiv 1$ mod $n$, then
+\begin{center}
+$|\{b \in \mathbb{Z}_{n}^{*}| b^{n - 1} \not \equiv 1$ mod $n \} | \geq \frac{\varphi (n)}{2}$.
+\end{center}
+\end{theorem}
+
+
+\begin{theorem}
+Let $n \in \mathbb{N}$ be an odd composite number. Then we have \\
+(1) If there is a square number $q^{2} > 1$ dividing $n$ then $n$ is not a Carmichael number. \\
+(2) If $n$ is square-free, then $n$ is Carmichael number if and only if $(p - 1)$ divides $n - 1$ for every prime $p$ dividing $n$.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 5.1}  Let $p$ be a prime number. Then $\mathbb{Z}^{*}_{p^2}$ is cyclic.
 \begin{proof}
-According to the definition of \textbf{Finite Fields}\footnote{Finite Fields - https://mathworld.wolfram.com/FiniteField.html} there exists exactly one, up to an isomorphism, finite field with order equal to the power of prime. Since $p$ is a prime, this is true for $\mathbb{Z}_{p^2}$. Now we will prove that for a finite field a multiplicative group of it is cyclic.\\
-Lets mark order of $\mathbb{Z}_{p^2}^{*}$ as $m$, and let's say there exists an element $w \in \mathbb{Z}_{p^2}^{*}$ whose order is maximal possible order of elements under multiplication in $\mathbb{Z}_{p^2}^{*}$, and lets mark it with $k$. According to \textbf{Lagrange's Theorem} (\textbf{Theorem 1.3}, slide 43) $k \mid m$ so we can say that $k \leq m$.\\
-Now let's choose any other element $v \in \mathbb{Z}_{p^2}^{*}$, and let's mark its order as $r$. As a consequence of \textbf{Lagrange's Theorem}, there has to be an element in $\mathbb{Z}_{p^2}^{*}$ with the order equal to $lcm(k,r)$, however, since $k$ is maximal order, we will have that $lcm(k,r)=k$, which means $r \mid k$. Since order of $v$ is $r$ and $r \mid k$ we have that $v^{k} = 1$ ($k$ can be represented as a multiple of $r$, and since $v$ to the power of $r$ yields 1, 1 to the power of any multiple would still be 1). Since $v$ is arbitrary, we have that every element in $\mathbb{Z}_{p^2}^{*}$ is a zero of the polynomial $x^k -1$, that is $x^k - 1$ has $m$ roots in $\mathbb{Z}_{p^2}$. According to \textbf{Theorem 3.5} from slide 25, any polynomial has at most $d$ zeros in a a field, meaning that $m \leq k$. Since we have both $m \leq k$ and $k \leq m$, we can say that $m = k$.\\
-Since element $w$ has order equal to order of$\mathbb{Z}_{p^2}^{*}$, it is a generator, and we have that $\mathbb{Z}_{p^2}^{*}$ is cyclic.
+We distinguish the cases $p = 2$ and $p > 2$.\\
+Case $1$. $p = 2$\\
+Since $\mathbb{Z}_{2^{2}}^{*} = \mathbb{Z}_{4}^{*} = \{1, 3 \}$, it suffices to test $3$. We compute $3^{1} \equiv 3$ mod $4$, as well as $3^2 = 9 \equiv 1$ mod $4$ and thus, $\mathbb{Z}_{2^{2}}^{*}$ is cyclic.\\
+Case $2$. $p > 2$\\
+By \textbf{Corollary 2 from Lecture 3} we know that $\mathbb{Z}_{p}^{*}$ is a cyclic group of order $p - 1$. Let $g \in \mathbb{Z}_{p}^{*}$ be a generator for $\mathbb{Z}_{p}^{*}$. Thus, it suffices to show the following claim:\\
+Claim $1$. Either $g$ or $g + p$ is a generator for $\mathbb{Z}_{p^{2}}^{*}$.\\
+Let $n$ be the order of $g$ in $\mathbb{Z}_{p^{2}}^{*}$. Then $g^{n} \equiv 1$ mod $p^{2}$, and consequently we also have $g^{n} \equiv 1$ mod $p$. So $p - 1$ must divide $n$. Moreover since $n$ is the order of $g$ in $\mathbb{Z}_{p^{2}}^{*}$, we also know that $N$ divides $\varphi (p^{2})$ (this comes from \textbf{Corollary 1 from Lecture 1}). By \textbf{Theorem 11 from Lecture 2} we know that $\varphi (p^{2}) = p(p - 1)$, and hence, $n|p(p - 1)$. Thus, we have both $(p - 1)|n$ and $n|p(p - 1)$, and consequently either $n = p - 1$ or $n = p(p - 1)$.\\
+If $n = p(p - 1)$, then $g$ is also a generator for $\mathbb{Z}_{p^{2}}^{*}$, and we are done.\\
+Now, assume $n = p - 1$. Therefore, we know that
+$$g^{p - 1} \equiv 1\ mod\ p^{2}$$
+Let $s =_{df} g + p$. Hence, $s \equiv g$ mod $p$, and so $s$ is also a generator for $\mathbb{Z}_{p}^{*}$. Using the same arguments as above we conclude that the order of $s$ in $\mathbb{Z}_{p^{2}}^{*}$ is either $p - 1$ or $p(p - 1)$. Thus it suffices to show that $s^{p - 1} \not \equiv 1$ mod $p^{2}$.\\
+Using the binomial theorem we obtain
+$$s^{p-1} = (g + p)^{p - 1} = \sum_{k = 0}^{p - 1} \binom{p-1}{k} g^{k}p^{p - 1 - k} \equiv g^{p - 2} \cdot p(p - 1) + g^{p - 1}\ mod\ p^{2}$$
+
+From $g^{p - 1} \equiv 1$ mod $p^{2}$ we obtain:
+$$s^{p - 1} \equiv 1 - pg^{p-2}\ mod\ p^{2}$$
+Finally, suppose $s^{p - 1} \equiv 1$ mod $p^{2}$. Then we get $pg^{p - 2} \equiv 0$ mod $p^{2}$. But this means that there must be a $k$ such that $k \cdot p^{2} = pg^{p - 2}$, and consequently, $kp = g^{p - 2}$. Thus $g^{p - 2} \equiv 0$ mod $p$, a contradiction, since $g$ is a generator of $\mathbb{Z}_{p}^{*}$.\\
+Taking this all together, we see that $s^{p - 1} \equiv 1 - pg^{p-2}$ mod $p^{2}$ implies $s^{p - 1} \not \equiv 1$ mod $p^{2}$, and so $s$ has order $p(p - 1)$. Hence $s$ is a generator for $\mathbb{Z}_{p^{2}}^{*}$. Consequently, $\mathbb{Z}_{p^{2}}^{*}$ is cyclic.
 \end{proof}
 
 
@@ -20,8 +104,8 @@ Since element $w$ has order equal to order of$\mathbb{Z}_{p^2}^{*}$, it is a gen
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 5.2} Every Carmichael number is the product of at least 3 distinct primes.
 \begin{proof}
-Since Carmichael numbers are not prime, let's try to prove that there is a Carmichael number that has a form of $a=pq$, where both $p$ and $q$ are distinct prime numbers, or in other words, show that Carmichael number is product of at least two distinct primes. According to the first assertion of \textbf{Theorem 5.9}, slide 50, Carmichael numbers are square-free, so $p$ and $q$ have to be distinct. Also, let's assume that $p$ is a larger prime of the two, in other words $p > q$.\\
-According to the second assertion of the \textbf{Theorem 5.9} we have that $a$ is a Carmichael number iff ($p$-1) divides ($a$-1) for ever $p$ that divides $a$. For this to be true, since $a = pq$, we have:
+Since Carmichael numbers are not prime, let's try to prove that there is a Carmichael number that has a form of $a=pq$, where both $p$ and $q$ are distinct prime numbers, or in other words, show that Carmichael number is product of at least two distinct primes. According to the first assertion of \textbf{Theorem 9}, Carmichael numbers are square-free, so $p$ and $q$ have to be distinct. Also, let's assume that $p$ is a larger prime of the two, in other words $p > q$.\\
+According to the second assertion of the \textbf{Theorem 9} we have that $a$ is a Carmichael number iff ($p$-1) divides ($a$-1) for ever $p$ that divides $a$. For this to be true, since $a = pq$, we have:
 \begin{center}
 $(p-1) \mid (pq - 1)$
 \end{center}
@@ -98,7 +182,7 @@ This could also be done by noticing that 31 is a prime number, which would mean 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 5.5} Prove Assertion (2) of \textbf{Theorem 5.8}. The assertion reads:
+\noindent \textbf{Exercise 5.5} Prove Assertion (2) of \textbf{Theorem 8}. The assertion reads:
 \begin{center}
 If $n$ is pseudo-prime to the bases $b_1$ and $b_2$ such that gcd($b_1$, $n$) = 1 and gcd($b_2$, $n$) = 1, then $n$ is also pseudo-prime to the bases $b_{1}b_{2}$, $b_{1}b_{2}^{-1}$, and $b_{1}^{-1}b_{2}$.
 \end{center}
