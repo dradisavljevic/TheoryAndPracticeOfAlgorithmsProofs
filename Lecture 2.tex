@@ -1,6 +1,6 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, titling}
+\usepackage{amsmath,amsthm,amssymb, titling, mdframed}
 
 \title{\vspace{-2cm}Lecture II\vspace{-2cm}}
 \date{}
@@ -8,6 +8,7 @@
 \newmdtheoremenv{theorem}{Theorem}
 \newmdtheoremenv{definition}{Definition}
 \newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
 
 \begin{document}
 \maketitle
@@ -17,17 +18,124 @@ The addition of two members $a$ and $b$ each having at most $n$ bits can be perf
 \end{theorem}
 
 
+\begin{definition}
+The value of an AS-number $x = (x_{n-1}, \ldots , x_{0}) \in \lbrace 0,1 \rbrace^{n}$ is defined as
+\begin{center}
+$V_{AS}(x) =_{df} (-1)^{x_{n-1}}(x_{n-2}2^{n-2}+ \ldots + x_{1}2 + x_{0})$.
+\end{center}
+\end{definition}
+
+
+\begin{theorem}
+The subtraction of two AS-numbers $a$ and $b$ each having at most $n$ bits can be performed in time $O(n)$.
+\end{theorem}
+
+
+\begin{theorem}
+The usual school algorithm for multiplying two numbers $a$ and $b$ each having at most $n$ bits can be performed in time $O(n^{2})$.
+\end{theorem}
+
+
+\begin{theorem}
+There is an algorithm which, on input any two numbers $a$ and $d$ having at most $n$ bits, precisely computes the quotient $a/d$ for $n$ bits and/or performs division with remainder in time $O(M(n))$.
+\end{theorem}
+
+
+\begin{theorem}
+Algorithm ECL computes the gcd $d$ of numbers $a, b \in \mathbb{N}^{+}$ and numbers $x, y \in \mathbb{Z}$ such that $d = ax + by$. It uses at most $1.5\ log \ a$ many divisions of numbers less than or equal to $a$.
+\end{theorem}
+
+
+\begin{algorithm}
+\textbf{Algorithm ECL -}
+\begin{center}
+Set $x_{0} = 1, x_{1} = 0, y_{0} = 0, y_{1} = 1$, and $r_{0} = a, r_{1} = b$. \\
+For $i = 1, 2, \ldots$ compute successively \\
+$r_{i+1} = r_{i-1} - q_{i}r_{i}$, where $q_{i} = \lfloor \frac{r_{i}-1}{r_{i}} \rfloor$, \\
+$x_{i+1} = x_{i-1} - q_{i}x_{i}$, and \\
+$y_{i+1} = y_{i - 1} - q_{i}y_{i}$ until $r_{i+1} = 0$. \\
+Output $r_{i}, x_{i}, y_{i}$.
+\end{center}
+\end{algorithm}
+
+
+\begin{theorem}
+During the execution of Algorithm ECL we always have $|x_{\mathit{l}}| \leq b / (2d)$ and $|y_{\mathit{l}}| \leq a/(2d) for\ \mathit{l} = 0, \ldots, i$ where $i$ is the smallest number such that $r_{i+1} = 0$.
+\end{theorem}
+
+
+\begin{theorem}
+The time complexity of Algorithm ECL is $O((\log{a})^{3})$.
+\end{theorem}
+
+
+\begin{theorem}
+The congruence $ax \equiv 1$ mod $m$ is solvable iff gcd($a$, $m$) = $1$. Moreover if $ax \equiv 1$ mod $m$ is solvable, then the solution is uniquely determined.
+\end{theorem}
+
+
+\begin{theorem}
+Modular inverse can be computed in time $O(max\{log{a}, log{m}\}^{3})$.
+\end{theorem}
+
+
+\begin{definition}
+A number $n \in \mathbb{N}$ is said to be prime if $n \geq 2$ and if $n$ is only divisible by itself and by $1$. If $n$ is not a prime number, we call it composite.
+\end{definition}
+
+
+\begin{corollary}
+For every $n \in \mathbb{N}$ we have: The structure ($\mathbb{Z}_{n}, +, \cdot$) is a finite Abelian field iff $n$ is prime.
+\end{corollary}
+
+
+\begin{definition}
+Integers $a$ and $b$ are said to be relatively prime if gcd($a, b$) = $1$. Integers $m_{1}, \ldots, m_{r}$ are said to be pairwise relatively prime if every pair $m_{i}, m_{j}, i \neq j$, is relatively prime.
+\end{definition}
+
+
+\begin{theorem}
+\textbf{Chinese Remaindering -}
+Let $m_{1}, \ldots, m_{r}$ be pairwise relatively prime numbers, let $M = \prod^{r}_{i=1}m_{i}$, and let $a_{1}, \ldots, a_{r}$ be any integers. Then there is a unique $y \in \mathbb{Z}_{M}$ such that $ y \equiv a_{i}$ mod $m_{i}$ for $i = 1, \ldots, r$. Moreover $y$ can be computed in time polynomial in the length of the input.
+\end{theorem}
+
+
+\begin{definition}
+A function f: $\mathbb{N} \rightarrow \mathbb{N}$ is said to be multiplicative if $f(1) = 1$ and $f(mn) = f(m)f(n)$ for all $m, n \in \mathbb{N}$ wherever gcd($m, n$) = $1$.
+\end{definition}
+
+
+\begin{theorem}
+(1) $\varphi (mn) = \varphi (m) \varphi (n)$ if gcd($m, n$) = $1$; \\
+(2) $\varphi (p^{\alpha}) = p^{\alpha - 1}(p - 1)$ if $p$ is prime and $\alpha \geq 1$; \\
+(3) $\varphi(p) = p - 1$ if and only if $p$ is prime
+\end{theorem}
+
+
+\begin{theorem}
+For all $n \in \mathbb{N}^{+}$ we have $\sum_{d|n} \varphi (d) = n$.
+\end{theorem}
+
+
 
 \section{Exercises}
 \noindent \textbf{Exercise 2.1} Let $n \in \mathbb{N}$ be a number such that $n \geq 2$. Prove the zero-divisor property for the integers modulo $n$, i.e., $n$ is prime if and only if for all $k, l \in \mathbb{Z}$.
 \begin{center}
- $kl \equiv 0$ mod $n$ implies $k \equiv 0$ mod $n$ or $l \equiv 0$ mod $n$.
- \end{center}
+$kl \equiv 0$ mod $n$ implies $k \equiv 0$ mod $n$ or $l \equiv 0$ mod $n$.
+\end{center}
 \begin{proof}
-  This is what is called \textbf{Euclid's Lemma}. The proof relies on \textbf{Theorem 2.5} from slide 10.\\
- Let's suppose $n$ is prime and $kl \equiv 0$ mod $n$. We can then assume that gcd($n$, $k$)=1. In that case, according to \textbf{Theorem 2.5}, there exists such $x, y \in \mathbb{Z}$ for which $nx + ky = 1$. When we multiply the whole equation with $l$ we get $l(nx + ky) = l$ or $nxl + kyl = l$. Since $n \equiv 0$ mod $n$ and $kl \equiv 0$ mod $n$, we have that $(nxl + kyl) \equiv 0$ mod $n$, or in other words $l \equiv 0$ mod $n$, which is what was supposed to be proven.\\
- Now let's suppose the opposite, that $n$ is not a prime number. That would mean that $n$ is composite. Since $k$ and $l$ can be any numbers, we can have a case where $n=kl$ (which makes it so that $kl \equiv 0$ mod $n$). In this case we have $k \not\equiv 0$ mod $n$ and $l \not\equiv 0$ mod $n$. \\
- So we can conclude that $n$ is prime if and only if for all $k, l \in \mathbb{Z}$ $kl \equiv 0$ mod $n$ implies $k \equiv 0$ mod $n$ or $l \equiv 0$ mod $n$.
+We start with the cancellation law for the integers mod $n$, i.e.
+$$ \forall j \forall k \forall l[j \not \equiv 0\ mod\ n\ and\ jk \equiv jl\ mod\ n\ implies\ k \equiv l\ mod\ n]$$
+holds if and only if $n$ is prime. \\
+If $n$ is not prime we can find a counterexample to the cancellation law. Let $jk$ be a non-trivial factorization of $n$; i.e., $n = jk$ and $1 < j$, $k < n$, and let $l = 0$. Both $jk$ and $jl$ are congruent to $0$ modulo $n$, but $k \not \equiv l$ mod $n$.\\
+It remains to prove that the cancellation law holds if $n$ is prime. Assume that $n$ is prime and $j \not \equiv 0$ mod $n$. In this case gcd($n, j$) = $1$, and we can find an integer $x$ such that $xj \equiv 1$ mod $n$. If $jk \equiv jl$ mod $n$ by multiplying both sides by $x$ we obtain
+\begin{center}
+$xjk \equiv xjl$ mod $n$\\
+$k \equiv l$ mod $n$
+\end{center}
+completing the proof of the cancellation law.\\
+To show the zero-divisor property, first consider a composite number $n$ and let $kl$ be a non-trivial factorization of $n$; i.e., $n = kl$ and $1 < k, l <n$. For such $k$ and $l$, we have $kl \equiv 0$ mod $n$ and neither $k$ nor $l$ is congruent to $0$ modulo $n$. Therefore the cancellation law does not hold.\\
+Assume that $n$ is prime and let $k$ and $L$ be two numbers such that $kl \equiv 0$ mod $n$. Then $n|kl$ and since $n$ is prime, either $n|k$ or $n|l$. Therefore, either $k \equiv 0$ mod $n$ or $l \equiv 0$ mod $n$. This proves the zero-divisor property.
 \end{proof}
 
 
@@ -38,26 +146,71 @@ The addition of two members $a$ and $b$ each having at most $n$ bits can be perf
 (2) $x \equiv 10$ mod $19271$, $x \equiv 3$ mod $7343$, $x \equiv 8$ mod $9973$.
 \end {center}
 \begin{proof}
-Let's begin by solving the first problem:
+We start with Part (1). First we compute the gcd($3541,2879$) = $1$, gcd($5333, 3541$) = $1$, and gcd($5333, 2879$) = $1$. Hence, the assumptions of \textbf{Theorem 10} are satisfied. We have $m_{1} = 2879$, $m_{2} = 3541$ and $m_{3} = 5333$. \\
+Next we calculate $M = 2879 \cdot 3541 \cdot 5333 = 54367476487$. Furthermore, we directly obtain $n_{1} = 54367476487 / 2879 = 18884153$, $n_{2} = 54367476487 / 3541 = 15353707$, and $n_{3} = 54367476487 / 5333 = 10194539$. Then by using the Algorithm ECL, we compute the modular inverse $n_{i}^{-1}$ of $n_{i}$ mod $m_{i}$ for $i = 1,2,3$ and obtain \\
 \begin{center}
-(1)\\
-$x \equiv 3$ mod $2879$, $x \equiv 4$ mod $3541$, $x \equiv 2$ mod $5333$\\
-$r_1 = 3$, $r_2 = 4$, $r_3 = 2$\\
-$M = 2879 \cdot 3541 \cdot 5333=54367476487$\\
-$M_1 = 18884153$, $M_2 = 15353707$, $M_3 = 10194539$\\
-$18884153x_1 \equiv 1$ mod $2879$, $15353707x_2 \equiv 1$ mod $3541$, $10194539x_3 \equiv 1$ mod $5333$ $\implies$ $x_1 = 1574$, $x_2 = 1129$, $x_3 = 717$\\
-$x = r_{1}M_{1}x_{1} + r_{2}M_{2}x_{2} + r_{3}M_{3}x_{3}$ $\implies$\\
-$x = 3 \cdot 18884153 \cdot 1574 + 4 \cdot 15353707 \cdot 1129 + 2 \cdot 10194539 \cdot 717$ $\implies$\\
-$x = 103851354220$
+$n_{1}^{-1} = 1547$, $n_{2}^{-1} = 1129$, $n_{3}^{-1} = 717$
 \end{center}
-And for the second one:
+Finally, we have to compute
 \begin{center}
-(2)\\
-$x \equiv 10$ mod $19271$, $x \equiv 4$ mod $7343$, $x \equiv 8$ mod $9973$\\
-$r_1 = 10$, $r_2 = 4$, $r_3 = 8$\\
-Since $19271$ and $7343$ are not relatively prime (They are both divisible by 7), we can rewrite the system as: \\
-$x \equiv 10$ mod $2753$, $x \equiv 10$ mod $7$, $x \equiv 4$ mod $1049$, $x \equiv 4$ mod $7$, $x \equiv 8$ mod $9973$\\
-However, since $10 \not \equiv 4$ mod 7, there are no solutions to this system.
+\begin{tabular}{c c c}
+$y$ & $\equiv$ & $\sum_{i=1}^{3}{n_{i}n_{i}^{-1}a_{i}}$ \\
+& $\equiv$ & $18884153 \cdot 1574 \cdot 3 + 15353707 \cdot 1129 \cdot 4 + 10194539 \cdot 717 \cdot 2$ \\
+& $\equiv$ & $10024850743$ mod $54367476487$
+\end{tabular}
+\end{center}
+where $a_{1} = 3$, $a_{2} = 4$ and $a_{3} = 2$. A quick check is in order here. We easily verify that $10024850743 \equiv 3$ mod $2879$, $10024850743 \equiv 4$ mod $3541$, and finally, we also have $10024850743 \equiv 2$ mod $5333$. \\
+For Part (2), we observe that gcd($19271, 7343$) = 7. Hence the assumptions of \textbf{Theorem 10} are not satisfied. Does this mean that there is no solution of the system of simultaneous congruences given here? \\
+To answer this question, first we look at two congruences; i.3.,
+\begin{center}
+$x \equiv a_{1}$ mod $m_{1}$, $x \equiv a_{2}$ mod $m_{2}$,
+\end{center}
+where gcd($m_{1}, m_{2}$) = $d > 1$. \\
+Claim 1. If the system above is solvable then $a_{1} \equiv a_{2}$ mod d. \\
+Let $x$ be a solution to the system. Then we conclude that $m_{1}|(x-a_{1})$ and $m_{2}|(x-a_{2})$. By the transitivity of the divisibility relation and the choice of $d$ we thus have $d|(x-a_{1})$ and $d|(x-a_{2})$; i.e., we have $x \equiv a_{1}$ mod $d$ and $x \equiv a_{2}$ mod d. Consequently, we arrive at $a_{1} \equiv a_{2}$ mod $d$, and Claim 1 is shown. \\
+Claim 2. If $a_{1} \equiv a_{2}$ mod $d$ then the system is solvable. \\
+Since $d$ = gcd($m_{1}$, $m_{2}$), by \textbf{Theorem 5} we know that there are integers $l, m \in \mathbb{Z}$ such that $d = l \cdot m_{1} + m \cdot m_{2}$. Furthermore $a_{1} \equiv a_{2}$ mod $d$ impl;ies $a{2} \equiv a{1}$ mod $d$ (symmetry of the congruence relation). Hence there is a $t \in \mathbb{Z}$ such that $td = a_{2} - a_{1}$. We conclude that
+$$t(l \cdot m_{1} + m \cdot m_{2}) = a_{2} - a_{1} $$
+$$t \cdot l \cdot m_{1} + a_{1} = -t \cdot m \cdot m_{2} + a_{2}$$
+Let $x =_{df} t \cdot l \cdot m_{1} + a_{1}$. We see that $x - a_{1} = t \cdot l \cdot m_{1}$; i.e., we have $x \equiv a_{1}$ mod $m_{1}$. By construction we also know that $x = -t \cdot m \cdot m_{2} + a_{2}$, and therefore we conclude $x \equiv a_{2}$ mod $m_{2}$. Thus $x$ is a solution of the system.\\
+Let us continue with an example. We consider
+$$ x \equiv 5\ mod\ 6,\ x \equiv 7\ mod\ 14$$
+We have gcd($14,6$) = $2$ and since $14 = 2 \cdot 6 + 2$, we conclude that $l = -2$ and $m = 1$. Furthermore, $t = 1$ and so $x = -7$. Note that $6 \cdot 14 = 84$. Thus our solution has to be taken modulo $84$, and we have $x \equiv 77$ mod $84$. We easily verify that
+$$x \equiv 77 \equiv 5\ mod\ 6\ and\ x \equiv 77 \equiv 7\ mod\ 14.$$
+Moreover lcm($14, 6$) = $42$ and $77 \equiv 35$ mod $42$. So, in this example we have found two solutions. There are no further solutions since the solution modulo $42$ is uniquely determined by \textbf{Theorem 10}.\\
+Let us come back to the exercise problem. We saw that gcd($19271, 7343$) = $7$. Using the \textbf{Algorithm 1}, we compute $l, m \in \mathbb{Z}$ such that $7 = l \cdot 19271 + m \cdot 7343$, i.e., we have $l = 418$ and $m = -1097$. Furthermore, we have $d = 7$ and check whether or not $3 \equiv 10$ mod $7$. Since this is true, we also obtain $t = -1$. Note that $19271 \cdot 7343 = 141506953$ and lcm($19271, 7343$) = $20215279$. As above, we arrive at
+$$x \equiv -8055268 \equiv 133451685\ mod\ 141506953$$
+Moreover, we obtain
+$$133451685 \equiv 12160011\ mod\ 20215279$$
+Hence we have the following solutions $x_{i} = 12160011 + i \cdot 20215279$ mod $141506953$ for $i = 0, 2, \ldots, 6$; i.e,
+\begin{center}
+\begin{tabular}{c c}
+$x_{1} = 12160011,$ & $x_{5} = 93021127$, \\
+$x_{2} = 32375290,$ & $x_{6} = 113236406$, \\
+$x_{3} = 52590569,$ & $x_{7} = 133451685$, \\
+$x_{4} = 72805848,$ &  \\
+\end{tabular}
+\end{center}
+Next, we consider the third congruence of this exercise, i.e., $x \equiv 8$ mod $9973$ and compute gcd($19271, 9973$) = $1$ as well as gcd($9973, 7343$) = $1$.\\
+It remains to find the solutions of the system
+\begin{center}
+$x \equiv 10$ mod $19271$, $x \equiv 3$ mod $7343$, $x \equiv 8$ mod $9973$.
+\end{center}
+This is done as follows: We reduce this system of three simultaneous congruences to a system of two simultaneous congruences by considering $x \equiv x_{i}$ mod $141506953$ and $x \equiv 8$ mod $9973$ for every fixed $i \in \{0, \ldots, 6\}$. Since gcd($141506953, 9973$) = $1$ this system has a uniquely determined solution $y$ and we can use the general method provided in the proof of \textbf{Theorem 10} to compute it.\\
+Thus, we have $M = 141506953 \cdot 9973 = 1411248842269$, and obtain $n_{i} = 9973$ as well as $n_{2} = 141506953$. The modular inverse $n_{1}^{-1}$ of $n_{1}$ modulo $m_{1} = 141506953$ is $113710691$ and the modular inverse $n_{2}^{-1}$ of $n_{2}$ modulo $m_{2} = 9973$ is $1959$. Hence we obtain (by using $x_{1}$)
+\begin{center}
+\begin{tabular}{c c c}
+$y_{1}$ & $\equiv$ & $9973 \cdot 113710691 \cdot 12160011 + 141506953 \cdot 1959 \cdot 8$ \\
+& $\equiv$ &  $295054157016$ mod $1411248842269$.
+\end{tabular}
+\end{center}
+Analogously, we compute the remaining six solutions by using $x_{i}$ for $i = 2, \ldots, 7$ and have
+\begin{center}
+\begin{tabular}{c c}
+$y_{2} = 899875089417$ , & $y_{5} = 1303089044351$ , \\
+$y_{3} = 93447179549$ , & $y_{6} = 496661134483$ , \\
+$y_{4} = 698268111950$ , & $y_{7} = 1101482066884$ .
+\end{tabular}
 \end{center}
 \end{proof}
 
@@ -67,20 +220,27 @@ However, since $10 \not \equiv 4$ mod 7, there are no solutions to this system.
 \noindent \textbf{Exercise 2.3} Show the following:
 Let $a, c \in \mathbb{Z}$ and let $b \in \mathbb{N}, b \geq 2$. Then the linear congruence $ax \equiv c$ mod $b$ is solvable if and only if gcd($a$,$b$) divides $c$. Moreover if $d$ = gcd($a$,$b$) and $d \mid c$ then there are precisely $d$ solutions in $\mathbb{Z}_{b}$ for $ax \equiv c$ mod $b$.
 \begin{proof}
-By \textbf{Euclidean Algorithm} we have that there are $y, z \in \mathbb{Z}$ such that $ay + bz = 1$, so after multiplying by $c$ we have that $ayc + bzc = c$. Since $ax \equiv c$ mod $b$ means that $ax$ equals $c$ plus some multiply of $b$, we can rewrite it as $ax = c + bk$ for some $k \in  \mathbb{Z}$. In this case, $x = yc$ and $k = -zc$. The existence of solutions $y$ and $z$ requires that there is $d$ = gcd($a$, $b$) that divides $c$, which is what needed proof. \\
-Additionally, from $ax - bk = c$ it is visible that if $d \nmid c$ there are no solutions. Now all that is left is to show that there are precisely $d$ solutions in $\mathbb{Z}_b$. If we have one solution $x_0$ we can write the equation:
+We start with the sufficiency. Let $d = gcd(a,b)$ and assume that $d|c$. Consider $\tilde{a} = a/d$, $\tilde{b} = b/d$, $\tilde{c} = c/d$, and $\tilde{a}x \equiv \tilde{c}$ mod $\tilde{b}$. Since $gcd(\tilde{a}, \tilde{b}) = 1$, we can apply \textbf{Theorem 8} and conclude that there is number $y$ such that
+$$\tilde{a}y \equiv 1\ mod\ \tilde{b}.$$
+Consequently, multiplying the previous equation with $\tilde{c}$ yields $\tilde{a}y\tilde{c} \equiv mod \tilde{b}$, and thus
+$$\tilde{a}x_{0} \equiv \tilde{c}\ mod\ \tilde{b},$$
+where $x_{0} =_{df} y\tilde{c}$. Hence, there is $k \in \mathbb{Z}$ such that
+$$k\tilde{b} = \tilde{a}x_{0} - \tilde{c}.$$
+Multiplying both sides of the above equation by $d$ yields $k\tilde{b}d = \tilde{a}dx_{0} - \tilde{c}d$. Therefore, $kb = ax_{0} - c$ (recall that $\tilde{b}d = b$ and $\hat{c}d = c$). This means $ax_{0} \equiv c$ mod $b$. Consequently $x_{0}$ is also a solution of $ax \equiv c$ mod $b$.\\
+The remaining ($d - 1$) solutions of $ax \equiv c$ mod $b$ are obtained as follows: We set $x_{j} =_{df} x_{0} = j\tilde{b}$ for $j = 1, \ldots, d - 1$. So $x_{0} < x_{0} + \tilde{b} < \cdots < x_{0} + (d - 1)\tilde{b}$, and thus $x_{0}, x_{0} + \tilde{b}, \ldots, x_{0} + (d - 1)\tilde{b}$ are pairwise incongruent modulo $b$.\\
+Since $j\tilde{b} \equiv 0$ mod $\tilde{b}$ for all $j \in \mathbb{Z}$, we also have $\tilde{a}(x_{0}+j\tilde{b}) \equiv \tilde{c}$ mod $\tilde{b}$, and consequently there are $k_{j}, j = 1, \ldots, d-1$, such that $k_{j}\tilde{b} = \tilde{a}(x_{0}+j\tilde{b}) - \tilde{c}$.\\
+Next, we multiply both sides of the latter equality by $d$ and obtain
+$$ k_{j}b = a(x_{0} + j\tilde{b}) - c,$$
+which implies $a(x_{0} + j \tilde{b}) \equiv c$ mod $b$. Thus $x_{0}, x_{0} + b, \ldots, x_{0} + (d - 1)\tilde{b}$ are all solutions of $ax \equiv c$ mod $b$.\\
+We claim that there are no other solutions. Suppose there is a $z$ with
 \begin{center}
-$x = x_0 + \frac{b}{d}t$
+\begin{tabular}{c c c}
+$az$ & $\equiv$ & $c$ mod $b$ \\
+$z$ & $\not \equiv$ & $x_{0} + j\tilde{b}$ mod $b$ for all $j = 0, \ldots, d-1$.
+\end{tabular}
 \end{center}
-If we suppose that we have two solutions they are congruent to mod $b$:
-\begin{center}
-$x_0 + \frac{b}{d}t_1 \equiv x_0 + \frac{b}{d}t_2$ mod $b$ $\implies$ $\frac{b}{d}t_1 \equiv \frac{b}{d}t_2$ mod $b$
-\end{center}
-Since $\frac{b}{d}$ divides both sides and we have that gcd($\frac{b}{d}$, $b$) = $\frac{b}{d}$ we have:
-\begin{center}
-	$t_1 \equiv t_2$ mod $d$
-\end{center}
-Which shows that there are distinct solutions to equation $x = x_0 + \frac{b}{d}t$ as many as there are residues to the modulo of $d$, or in other words, exactly $d$ solutions.
+Now the congruence $az \equiv c$ mod $b$ implies $\tilde{a}z \equiv \tilde{c}$ mod $\tilde{b}$, and since $gcd(\tilde{a}, \tilde{b}) = 1$, by $\tilde{a}x_{0} \equiv \tilde{c}\ mod\ \tilde{b}$, we have $z \equiv x_{0}$ mod $\tilde{b}$. Hence, $z = x_{0} + l \tilde{b}$. Finally, since $d \tilde{b} = b$, we can conclude that $l \in \{0, \ldots, d - 1 \}$, a contradiction to previous statements. Consequently, there are precisely $d$ different solutions of $ax \equiv c$ mod $b$.\\
+Necessity. Assume that $ax \equiv c$ mod $b$ is solvable. We have to show that $gcd(a, b)$ divides $c$. Let $z$ be a solution of $ax \equiv c$ mod $b$, i.e., we have $az \equiv c$ mod $b$. Thus, there must be a $k \in \mathbb{Z}$ such that $kb = az - c$. But this means $kb - az = -c$ and consequently $gcd(a,b)$ divides $c$.
 \end{proof}
 
 
@@ -88,7 +248,7 @@ Which shows that there are distinct solutions to equation $x = x_0 + \frac{b}{d}
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.4} Determine the complexity of computing all solutions of $ax \equiv c$ mod $b$ in dependence on the length of the input $a, c \in \mathbb{Z}$ and $b \in \mathbb{N}, b \geq 2$.
 \begin{proof}
-Since according to \textbf{Theorem 2.9} from slide 33, time complexity of calculating modular inverse can be computed in time $\mathcal{O}(max\{log\ a, log\ m\}^3)$, in this case complexity would be:
+Since according to \textbf{Theorem 9} from slide 33, time complexity of calculating modular inverse can be computed in time $\mathcal{O}(max\{log\ a, log\ m\}^3)$, in this case complexity would be:
 \begin{center}
 $\mathcal{O}(max\{log\ a, log\ c, log\ b\}^3)$
 \end{center}
@@ -99,18 +259,25 @@ $\mathcal{O}(max\{log\ a, log\ c, log\ b\}^3)$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.5} Study the problem to compute all integer solutions of \textbf{linear Diophantine equations}, i.e., equations of the form $ax + by = c$ for $a, b, c \in \mathbb{Z}$
 \begin{proof}
-The Diophantine equation is the polynomial equation in which the coefficients are integers and Diophantine equations whose solutions we seek in the set of integers or natural numbers. The most basic Diophantine equation is the linear case. We can write $ax + by = c$ where $a, b, c \in \mathbb{Z}$. An example of Diophantine equation problem is given in \textbf{Exercise 2.3}. Couple of theorems related to Diophantine equations follow: \\
-Let $a$,$b$, and $c$ be integers with $a$ and $b$ both not zero. The linear Diophantine equation
+We apply our knowledge about linear congruences to the problem of computing all integer solutions of linear Diophantine equations; i.e., equations of the form $ax + by = c$ for $a, b, c \in \mathbb{Z}$. Note that the word Diophantine refers to Diophantus of Alexandria, who intensively studied such equations and more general ones.\\
+Observe that $ax + by = c$ implies $ax \equiv c$ mod $b$ as well as $by \equiv c$ mod $a$. So we solve $ax + by = c$ by first solving $ax \equiv c$ mod $b$ or $by \equiv c$ mod $a$. Without loss of generality, we consider\\
 \begin{center}
-$ax + by = c$
-\end{center}
-has a solution if and only if $d$ = gcd($a$, $b$) divides $c$.\\
-Let $a$ and $b$ be integers with $d$ = gcd($a$, $b$). The equation $ax + by = c$ has no integral solution if $d$ doesn’t divide $c$. If $d \mid c$, then there are infinitely many integral solutions. Moreover, if $x = x_0$, $y = y_0$ is a particular solution of the equation, then all solutions are given by 
+$ax \equiv c$ mod $b$.
+\end{center} 
+We have to compute $d = gcd(a,b)$. If $d$ does not divide $c$, we are done, since then there is no solution. If it does, there are $d$ solutions of the above equation (coming from \textbf{Exercise 2.4}). Let $d, \hat{x}, \hat{y}$ be the integers obtained by \textbf{Algorithm 1} on input $a, b$, i.e., $d = a \hat{x} + b \hat{y}$. We set $x_{0} = \frac{\hat{x}c}{d}$ mod $b$ as well as
 \begin{center}
-$x = x_0 + \frac{b}{d}n,\ y=y_0 - \frac{a}{d}n,$
+$x_{0, j} = \left( x_{0} + j \cdot \frac{b}{d} \right)$ mod $b$ , $j = 0, \ldots, d - 1$
 \end{center}
-Where $n$ is an integer.\\
-If $a_1, a_2,..., a_n$ are non zero positive integers, then the equation $a_1x_1 + a_2x_2 +...+ a_nx_n = c$ has an integral solution if and only if $d$ = ($a_1, a_2,..., a_n$) divides $c$. Furthermore, when there is a solution, there are infinitely many solutions.
+We have $ax_{0,j} \equiv c$ mod $b$ for all $j = 0, \ldots, d- 1$. For each $x_{0,j}$, consider the residue class it generates, i.e., all integers $x_{0,j} + k \cdot b$, where $k \in \mathbb{Z}$. Hence,
+\begin{center}
+$\frac{a(x_{0,j} + k \cdot b) - c}{b} \in \mathbb{Z}$ , and therefore \\
+$a(x_{0, j} + k \cdot b) - \frac{a(x_{0, j} + k \cdot b) - c}{b} \cdot b = c$
+\end{center}
+Consequently all solutions of $ax + by = c$ are given by
+\begin{center}
+$\left\lbrace \left( x_{0, j} + k \cdot b, - \frac{a(x_{0,j} + k \cdot b) - c}{b} \right) | k \in \mathbb{Z}, j = 0, \ldots, d - 1 \right\rbrace$.
+\end{center}
+Thus, we have characterized the solution set of $ax + by = c$.
 \end{proof}
 
 
@@ -150,7 +317,7 @@ $e=96,\ c=1,\ t=3$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.7} Prove or disprove: Let ($G$, $\circ$) be any Abelian group, let $a, b \in G$ and $m,n \in \mathbb{N}$ be such that ord($a$) = $n$ and ord($b$) = $m$ and gcd($m,n$) = $1$. Then ($a \circ b$) has the order $mn$.
 \begin{proof}
-By definition of order we have that $a^n=e$ and $b^m=e$ (\textbf{Definition 1.5}). Since gcd($m$, $n$) = 1, we can also say that $m$ and $n$ are relatively prime (\textbf{Definition 2.3}). If we power $(a \circ b)$ to $mn$ we have the following equation:
+By definition of order we have that $a^n=e$ and $b^m=e$ (\textbf{Definition 5}). Since gcd($m$, $n$) = 1, we can also say that $m$ and $n$ are relatively prime (\textbf{Definition 3}). If we power $(a \circ b)$ to $mn$ we have the following equation:
 \begin{center}
 $(a \circ b)^{mn}=(a^{mn} \circ b^{mn})$
 \end{center}
@@ -190,16 +357,9 @@ This tells us that ord($a^k$) $\leq \frac{n}{d}$. Next let's assume there is $m 
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.9} Show that $n^5 - n \equiv 0$ mod 30 for every $n \in \mathbb{N}$.
 \begin{proof}
-If we take that $n \in \mathbb{N}$ and factorize the expression we get:
-\begin{center}
-$n^5 - n = n \cdot (n^2 - 1) \cdot (n^2 + 1) = n \cdot (n - 1) \cdot (n + 1) \cdot (n^2 + 1)$	
-\end{center}
-Since the expression has product of three consecutive integers, namely $n$, $n+1$ and $n-1$ we can tell that the expression is divisible by both 2 and 3, meaning that it is also divisible by their product which is 6.\\
-In order to prove that $n^5 - n$ is also divisible by 5, which is needed to prove that it is always divisible by 30 (Since it is divisible by both 6 and 5, it is then divisible by 30), we can go about this 2 ways. First one is using \textbf{Fermat's Little Theorem}\footnote{Fermat's Little Theorem - https://mathworld.wolfram.com/FermatsLittleTheorem.html} which says that $a^p \equiv a$ mod $p$, if $p$ is a prime number. Since 5 is prime, it can be applied to $n^5 \equiv n$ mod 5. The other way is by further factorizing the expression $n^5 - n$ like so:
-\begin{center}
-$n^5 - n = n \cdot (n^2 - 1) \cdot (n^2 + 1) = n \cdot (n^2 - 1) \cdot (n^2 - 4 + 5) = n \cdot (n^2 - 1) \cdot (n^2 - 4) + 5 \cdot n \cdot (n^2 - 1) = (n - 2) \cdot (n -1) \cdot n \cdot (n + 1) \cdot (n + 2) + 5$
-\end{center}
-Which is a product of 5 consecutive integers and a constant that is divisible by 5. Since this is a product of 5 consecutive integers, one of them must be divisible by 5, one has to be divisible by 3 and one has to be divisible 2. Since $n^5 - n$ is divisible by 5 and 6, it is then also always divisible for 30, for any $n \in \mathbb{N}$, which is what needed proof.
-
+We observe that
+$$ n^{5} - n = (n - 1)n(n+1)(n^{2} +1).$$
+Note that the first three factors constitute three successive numbers. Therefore, the product $(n-1)n(n+1)$ is always divisible by $2$ and by $3$. Furthermore, in this product one factor is either also divisible by $5$ or we have $n \equiv \pm 2$ mod $5$. In the first case, we are done.\\
+In the second case we conclude that $n^{2} \equiv 4 \equiv -1$ mod $5$. Consequently since we also know that $1 \equiv 1$ mod $5$, we see by \textbf{Theorem 5} that $n^{2} + 1 \equiv 0$ mod $5$. So, the product is again divisible by $5$. Finally $2, 3,$ and $5$ are prime numbers and so their least common multiple is $30$. Hence, the product is always divisible by $30$.
 \end{proof}
 \end{document}
