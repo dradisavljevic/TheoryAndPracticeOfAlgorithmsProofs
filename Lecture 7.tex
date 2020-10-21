@@ -87,43 +87,27 @@ Algorithm AKS returns PRIME if and only if $n$ is prime.
 \section{Exercises}
 \noindent \textbf{Exercise 7}  Provide a formal proof to \textbf{Multinomial Theorem}.
 \begin{proof}
-\textbf{Multinomial Theorem} has the form of:
-\begin{center}
+\textbf{Multinomial Theorem} has the form of:\
 $$(x_1 + x_2 + \cdots + x_k)^n = \sum_{n_1+\cdots +n_k = n\ n_i \geq 0}^{} \binom{n}{n_1, n_2, ..., n_k}x_{1}^{n_{1}}x_{2}^{n_{2}}\cdots x_{k}^{n_{k}}$$
-\end{center}
 We will prove this by induction. For $k=1$ we have:
-\begin{center}
 $$(x_1)^n = \sum_{n_1 = n} \frac{n!}{n_1!} {x_1}^{n_1} =  \frac{n!}{n!} {x_1}^{n} = {x_1}^{n}$$
-\end{center}
 So our basis for induction holds. Next we move to the induction hypothesis where we have $k=m$:
-\begin{center}
 $$(x_1 + x_2 + \cdots + x_m)^n = \sum_{n_1 + n_2 + \cdots \mathop + n_m = n} \binom{n}{n_1, n_2, ..., n_m} {x_1}^{n_1} {x_2}^{n_2} \cdots {x_m}^{n_m}$$
-\end{center}
 From which we will show that $k=m+1$ is true:
-\begin{center}
 $$(x_1 + x_2 + \cdots + x_{m+1})^n = ((x_1 + x_2 + \cdots + x_m) + x_{m+1})^n$$
-\end{center}
+\begin{samepage}
 Which, if we apply \textbf{Binomial Theorem}\footnote{Binomial Theorem - https://www.britannica.com/science/binomial-theorem} we can write as:
-\begin{center}
 $$\sum_{j = 0}^{n} \binom{n}{j} {x_{m+ 1} }^j (x_1 + x_2 + \cdots + x_m)^{n - j}$$
-\end{center}
+\end{samepage}
 Then from our induction hypothesis we get:
-\begin{center}
 $$\sum_{j = 0}^{n} \binom{n}{j} {x_{m + 1} }^j \sum_{n_1 + n_2 + \cdots + n_m = n - j} \binom{n - j}{n_1, n_2, ..., n_m} {x_1}^{n_1} {x_2}^{n_2} \cdots {x_m}^{n_m}$$
-\end{center}
 And since summation is linear we get the following as the sum of sums:
-\begin{center}
 $$\sum_{j = 0}^{n} \left(\sum_{n_1 + n_2 + \cdots + n_m = n - j} \binom{n}{j} \binom{n - j}{n_1, n_2, ..., n_m} {x_1}^{n_1} {x_2}^{n_2} \cdots {x_m}^{n_m} {x_{m + 1} }^j \right)$$
-\end{center}
 And after renaming the $j$ variable and collapsing the double sums we get:
-\begin{center}
 $$\sum_{n_1 + n_2 + \cdots + n_m + n_{m + 1} = n} \binom{n}{n_{m + 1} } \binom{n - n_{m + 1}}{n_1, n_2, ..., n_m} {x_1}^{n_1} {x_2}^{n_2} \cdots {x_m}^{n_m} {x_{m + 1} }^{n_{m + 1} }$$
-\end{center}
 Now from the definition of \textbf{Binomial Coefficient}\footnote{Binomial Coefficient - https://mathworld.wolfram.com/BinomialCoefficient.html} we have:
-\begin{center}
 $$\binom{n}{n_{m + 1} } \binom{n - n_{m + 1} } {n_1, n_2, ..., n_m} = \frac{n!}{n_{m + 1}! (n - n_{m + 1} )!} \frac{(n - n_{m + 1} )!} {n_1! \, n_2! \, \cdots n_m!}$$
 $$= \frac{n!}{n_1! \, n_2! \, \cdots n_m! \, n_{m + 1}!} = \binom{n}{n_1, n_2, ..., n_m, n_{m + 1}}$$
-\end{center}
 Putting it all together we get the definition of multinomial theorem for any $k$, which we needed to prove.
 \end{proof}
 \end{document}

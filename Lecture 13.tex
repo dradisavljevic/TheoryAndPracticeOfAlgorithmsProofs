@@ -1,12 +1,68 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, titling}
+\usepackage{amsmath,amsthm,amssymb, titling, mdframed}
 
 \title{\vspace{-2cm}Lecture XIII\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+\begin{definition}
+The value of an AS-number $x = (x_{n-1}, \ldots, x_{0}) \in \{ 0, 1 \}^{n}$ is defined as
+$$V_{AS}(x) =_{df} (-1)^{x_{n-1}}(x_{n-2}2^{n-2} + \cdots + x_{1}2 + x_{0}).$$
+\end{definition}
+
+
+\begin{theorem}
+There is a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits achieving simultaneously depth $O(\log{n})$ and size $O(n)$ such that $C_{n}$, on input two $n$-bit AS-numbers $x$, $y$, correctly computes $x + y$.
+\end{theorem}
+
+
+\begin{theorem}
+There is no family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits over the basis $\{ \lnot, \land, \lor \}$ for binary addition such that $C_{n}$ computes the sum of any two $n$-bit numbers, which achieves depth $o(\log{n})$.
+\end{theorem}
+
+
+\begin{definition}
+\textbf{Fermat Ring -} Let $m \in \mathbb{N} \backslash \{ 0 \}$. \\
+(i) $\mathbb{Z}_{m}$ is called Fermat ring provided $m = 4^{k} + 1$ for some $k \in \mathbb{N}, k \geq 1$. \\
+(ii) Let $\mathbb{Z}_{m}$ be a Fermat ring and let $x \in \mathbb{Z}_{m}$. A radix-$4$ representation for $x$ is any vector $x = (x_{n}, \ldots, x_{0})$ with $-3 \leq x_{i} \leq 3$ such that 
+$$|x|_{4} = x_{n}4^{n} + x_{n - 1}4^{n - 1} + \cdots + x_{0} \equiv x\ mod\ m.$$
+\end{definition}
+
+
+\begin{theorem}
+There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits achieving simultaneously depth $O(1)$ and size $O(n)$ such that $C_{n}$, on input any two $3(n + 1)$ bit radix-$4$ numbers $x$, $y$ correctly computes $x + y$ mod $m$, where $m = 4^{n} + 1$.
+\end{theorem}
+
+
+\begin{corollary}
+There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits achieving simultaneously depth $O(1)$ and size $O(n)$ such that $C_{n}$, on input two $3(n + 1)$ bit radix-$4$ numbers $x$, $y$ correctly computes $x - y$ mod $m$, where $m = 4^{n} + 1$.
+\end{corollary}
+
+
+\begin{samepage}
+\begin{theorem}
+(1) Let $a_{x} = (x_{2n}, \ldots, x_{0})$ be the binary representation of a number $a \in \{ 0, \ldots, 2^{2n+1} - 1 \}$, and let $m = 4^{n + 1} + 1$. Then $a_{x}$ can be transformed into radix-$4$ representation of $a$ by a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits that has simultaneously constant depth and linear size. \\
+(2) There is a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits that has simultaneously depth $O(\log{n})$ and size $O(n)$ such that $C_{n}$ computes on input a radix-$4$ representation $(x_{n}, \ldots, x_{0}$ of any number $a \in \{ 0, \ldots, m - 1 \}$ the binary representation for $a$.
+\end{theorem}
+\end{samepage}
+
+
+\begin{theorem}
+There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits achieving simultaneously depth $O(\log{n})$ and size $O(n^{2})$ such that $C_{n}$, on input $n$ numbers $a_{1}, \ldots, a_{n}$ having at most $n$ bits each, correctly computes $a_{1} + \cdots + a_{n}$.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 13.1}  Repeat the computation presented in \textbf{Example 13.6} for the case that $a = 13$ is given as $(0, 3, 1)$ as input.
 \begin{proof}
 Let $m = 4^{2} + 1 = 17$ and let $a=13$ be given as input as $(0, 3, 1)$.
@@ -23,7 +79,7 @@ and $\vert x^{+} \vert - \vert x^{-} \vert =(0,0,1,1,0,1) =13$ (written as AS-nu
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 13.2} Prove that there is a uniform family $\left(C_{n}\right)_{n \in \mathbb{N}}$ of Boolean circuits simultaneously achieving depth $O(1)$ and size $O(n)$ which on input any number b given in a radix-4 representation $(x_{n},  \ldots , x_{0})$ computes the radix-4 representation of the product $b2^{l}$, where $l \leq 2n$ is any fixed number.
 \begin{proof}
-Let's consider circuit stated in \textbf{Theorem 13.5}, the first part converts $a_{i}$ where $i = 1, \ldots, n$ into a radix-4 representation. SInce this requires n sub-circuits having depth $O(1)$ and size $O(n)$. In \textbf{Theorem 13.4} we have that conversion from binary into radix-4 can be done in constant depth with linear size. Since the operation we are interested in is multiplication with a power of two, where power of two is fixed such that it is $l \leq 2n$, we can say that $b2^{l} < 4^{n+1}$, so proof of this exercise comes directly from \textbf{Theorem 13.4} assertion (1).
+Let's consider circuit stated in \textbf{Theorem 5}, the first part converts $a_{i}$ where $i = 1, \ldots, n$ into a radix-4 representation. SInce this requires n sub-circuits having depth $O(1)$ and size $O(n)$. In \textbf{Theorem 4} we have that conversion from binary into radix-4 can be done in constant depth with linear size. Since the operation we are interested in is multiplication with a power of two, where power of two is fixed such that it is $l \leq 2n$, we can say that $b2^{l} < 4^{n+1}$, so proof of this exercise comes directly from \textbf{Theorem 4} assertion (1).
 \begin{center}
 $x_{i} = 2y_{2i+1}+y_{2i}$ where $y_{i} \in {-1, 0, +1}$
 \end{center}

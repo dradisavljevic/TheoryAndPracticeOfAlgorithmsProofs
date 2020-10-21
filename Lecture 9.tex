@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, tikz, mdframed}
+
+\title{\vspace{-2cm}Lecture IX\vspace{-2cm}}
+\date{}
+
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\section{Lecture Summary}
+\begin{theorem}
+Let $n \in \mathbb{N}$ be a power of $2$. A DFT of order $n$ can then be computed by executing $O(n \log(n))$ many ring operations.
+\end{theorem}
+
+
+\begin{theorem}
+Let $m = \omega^{p} + 1$, and let $a = \sum_{i=0}^{l - 1} a_{i}\omega^{ip}$, where $0 \leq a_{i} < \omega^{p}$ for all $i = 0, \ldots, l - 1$. Then we have
+$$ a \equiv \sum_{i=0}^{l - 1}a_{i}(-1)^{i}\ mod\ m.$$
+\end{theorem}
+
+
+\begin{theorem}
+Let $\omega$ and $n$ be positive powers of $2$, and let $m = \omega^{n/2} + 1$. Furthermore, let $\vec{a} = (a_{0}, \ldots, a_{n-1})^{T}$ be a vector having integer components such that $0 \leq a_{i} < m$ for all $i = 0,  \ldots, n - 1$. Then the DFT $F(\vec{a})$ and its inverse $F^{-1}(\vec{a})$ modulo $m$ can be computed in $O(n^{2}\log{n}\log{\omega})$ many bit operations.
+\end{theorem}
+
+
+\begin{corollary}
+Assume that the multiplication of two numbers having at most $k$ bits is executable in $M(k)$ many bit operations. Let $\omega$ and $n$ be positive powers of $2$, let $m = \omega^{n/2} + 1$, and let $\vec{a}$ and $\vec{b}$ be vectors of dimension $n$ having integer components such that $0 \leq a_{i} < m$ for all $i = 0, \ldots, n - 1$. Then the convolution, the positive convolution, and the negative convolution of $\vec{a}$ and $\vec{b}$ mod $m$ can be executed in $O(max\{n^{2}\log{n}\log{\omega}, nM(n\log{\omega})\})$ many bit operations.
+\end{corollary}
+
+
+\begin{theorem}
+There is an algorithm for multiplying two numbers $a$ and $b$ each having at most $n$ bits that can be performed in time $O(n^{\log{3}})$.
+\end{theorem}
+
+
+\begin{algorithm}
+\textbf{Karatsuba Multiplication -}\\
+(1) $s_{0} = a_{0} + a_{1}, s_{1} = b_{0} + b_{1}$ \\
+(2) $p_{0} = a_{0}b_{0}, p_{1} = a_{1}b_{1}, p_{2} = s_{0}s_{1}$ \\
+(3) $t = p_{0} + p_{1}$ \\
+(4) $u = p_{2} - t, \hat{u} = u2^{n/2}$ \\
+(5) $v = a_{0}b_{0}2^{n} + a_{1}b_{1}$ \\
+(6) $p = v + \hat{u}$
+\end{algorithm}
+
+
+\begin{theorem}
+The Schönhage–Strassen algorithm correctly computes the product of two $n$-bit numbers $u$ and $v$ mod $2^{n} + 1$.
+\end{theorem}
+
+
+\begin{theorem}
+The Schönhage–Strassen algorithm needs $O(n \log{n} \log{\log{n}})$ bit operations to compute the product of two $n$-bit numbers given in binary.
+\end{theorem}
+\end{document}

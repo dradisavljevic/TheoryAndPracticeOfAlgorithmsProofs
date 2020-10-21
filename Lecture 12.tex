@@ -1,12 +1,64 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, titling, tikz}
+\usepackage{amsmath,amsthm,amssymb, titling, tikz, mdframed}
 
 \title{\vspace{-2cm}Lecture XII\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+Speed-up of the parallel algorithm: $SU(n) =_{df} \frac{T_{seq}(n)}{T_{par}(n)}$, \\
+Efficiency of the parallel algorithm: $EFF(n) =_{df} \frac{SU(n)}{Pr(n)}$. \\
+Where $Pr(n)$ is number of processors, $T_{seq}(n)$ is sequential time of executing operation and $T_{par}(n)$ is parallel time.
+\begin{definition}
+\textbf{Boolean Circuit -} A Boolean circuit $C$ with $n$ inputs and $m$ outputs is a finite acyclic direct graph whose nodes are marked as follows: All nodes with input valence $0$ are marked by $x_{1}, \ldots, x_{n}$ or constants $0$, $1$ (input nodes). Nodes with input valence $1$ are marked by $\lnot$ (logical negation). The nodes with input valence $2$ are either marked by $\land$ or $\lor$ (logical AND and OR, respectively). There are no nodes having an input valence greater than $2$. Exactly $m$ nodes have output valence $0$ and they are marked by $y_{1}, \ldots, y_{m}$ (output nodes). \\
+It is assumed that there is at least one path from every input node to an output node. \\
+Such circuit $C$ computes a function $f: \{ 0, 1 \}^{n} \rightarrow \{ 0, 1 \}^{m}$ in the following way: Input $x_{i}, 1 \leq i \leq n$, is assigned a value $\nu (x_{i})$ from $\{ 0, 1 \}$ representing it $i$th bit of the argument of function $f$. Every other node $\nu$ is assigned a value $\nu (v) \in \{ 0, 1 \}$ obtained by applying the logical function node $v$, and is marked with to the value(s) of the nodes incoming to $v$. The value of the function is the tuple $(\nu(y_{1}), \ldots, \nu(y_{m}))$, in which output node $y_{j}$, where $1 \leq j \leq m$, contributes the $j$th bit of the output.
+\end{definition}
+
+
+\begin{definition}
+For measuring the complexity of a Boolean circuit $C$ we use the depth of $C$ defined as the length of the longest path from an input node to an output node (parallel time) as well as the size of $C$ given by the total number of nodes (parallel amount of hardware).
+\end{definition}
+
+
+\begin{definition}
+\textbf{Boolean Circuit Family -} A Boolean circuit family $(C_{n})_{n \in \mathbb{N}}$ is a sequence of circuits, where each $C_{n}$ computes the function $f_{C_{n}}: \{ 0, 1 \}^{n} \rightarrow \{ 0, 1 \}^{m(n)}$. The function $f$ computed by $(C_{n})_{n \in \mathbb{N}}$ is defined as
+$$f_{C}: \{ 0, 1 \}^{*} \rightarrow \{ 0, 1 \}^{*}$$
+where $f_{C}(x) =_{df} f_{C_{|x|}}(x)$.
+\end{definition}
+
+
+\begin{samepage}
+\begin{definition}
+Let $k \in \mathbb{N}$; then the class $\mathcal{N}\mathcal{C}^{k}$ is the set of all languages $L$ such that $L$ is accepted by a log-space uniform family of Boolean circuits simultaneously having depth $O((\log{n})^{k})$ and polynomial size. \\
+The class $\mathcal{N}\mathcal{C}$ is the collection of all $\mathcal{N}\mathcal{C}^{k}$, i.e.,
+$$\mathcal{N}\mathcal{C} = \bigcup\limits_{k \in \mathbb{N}} \mathcal{N}\mathcal{C}^{k}.$$
+\end{definition}
+\end{samepage}
+
+
+\begin{theorem}
+Let $p_{i} = a_{i} \otimes b_{i}$ and $g_{i} = a_{i} \land b_{i}$ for all $i = 0, \ldots, n - 1$. Furthermore let
+$$(r_{i}, t_{i}) = (p_{0}, g_{0})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ (p_{1}, g_{1})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ \cdots\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ (p_{i}, g_{i});$$
+then we have $c_{i + 1} = t_{i}$.
+\end{theorem}
+
+
+\begin{theorem}
+For $n \geq 2$ all the carries in an $n$-bit binary addition can be computed in time proportional to $\log{n}$ and in area proportional to $n \log{n}$, and so can the binary addition; i.e., binary addition is in $\mathcal{N}\mathcal{C}^{1}$.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 12 a)}  Non-uniform circuit families are unexpectedly powerful, since they can also “compute” non-computable functions like the halting problem.
 \begin{proof}
 The halting problem represents the problem of determining whether the program will finish running or run forever, depending from the description of the program. If we have a language with inputs of arbitrary size we can treat it by a family of circuits, one for each size of input. If these circuits are non-uniform, such that here is no Turing Machine which on input $n$ outputs the circuit for size $n$ inputs, so it allows circuit to solve uncomputable problems, giving answer for a certain encoding of the halting problem.
@@ -25,11 +77,13 @@ Since the definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex); relies
 $(a \lor (b \land c)) = ((a \lor b) \land (a \lor c))$\\
 $(a \land (b \lor c)) = ((a \land b) \lor (a \land c))$\\
 \end{center}
+\begin{samepage}
 And law of absorbtion:
 \begin{center}
 $(a \lor (a \land b)) =a$\\
 $(a \land (a \lor b)) =a$\\
 \end{center}
+\end{samepage}
 To begin we start with the left hand side of the equation:
 \begin{center}
 $[(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{1},g_{1})] \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2}) $\\

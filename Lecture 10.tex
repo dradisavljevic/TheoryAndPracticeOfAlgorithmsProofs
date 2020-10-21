@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, tikz, mdframed}
+
+\title{\vspace{-2cm}Lecture X\vspace{-2cm}}
+\date{}
+
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\section{Lecture Summary}
+\begin{algorithm}
+\textbf{Randomized Communication Protocol WITNESS -} \\
+\begin{tabular}{c c}
+Given: & Computer $C_{1}$ and $n$ bits $x_{1}x_{2}\cdots x_{n}$ \\
+& Computer $C_{2}$ and $n$ bits $y_{1}y_{2}\cdots y_{n}$
+\end{tabular} \\
+Phase 1: $C_{1}$ chooses uniformly at random a prime $p$ from $PRIM(n^{2})$. \\
+Phase 2: $C_{1}$ computes the integer
+\begin{center}
+$s = num(x)\ mod\ p$ \\
+and sends $s$ and $p$ in binary representation to $C_{2}$.
+\end{center}
+Phase 3: After reading $s$ and $p$, the computer $C_{2}$ computes
+\begin{center}
+$q = num(y)\ mod\ p.$
+\end{center}
+If $q \neq s$, then $C_{2}$ outputs "not equal." \\
+If $q = s$, then $C_{2}$ outputs "equal."
+\end{algorithm}
+\end{document}

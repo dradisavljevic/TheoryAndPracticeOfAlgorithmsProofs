@@ -1,12 +1,66 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb, titling}
+\usepackage{amsmath,amsthm,amssymb, titling, mdframed}
 
 \title{\vspace{-2cm}Lecture XV\vspace{-2cm}}
 \date{}
 
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
 \begin{document}
 \maketitle
+\section{Lecture Summary}
+\begin{theorem}
+There exists an algorithm TS solving the leader election problem in time $nu_{min}$ and with communication complexity $n$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1,$ is known to the algorithm.
+\end{theorem}
+
+
+\begin{algorithm}
+\textbf{Algorithm TS (Time Slice) -} Initially, every process $i, i = 1, \ldots, n,$ assigns its UID to its token. \\
+The computation proceeds in phases $1, 2, \ldots,$ where each phase consists of $n$ consecutive rounds. Each phase is devoted to the possible circulation, all the way around the ring, of a token carrying a particular UID. More formally, for all $l > 0$, Phase $l$ is defined as follows: \\
+\textbf{Phase $l$} This phase consists of rounds $(l - 1)n + 1, \ldots, ln$ in which only the token with UID $l$ is allowed to circulate. If a process $i$ with UID $l$ exists, and round $(l - 1)n + 1$ is reached without $i$ having previously received any non-null message, the process $i$ declares itself the leader. Moreover, process $i$ then sends its token all the way around the ring.
+\end{algorithm}
+
+
+\begin{theorem}
+There exists an algorithm VS solving the leader election problem in time $n2^{u_{min}}$ and with communication complexity $O(n)$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is not known to the algorithm.
+\end{theorem}
+
+
+\begin{algorithm}
+\textbf{Algorithm VS -} Each process $i, i = 1, \ldots, n$, initializes a token carrying its UID $u_{i}$. Token with UID $v$ will travel with a rate of one message transmission in every $2^{v}$th round. That is, each process receiving a token with UID $v$ waits $2^{v}$ rounds before sending it, if ever, to its clockwise neighbor. While waiting, each process may receive other tokens. Whenever a token is received by a process, the process compares the UIDs carried by the token to its own. If both UIDs are equal, it declares itself the leader. Moreover, each process keeps track of the smallest UID it has seen. All token having a UID that is larger then the actual smallest one are then deleted.
+\end{algorithm}
+
+
+\begin{samepage}
+\begin{lemma}
+Let $n \in \mathbb{N}, n > 1$, let $A$ be a comparison-based algorithm executing in a ring $R$ of size $n$. Furthermore, let $i, j$ be any two processes in $A$ and let $k \in \mathbb{N}$ be any number satisfying $0 \leq k \leq \lceil n/2 \rceil$ such that both processes $i, j$ have order equivalent sequences of UIDs in their $k$-neighborhoods. \\
+Then, at any point after at most $k$ active rounds, process $i$ and process $j$ are in corresponding states with respect to the UID sequences in their $k$-neighborhoods.
+\end{lemma}
+\end{samepage}
+
+
+\begin{theorem}
+There exists a constant $c$ such that, for all $n \in \mathbb{N}, n > 1$, there is a $c$-symmetric ring of size $n$.
+\end{theorem}
+
+
+\begin{lemma}
+Let $n \in \mathbb{N}, n > 1$ and let $A$ be a comparison-based algorithm executing in a $c$-symmetric ring $R$ of size $n$. Furthermore, assume that $A$ elects a leader. Suppose $k \in \mathbb{N}$ such that $\sqrt{n} \leq 2k + 1$ and $\lceil cn/(2k + 1) \rceil \geq 2$. Then $A$ has more than $k$ active rounds.
+\end{lemma}
+
+
+\begin{theorem}
+Let $n \in \mathbb{N}, n > 1$, and let $A$ be a comparison-based algorithm that elects a leader in rings of size $n$. Then there is an execution of $A$ in which $A$ sends $\Omega(n \log{n})$ messages by the time the leader is elected.
+\end{theorem}
+
+
+
+\section{Exercises}
 \noindent \textbf{Exercise 15.1}  Every bit-reversal ring is $\frac{1}{2}$-symmetric.
 \begin{proof}
 From the information that we are talking about bit-reversal ring we have that $n=2^{k}$, or that $n$ is a power of $2$. Next, from definition of symmetry we have that for all $l$, such that $\sqrt{n} \leq l \leq n$ where $l$ is length, there are at least $\lfloor cn/l \rfloor$ where c=$\frac{1}{2}$ and $n=2^{k}$, thus giving $\lfloor 2^{k-1}/l \rfloor$ segments in the ring that are order equivalent to $S$, including $S$ itself.\\

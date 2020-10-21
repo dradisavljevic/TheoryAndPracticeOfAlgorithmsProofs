@@ -154,16 +154,15 @@ Let $m \in mathbb{N}^{+}$, let $a, b, c, d \in \mathbb{Z}$ be any integers such 
 
 
 
+\begin{samepage}
 \section{Exercises}
 \noindent \textbf{Exercise 1.1} Prove or disprove the following: $f(x) = o(g(n))$ if and only if $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$.
 \begin{proof}
 Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches $0$. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
-  
 Now let $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ meaning that as $n$ increases limit of the fraction $\frac{f(n)}{g(n)}$ equals to either some constant $c$ that is not $0$ or approaches infinity. In the first case, where limit yields a constant $c$, it can be written as both $\Lim{n \to \infty} \frac{f(n)}{g(n)}>0$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}<\infty$ meaning that $g(n)$ is both upper and lower bound of $f(n)$, or in other words an exact bound, which can be written as $f(x) = \Theta(g(n))$. Since $g(n)$ is an upper bound of $f(n)$, this means that $f(x) \neq o(g(n))$. In the case of the limit being equal to infinity for a very large n, the statement $g(n) < f(n)$ must hold true, in other words $f(x) = O(g(n))$, which further implies $f(x) \neq o(g(n))$. In both cases we have that if $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ then also $f(x) \neq o(g(n))$. \\
-  
 Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0 \implies f(x) \neq o(g(n))$, we can say that $f(x) = o(g(n)) \iff \Lim{n \to \infty} \frac{f(n)}{g(n)}=0$ which is what was needed to be proven.
-
 \end{proof}
+\end{samepage}
 
 
 

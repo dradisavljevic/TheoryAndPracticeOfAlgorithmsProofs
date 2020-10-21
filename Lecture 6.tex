@@ -15,6 +15,10 @@
 \begin{document}
 \maketitle
 \section{Lecture Summary}
+\textbf{Theorem 6 from Lecture 5} is the starting point for the AKS Algorithm: $n$ is prime if and only if $(X + a)^{n} \equiv (X^{n} + a)$ mod $n$. From there they figured that it suffices to check the following: \\
+$$(X + a)^{n}\ mod\ (n, X^{r} - 1)\ and\ (X^{n} + a)= mod (n, X^{r} - 1)$$
+If $n$ is prime, then this is clearly satisfied. \\
+When varying $a$, one has to perform the check for several values. If all these tests are fulfilled then $n$ is either a prime or a prime power.
 \begin{algorithm}
 \textbf{AKS -} \\
 Input: Odd integer $n > 1$ \\

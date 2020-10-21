@@ -57,6 +57,7 @@ Modular exponentiation can be computed in time \\ $O(max\{\log{a}, \log{m}, \log
 \end{definition}
 
 
+\begin{samepage}
 \begin{theorem}
 Let $n \in \mathbb{N}$ be an odd composite number. Then we have \\
 (1) $n$ is pseudo-prime to the base $b$ with gcd($b,n$) = $1$ if and only if the order $d$ of $b$ in $\mathbb{Z}_{n}^{*}$ divides $n - 1$.\\
@@ -66,6 +67,7 @@ Let $n \in \mathbb{N}$ be an odd composite number. Then we have \\
 $|\{b \in \mathbb{Z}_{n}^{*}| b^{n - 1} \not \equiv 1$ mod $n \} | \geq \frac{\varphi (n)}{2}$.
 \end{center}
 \end{theorem}
+\end{samepage}
 
 
 \begin{theorem}
@@ -92,7 +94,6 @@ $$g^{p - 1} \equiv 1\ mod\ p^{2}$$
 Let $s =_{df} g + p$. Hence, $s \equiv g$ mod $p$, and so $s$ is also a generator for $\mathbb{Z}_{p}^{*}$. Using the same arguments as above we conclude that the order of $s$ in $\mathbb{Z}_{p^{2}}^{*}$ is either $p - 1$ or $p(p - 1)$. Thus it suffices to show that $s^{p - 1} \not \equiv 1$ mod $p^{2}$.\\
 Using the binomial theorem we obtain
 $$s^{p-1} = (g + p)^{p - 1} = \sum_{k = 0}^{p - 1} \binom{p-1}{k} g^{k}p^{p - 1 - k} \equiv g^{p - 2} \cdot p(p - 1) + g^{p - 1}\ mod\ p^{2}$$
-
 From $g^{p - 1} \equiv 1$ mod $p^{2}$ we obtain:
 $$s^{p - 1} \equiv 1 - pg^{p-2}\ mod\ p^{2}$$
 Finally, suppose $s^{p - 1} \equiv 1$ mod $p^{2}$. Then we get $pg^{p - 2} \equiv 0$ mod $p^{2}$. But this means that there must be a $k$ such that $k \cdot p^{2} = pg^{p - 2}$, and consequently, $kp = g^{p - 2}$. Thus $g^{p - 2} \equiv 0$ mod $p$, a contradiction, since $g$ is a generator of $\mathbb{Z}_{p}^{*}$.\\

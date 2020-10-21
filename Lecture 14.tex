@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath,amsthm,amssymb, titling, mdframed}
+
+\title{\vspace{-2cm}Lecture XIV\vspace{-2cm}}
+\date{}
+
+\newmdtheoremenv{theorem}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{corollary}{Corollary}
+\newmdtheoremenv{algorithm}{Algorithm}
+\newmdtheoremenv{lemma}{Lemma}
+
+\begin{document}
+\maketitle
+\section{Lecture Summary}
+Different attributes between distributed algorithms: \\
+(1) The Interprocess Communication (IPC) Method \\
+(2) The Timing Model \\
+(3) The Failure Model \\
+(4) The Problems Addressed \\
+A process $i, i= 1, \ldots, |V|$ consists formally of the following components: \\
+$states_{i}$, a possibly infinite set of states; \\
+$start_{i}$, a non-empty set of start states which is a subset of $states_{i}$ \\
+$msg_{i}$, a message-generation function (depending only on $states_{i}$ and the edges outgoing from node $i$), and \\
+$trans_{i}$, a state transition function mapping $states_{i} \times M^{*} \cup \{ \lambda \}$ to $states_{i}$.
+\begin{theorem}
+Let $n \in \mathbb{N}, n > 1$, and let $A$ be a system of $n$ processes arranged in a bidirectional ring. If all processes in $A$ are identical, then $A$ cannot solve the leader election problem.
+\end{theorem}
+
+
+\begin{theorem}
+There exists an algorithm LE solving the leader election problem in time $n$ and with communication complexity $O(n^{2})$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is not known to the algorithm. Moreover, LE uses only unidirectional communication.
+\end{theorem}
+
+
+\begin{theorem}
+\textbf{Hirschberg and Sinclair Theorem -} There exists an algorithm HS solving the leader election problem in time $O(n)$ and with communication complexity $O(n \log{n})$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is not known to the algorithm.
+\end{theorem}
+
+
+\begin{samepage}
+\begin{algorithm}
+Each process $i, i = 1, \ldots, n$ works in phases defined as follows: \\
+\textbf{Phase $l, l \geq 0$}. Process $i$ does the following: \\
+Initialize $(a, b, c)$ by $(u_{i}, out, 2^{l})$. Send in each direction one token with $(u_{i}, out, 2^{l})$. \\
+Set status = unknown. \\
+Set $t = 0$ (this variable is later used to count the tokens coming back). \\
+end Initialization \\
+Let $v = (u_{j}, b, k)$ be any incoming message. Then, if $b = in$ check whether $u_{j} = u_{i}$. If it is, set $t := t + 1$. If $t = 2$, then stop Phase $l$ and start Phase $l + 1$. \\
+If $u_{j} \neq u_{i}$, then send $v$ in clockwise direction if it came from the counter-clockwise neighbor, and in counter-clockwise direction otherwise \\
+If $b = out$ do the following: \\
+\indent if $u_{j} > u_{i}$ then set $v = (u_{j}, b, k - 1)$ provided $k > 1$, otherwise set $v = (u_{j}, in, 0)$ and send $v$ to the appropriate neighbor, \\
+\indent if $u_{j} < u_{i}$ then do nothing \\
+\indent if $u_{j} = u_{i}$ then set \textbf{status = leader}. \\
+The correctness formally follows mutatis mutandis as the proof of \textbf{Theorem 2}.
+\end{algorithm}
+\end{samepage}
+\end{document}
