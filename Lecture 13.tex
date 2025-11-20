@@ -63,7 +63,7 @@ There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean 
 
 
 \section{Exercises}
-\noindent \textbf{Exercise 13.1}  Given $m = 4^2 + 1 = 17$, convert the radix-4 representation $(0, 3, 1)$ to binary form and verify the computation.
+\noindent \textbf{Exercise 13.1}  Repeat the computation presented in \textbf{Example 13.6} for the case that $a = 13$ is given as $(0, 3, 1)$ as input.
 \begin{proof}
 Let $m = 4^{2} + 1 = 17$ and let the input radix-4 representation be $(x_2, x_1, x_0) = (0, 3, 1)$ where each $x_i \in \{-3, \ldots, 3\}$.
 
@@ -77,54 +77,39 @@ $$13 = 8 + 4 + 1 = 2^3 + 2^2 + 2^0$$
 
 Therefore, the binary representation is $(1, 1, 0, 1)_2$ (reading the bits from most significant to least significant).
 
-Verification: Using the AS-number definition with $x = (x_3, x_2, x_1, x_0) = (1, 1, 0, 1)$ where $x_3$ is the sign bit:
-$$V_{AS}(x) = (-1)^{x_3}(x_2 \cdot 2^2 + x_1 \cdot 2 + x_0) = (-1)^1(1 \cdot 4 + 0 \cdot 2 + 1) = -5$$
-
-This represents $-5$. However, for the direct binary to radix-4 conversion (without AS-number), we compute:
-$$13 \text{ in binary} = (0, 1, 1, 0, 1)_2$$
-
-Reading as a standard binary number from left to right (MSB first), this is $1 \cdot 8 + 1 \cdot 4 + 0 \cdot 2 + 1 = 13$.
+Verification: We check that $1101_2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = 8 + 4 + 0 + 1 = 13$, which confirms our conversion is correct.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 13.2} Prove that there is a uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits simultaneously achieving depth $O(1)$ and size $O(n)$ which on input any number $b$ given in a radix-4 representation $(x_{n}, \ldots, x_{0})$ computes the radix-4 representation of the product $b \cdot 2^{l}$, where $l \leq 2n$ is any fixed constant.
+\noindent \textbf{Exercise 13.2} Prove that there is a uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits simultaneously achieving depth $O(1)$ and size $O(n)$ which on input any number $b$ given in a radix-4 representation $(x_{n}, \ldots, x_{0})$ computes the radix-4 representation of the product $b \cdot 2^{l}$, where $l \leq 2n$ is any fixed number.
 \begin{proof}
 We show that multiplication by a fixed power of 2 in radix-4 representation can be done with constant depth and linear size.
 
-\textbf{Key observation:} In radix-4 representation, multiplying by $2^l$ shifts the representation by $l$ positions, analogous to how multiplying by 10 shifts a decimal representation.
+\textbf{Key observation:} Since $4 = 2^2$, we have that multiplying by $2^{2k} = 4^k$ shifts the radix-4 representation by $k$ positions. For general $l = 2^l$, we write $l = 2m + r$ where $r \in \{0, 1\}$.
 
 More precisely, if $b = \sum_{i=0}^{n} x_i 4^i$, then:
-$$b \cdot 2^l = \sum_{i=0}^{n} x_i 4^i \cdot 2^l$$
+$$b \cdot 2^l = \sum_{i=0}^{n} x_i 4^i \cdot 2^l = \sum_{i=0}^{n} x_i 2^{2i+l}$$
 
-Since $4^i = (2^2)^i = 2^{2i}$, we have:
-$$b \cdot 2^l = \sum_{i=0}^{n} x_i 2^{2i+l}$$
+\textbf{Case 1:} If $l = 2m$ is even, then $2^l = 2^{2m} = 4^m$, so:
+$$b \cdot 2^l = \sum_{i=0}^{n} x_i 4^{i+m} = \sum_{j=m}^{n+m} x_{j-m} 4^j$$
 
-\textbf{Radix-4 representation of $b \cdot 2^l$:}
+This is simply a shift by $m$ positions: the radix-4 representation is $(x_n, \ldots, x_0, \underbrace{0, \ldots, 0}_{m \text{ zeros}})$.
 
-We can rewrite this as:
-$$b \cdot 2^l = \sum_{j=0}^{n+\lceil l/2 \rceil} y_j 4^j$$
+\textbf{Case 2:} If $l = 2m + 1$ is odd, then $2^l = 2 \cdot 4^m$, so:
+$$b \cdot 2^l = \sum_{i=0}^{n} x_i \cdot 2 \cdot 4^{i+m}$$
 
-where the coefficients $y_j$ are obtained by:
-\begin{enumerate}
-\item If $l$ is even ($l = 2m$): $y_j = x_{j-m}$ for $j \geq m$ and $y_j = 0$ for $j < m$.
-\item If $l$ is odd ($l = 2m+1$): We need to compute $x_i 2^l = x_i 2^{2m+1} = x_i \cdot 2 \cdot 4^m$. This requires computing $2 x_i$ (multiplication by 2) and then shifting by $m$ positions in radix-4. The multiplication by 2 can be done without carries for each digit independently in constant time.
-\end{enumerate}
+For each digit $x_i$ (where $-3 \leq x_i \leq 3$), we compute $2x_i$ (where $-6 \leq 2x_i \leq 6$). We express $2x_i$ in radix-4 as $2x_i = q_i \cdot 4 + r_i$ where $q_i \in \{-2, -1, 0, 1\}$ and $r_i \in \{-2, -1, 0, 1, 2\}$ (but since $2x_i$ is even, $r_i \in \{-2, 0, 2\}$). This gives:
+$$b \cdot 2^l = \sum_{i=0}^{n} (q_i \cdot 4 + r_i) \cdot 4^{i+m} = \sum_{i=0}^{n} r_i \cdot 4^{i+m} + \sum_{i=0}^{n} q_i \cdot 4^{i+m+1}$$
+
+This is a radix-4 representation with possible carries, but since we are working modulo $4^{n+1}+1$, we can compute this in constant depth using the addition circuit from the theorem.
 
 \textbf{Circuit construction:}
 
-The circuit performs the following steps:
-\begin{itemize}
-\item Read the input radix-4 digits $(x_n, \ldots, x_0)$
-\item If $l$ is even: Output $(x_{n-m}, \ldots, x_0, 0, \ldots, 0)$ (with $m$ zeros appended)
-\item If $l$ is odd: Multiply each input digit by 2, then output in shifted positions
-\end{itemize}
+For Case 1 (even $l$): The circuit simply rewires the input to shift positions, adding $m$ zeros. This requires $O(n)$ size and $O(1)$ depth.
 
-Both operations involve:
-- Reading input: O(n) size, O(1) depth (parallel reading)
-- Shifting/rearranging: O(n) size, O(1) depth (direct rewiring)
-- Multiplication by 2 (if needed): O(n) size, O(1) depth (local operation at each digit)
+For Case 2 (odd $l$): The circuit computes $2x_i$ for each digit (constant depth, local operation), decomposes into quotient and remainder (constant depth lookup tables for the finite range $[-6, 6]$), and uses the constant-depth radix-4 addition from the theorem to combine terms. Total: $O(n)$ size, $O(1)$ depth.
 
 Therefore, the entire circuit has size $O(n)$ and depth $O(1)$.
 \end{proof}

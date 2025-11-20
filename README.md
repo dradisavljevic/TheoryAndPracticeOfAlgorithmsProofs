@@ -1,4 +1,4 @@
-# Theory and Pra- Lecture 11 - Freivalds' Matrix Multiplication Checker and Solovay and Strassen's Primality Test (Freivalds' Algorithm, Solovay Strassen Primality Test, Jacobi Symbol and Quadratic Residues)tice of Algorithms Proofs
+# Theory and Practice of Algorithms Proofs
 Repository meant to accompany the course Theory and Practice of Algorithms at the Hokkaido University, that I took in Summer 2020. Even though originally intended to only contain solutions and proofs given in Lectures, I have decided to expand it to lecture notes as well, which include definitions, lemmas, algorithms, theorems and corollaries written on slides, in order to have them available for future reference.
 
 All documents were created using Texpad and TexMaker for MacOS, and .pdf documents were created using pdflatex. The repository contains only .tex files which can be used to generate .pdf documents.

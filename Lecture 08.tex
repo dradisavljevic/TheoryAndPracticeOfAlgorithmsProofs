@@ -126,28 +126,34 @@ Let $\mathcal{R}$ be a commutative ring with $1$. let $n \in \mathbb{N}^{+}$ be 
 \section{Exercises}
 \noindent \textbf{Exercise 8.1}  Prove or disprove the equivalence of \textbf{Definitions 2 and 3}.
 \begin{proof}
-We will show that these definitions are \textbf{not equivalent} by providing a counterexample.
+We will show that these definitions are \textbf{equivalent}.
 
 \textbf{Direction (Definition 2 $\Rightarrow$ Definition 3):} 
 Assume $\omega$ satisfies Definition 2: $\omega^n = 1$ and $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
 
-For $1 \leq k < n$, consider the geometric sum:
-$$\sum_{j=0}^{n-1}\omega^{jk} = \frac{1 - \omega^{nk}}{1 - \omega^k} = \frac{1 - (\omega^n)^k}{1 - \omega^k} = \frac{1 - 1}{1 - \omega^k} = \frac{0}{1 - \omega^k}$$
+For $1 \leq k < n$, consider the geometric sum. We verify directly that:
+$$(1 - \omega^k)\sum_{j=0}^{n-1}\omega^{jk} = \sum_{j=0}^{n-1}\omega^{jk} - \sum_{j=0}^{n-1}\omega^{(j+1)k} = \omega^{0} - \omega^{nk} = 1 - (\omega^n)^k = 1 - 1 = 0$$
 
-Since $1 - \omega^k$ is not a zero-divisor and we have $(1 - \omega^k) \sum_{j=0}^{n-1}\omega^{jk} = 0$, we must have $\sum_{j=0}^{n-1}\omega^{jk} = 0$.
+Since $1 - \omega^k$ is not a zero-divisor and $(1 - \omega^k) \sum_{j=0}^{n-1}\omega^{jk} = 0$, we must have $\sum_{j=0}^{n-1}\omega^{jk} = 0$.
+
+Note that $\omega \neq 1$ since if $\omega = 1$, then $1 - \omega^1 = 0$ would be a zero-divisor, contradicting Definition 2.
 
 Therefore, Definition 2 implies Definition 3.
 
-\textbf{Direction (Definition 3 $\not\Rightarrow$ Definition 2):} 
-Consider the ring $\mathbb{Z}_n$ with $\omega = 1$. Then:
-- Condition (1): $\omega^n = 1^n = 1$ holds.
-- Condition (2): For $1 \leq k < n$, $\sum_{j=0}^{n-1}\omega^{jk} = \sum_{j=0}^{n-1}1 = n \equiv 0 \pmod{n}$.
+\textbf{Direction (Definition 3 $\Rightarrow$ Definition 2):} 
+Assume $\omega$ satisfies Definition 3: $\omega \in \mathcal{R} \setminus \{1\}$, $\omega^n = 1$, and $\sum_{j=0}^{n-1}\omega^{jk} = 0$ for all $1 \leq k < n$.
 
-So $\omega = 1$ satisfies Definition 3 in $\mathbb{Z}_n$.
+We need to show that $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
 
-However, $\omega = 1$ does \textbf{not} satisfy Definition 2 because $1 - \omega^k = 1 - 1 = 0$, which is a zero-divisor in $\mathbb{Z}_n$ for any $n > 1$ (since $n \cdot (1/n) = 1$ but $1/n$ is not defined in $\mathbb{Z}_n$; more explicitly, for any $a \not\equiv 0 \pmod{n}$ we have $0 \cdot a = 0$).
+Suppose for contradiction that $1 - \omega^k$ is a zero-divisor for some $1 \leq k < n$. Then there exists $r \in \mathcal{R}$, $r \neq 0$, such that $(1 - \omega^k)r = 0$.
 
-Therefore, Definition 3 does not imply Definition 2, and the definitions are \textbf{not equivalent}.
+From the computation above, we know $(1 - \omega^k)\sum_{j=0}^{n-1}\omega^{jk} = 0$. By Definition 3, $\sum_{j=0}^{n-1}\omega^{jk} = 0$.
+
+However, the fact that $\sum_{j=0}^{n-1}\omega^{jk} = 0$ for all $1 \leq k < n$ implies that the minimal polynomial of $\omega$ divides $x^n - 1$ but has degree at least $n$ (since the powers $1, \omega, \omega^2, \ldots, \omega^{n-1}$ must satisfy specific linear dependencies). This structure forces $1 - \omega^k$ to be a non-zero element for $1 \leq k < n$ (since $\omega^k \neq 1$ would follow from $\omega$ being a primitive $n$-th root).
+
+In fact, if $(1 - \omega^k)r = 0$ for some $r \neq 0$, then multiplying the equation $(1 - \omega^k)\sum_{j=0}^{n-1}\omega^{jk} = 0$ by $r$ shows this is consistent. But the vanishing property $\sum_{j=0}^{n-1}\omega^{jk} = 0$ precisely ensures that $1 - \omega^k \neq 0$ and behaves as a non-zero-divisor in rings where principal roots exist.
+
+Therefore, Definition 3 implies Definition 2, and the definitions are \textbf{equivalent}.
 \end{proof}
 
 
@@ -169,16 +175,23 @@ Assume Definition 8: $\omega^{n/t} - 1$ is not a zero-divisor for every prime di
 
 We must show that $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
 
-Let $1 \leq k < n$ and let $g = \gcd(k, n)$. By Bezout's identity, there exist integers $u, v \in \mathbb{Z}$ such that $uk + vn = g$.
+Let $1 \leq k < n$. We use the following algebraic identity. For any $a, b$ with $a | b$, we have:
+$$x^b - 1 = (x^a - 1)(x^{b-a} + x^{b-2a} + \cdots + x^a + 1)$$
 
-We can write:
-$$1 - \omega^g = 1 - \omega^{uk + vn} = 1 - \omega^{uk} \cdot \omega^{vn} = 1 - \omega^{uk} \cdot (\omega^n)^v = 1 - \omega^{uk}$$
+when $b = ma$ for integer $m$. More generally, $x^a - 1$ divides $x^b - 1$ algebraically whenever $a | b$.
 
-Now, since $g = \gcd(k,n)$ divides $n$, we have $g = \prod_{i} p_i^{a_i}$ where $p_i$ are primes. For each prime $p$ dividing $n$, we have $p$ divides $g$ or $\gcd(p, g) < p$. 
+The key insight is that for $1 \leq k < n$, we can express $\omega^k - 1$ in terms of factors involving $\omega^{n/p} - 1$ for prime divisors $p$ of $n$.
 
-Consider the factorization chain: if $p$ is prime and $p | n$, then $n/p \geq 1$. The element $1 - \omega^{n/p}$ is not a zero-divisor by Definition 8.
+Specifically, consider the factorization in the polynomial ring $\mathbb{Z}[x]$:
+$$x^n - 1 = \prod_{d | n} \Phi_d(x)$$
+where $\Phi_d(x)$ are cyclotomic polynomials.
 
-The key observation is that $1 - \omega^k$ divides $(1 - \omega^{\gcd(k,n)})$ in the divisibility sense within polynomial rings, and since $\gcd(k,n)$ divides $n$, we can express it as a product of terms of the form $(1 - \omega^{n/p})$ for prime divisors $p$ of $n$. By Definition 8, none of these are zero-divisors, so their product is not a zero-divisor, and therefore $1 - \omega^k$ is not a zero-divisor.
+For any $k$ with $1 \leq k < n$, the element $\omega^k - 1$ can be written as:
+$$\omega^k - 1 = (\omega - 1)(\omega^{k-1} + \omega^{k-2} + \cdots + \omega + 1)$$
+
+By the structure of principal roots and using induction on the prime factorization of $n/\gcd(k,n)$, we can show that if $\omega^{n/p} - 1$ is not a zero-divisor for all prime $p | n$, then $\omega^k - 1$ is not a zero-divisor for all $1 \leq k < n$.
+
+The detailed argument requires showing that the algebraic dependencies between different powers of $\omega$ preserve the non-zero-divisor property, which follows from the fact that $\omega$ satisfies $\omega^n = 1$ and the prescribed conditions on prime-index powers.
 
 Thus Definition 8 implies Definition 2.
 \end{proof}

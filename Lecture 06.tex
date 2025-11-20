@@ -16,26 +16,26 @@
 \maketitle
 \section{Lecture Summary}
 \textbf{Theorem 6 from Lecture 5} is the starting point for the AKS Algorithm: $n$ is prime if and only if $(X + a)^{n} \equiv (X^{n} + a)$ mod $n$. From there they figured that it suffices to check the following: \\
-$$(X + a)^{n} \equiv (X^{n} + a) \pmod{n, X^{r} - 1}$$
+$$(X + a)^{n}\ mod\ (n, X^{r} - 1)\ and\ (X^{n} + a)= mod (n, X^{r} - 1)$$
 If $n$ is prime, then this is clearly satisfied. \\
 When varying $a$, one has to perform the check for several values. If all these tests are fulfilled then $n$ is either a prime or a prime power.
 \begin{algorithm}
-\textbf{AKS} \\
+\textbf{AKS -} \\
 Input: Odd integer $n > 1$ \\
 if ($n$ is of the form $a^{b}$, $b > 1$) output COMPOSITE; \\
 $r := 2$; \\
-while ($r < n$) \{ \\
-\indent if (gcd$(n,r) \neq 1$) output COMPOSITE; \\
-\indent if ($r$ is prime) then \\
+while $( r < n )$ \{\\
+\indent if ( $gcd(n,r) \neq 1$ ) output COMPOSITE; \\
+\indent if ( $r$ is prime ) then \\
 \indent \indent let $q$ be the largest prime factor of $r - 1$; \\
-\indent \indent if ($q \geq 4\sqrt{r} \log(n)$) \\
-\indent \indent and ($n^{(r-1)/q} \not\equiv 1 \pmod{r}$) then \\
+\indent \indent if $( q \geq 4 \sqrt{r} \log(n) )$ \\
+\indent \indent and $( n^{\frac{r - 1}{q}} \not \equiv 1$ mod $r )$ then \\
 \indent \indent \indent break; \\
-\indent $r := r + 1$; \\
+$r := r + 1$; \\
 \} \\
-for $a = 1$ to $\lfloor 2\sqrt{r} \log(n) \rfloor$ do \\
-\indent if ($(X + a)^{n} \not\equiv (X^{n} + a) \pmod{n, X^{r} - 1}$) then \\
-\indent \indent output COMPOSITE; \\
+for $a = 1$ to $\lfloor 2 \sqrt{r} \log{n} \rfloor$ do \\
+\indent if $( (X + a)^{n} \not \equiv (X^{n} + a)$ mod $(n, X^{r} - 1) )$ then\\
+\indent output COMPOSITE; \\
 output PRIME;
 \end{algorithm}
 

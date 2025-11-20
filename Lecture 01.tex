@@ -194,7 +194,7 @@ $$A \times_{n} I_{n} = \left( \sum_{k=1}^{n}{a_{ik}i_{kj}}\right) = (a_{ij}) = \
 Next we show that $-A =_{df} (-a_{ij})$ is the additive inverse of the matrix $A$. Using that $a + (-a) = (-a) +a = 0$ for every $a \in R$, and the definition of matrix addition, we have
 $$A +_{n} (-A) = (a_{ij} + (-a_{ij})) = ((-a_{ij}) + a_{ij}) = 0_{n} .$$
 We continue with the associativity of matrix multiplication. Here we use that the ring multiplication is associative and that the laws of distributivity hold in $\mathcal{R}$. Note that now $i, j, l = 1, \ldots , n$. We obtain for the element at position ($i, l$) of the matrix product the following:
-$$A \times_{n} (B \times_{n} C) = \left(\sum_{j=1}^{n}{a_{ij}} \cdot \left( \sum_{k=1}^{n}{b_{jk}c_{kl}}\right)\right) = \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{a_{ij} \cdot b_{jk} \cdot c_{kl}} \right)=$$\\ $$= \left(\sum_{k=1}^{n}\sum_{j=1}^{n}{a_{ij} \cdot b_{jk} \cdot c_{kl}}\right) = \left( \sum_{k=1}^{n}\left(\sum_{j=1}^{n}{a_{ij} \cdot b_{jk}} \right) \cdot c_{kl} \right) = (A \times_{n} B) \times_{n} C.$$
+$$A \times_{n} (B \times_{n} C) = \left(\sum_{j=1}^{n}{a_{ij}} \cdot \left( \sum_{k=1}^{n}{b_{jk}c_{kl}}\right)\right) = \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{a_{ij} \cdot (b_{jk} \cdot c_{kl})} \right)= \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{(a_{ij} \cdot b_{jk}) \cdot c_{kl}} \right)=$$\\ $$= \left(\sum_{k=1}^{n}\sum_{j=1}^{n}{(a_{ij} \cdot b_{jk}) \cdot c_{kl}}\right) = \left( \sum_{k=1}^{n}\left(\sum_{j=1}^{n}{a_{ij} \cdot b_{jk}} \right) \cdot c_{kl} \right) = (A \times_{n} B) \times_{n} C.$$
 To finish the proof of the necessity we also have to show the laws of distributivity for the ring $\mathcal{M}_{n}$. These laws are a direct consequence of the corresponding laws in $\mathcal{R}$. So we show here just one.
 $$(A +_{n} B) \times_{n} C = \left(\sum_{k=1}^{n}{(a_{ik}+b_{ik}) \cdot c_{kj}}\right) = \left(\sum_{k=1}^{n}{a_{ik}c_{kj}+b_{ik}c_{kj})}\right)=$$\\ $$= \left(\sum_{k=1}^{n}{a_{ik}c_{kj}}\right) + \left(\sum_{k=1}^{n}{b_{ik}c_{kj}}\right) = A \times_{n} C +_{n} B \times_{n} C,$$
 and the necessity is shown.\\
@@ -257,7 +257,7 @@ Clearly, $10 \equiv 1$ mod $3$ and thus, Property (4) of \textbf{Theorem 5} impl
 \begin{equation}
 10^{i} \equiv 1^{i} \equiv 1\ mod\ 3\ for\ all\ i = 0, \ldots n.
 \end{equation}
-Next we apply Property (1) of \textbf{Theorem 5} to (1) and (2) exactly $n$ many times and obtain $\sum_{i=0}^{n}{z_{i}10^{i}} \equiv \sum_{i=0}^{n}{z_{i}}$ mod $3$. Hence we have shown that every integer written in decimal notation is divisible by $3$ iff the sum of its digits is divisible by $3$. 
+Next we apply Property (3) of \textbf{Theorem 5} to (1) and (2) to get $z_i 10^i \equiv z_i \cdot 1 \equiv z_i \pmod 3$. Then we apply Property (1) of \textbf{Theorem 5} repeatedly and obtain $\sum_{i=0}^{n}{z_{i}10^{i}} \equiv \sum_{i=0}^{n}{z_{i}}$ mod $3$. This means $z \equiv \sum_{i=0}^{n} z_i \pmod 3$. Therefore, $z$ is divisible by $3$ if and only if $z \equiv 0 \pmod 3$, which is true if and only if the sum of its digits $\sum_{i=0}^{n} z_i$ is also congruent to $0 \pmod 3$. Hence we have shown that every integer written in decimal notation is divisible by $3$ iff the sum of its digits is divisible by $3$. 
 \end{proof}
 
 

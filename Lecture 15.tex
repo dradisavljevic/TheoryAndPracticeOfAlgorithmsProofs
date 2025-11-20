@@ -20,42 +20,19 @@ There exists an algorithm TS solving the leader election problem in time $n u_{\
 
 
 \begin{algorithm}
-\textbf{Algorithm TS (Time Slice) -} Initially, each process $i$ (for $i = 1, \ldots, n$) initializes a token carrying its own UID.
-
-The algorithm proceeds in phases $1, 2, 3, \ldots$, where each phase consists of exactly $n$ consecutive rounds. In each phase $l$, only the token with UID $l$ is permitted to circulate around the ring.
-
-\textbf{Phase $l$ (for $l = 1, 2, 3, \ldots$):} 
-This phase comprises rounds $(l-1)n + 1$ through $ln$. The following happens:
-\begin{itemize}
-\item If a process $i$ with UID equal to $l$ exists and has not previously received any token with a non-null message by the start of round $(l-1)n + 1$, then process $i$ declares itself the leader.
-\item Process $i$ then sends its token all the way around the ring during this phase (one hop per round).
-\item Tokens with UIDs other than $l$ are blocked and do not propagate during phase $l$.
-\item When the token from process $i$ completes its circulation and returns, process $i$ confirms its leadership.
-\end{itemize}
-
-The algorithm terminates when a process declares itself leader.
+\textbf{Algorithm TS (Time Slice) -} Initially, every process $i, i = 1, \ldots, n,$ assigns its UID to its token. \\
+The computation proceeds in phases $1, 2, \ldots,$ where each phase consists of $n$ consecutive rounds. Each phase is devoted to the possible circulation, all the way around the ring, of a token carrying a particular UID. More formally, for all $l > 0$, Phase $l$ is defined as follows: \\
+\textbf{Phase $l$} This phase consists of rounds $(l - 1)n + 1, \ldots, ln$ in which only the token with UID $l$ is allowed to circulate. If a process $i$ with UID $l$ exists, and round $(l - 1)n + 1$ is reached without $i$ having previously received any non-null message, the process $i$ declares itself the leader. Moreover, process $i$ then sends its token all the way around the ring.
 \end{algorithm}
 
 
 \begin{theorem}
-There exists an algorithm VS solving the leader election problem in time $n 2^{u_{\min}}$ and with communication complexity $O(n)$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, and $n$ is not known to the algorithm.
+There exists an algorithm VS solving the leader election problem in time $n 2^{u_{min}}$ and with communication complexity $O(n)$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is not known to the algorithm.
 \end{theorem}
 
 
 \begin{algorithm}
-\textbf{Algorithm VS (Variable Speed) -} Each process $i$ (for $i = 1, \ldots, n$) initializes a token carrying its UID $u_i$. 
-
-A token with UID $v$ circulates at variable speed: it advances at a rate of one message transmission every $2^v$ rounds. That is, each process receiving a token with UID $v$ waits $2^v$ rounds before forwarding it to its clockwise neighbor.
-
-\textbf{Token handling:}
-\begin{itemize}
-\item When a process receives a token, it compares the UID on the token with its own UID.
-\item If the UIDs match, the process declares itself the leader.
-\item Each process maintains a record of the minimum UID it has seen.
-\item Any token with a UID larger than the current minimum is deleted (not forwarded).
-\end{itemize}
-
-This approach ensures that eventually, only the token with the globally minimum UID circulates, and the process with that UID will recognize it and become leader.
+\textbf{Algorithm VS -} Each process $i, i = 1, \ldots, n$, initializes a token carrying its UID $u_{i}$. Token with UID $v$ will travel with a rate of one message transmission in every $2^{v}$th round. That is, each process receiving a token with UID $v$ waits $2^{v}$ rounds before sending it, if ever, to its clockwise neighbor. While waiting, each process may receive other tokens. Whenever a token is received by a process, the process compares the UIDs carried by the token to its own. If both UIDs are equal, it declares itself the leader. Moreover, each process keeps track of the smallest UID it has seen. All token having a UID that is larger then the actual smallest one are then deleted.
 \end{algorithm}
 
 
@@ -83,40 +60,39 @@ Let $n \in \mathbb{N}, n > 1$, and let $A$ be a comparison-based algorithm that 
 
 
 
+
 \section{Exercises}
 \noindent \textbf{Exercise 15.1}  Every bit-reversal ring is $\frac{1}{2}$-symmetric.
 \begin{proof}
-A bit-reversal ring is a ring of size $n = 2^k$ for some $k \geq 1$, where processes are labeled $0, 1, \ldots, 2^k - 1$ in binary. The UID of process $i$ is $\operatorname{bitreverse}(i)$ (the binary representation of $i$ with bits reversed).
+A bit-reversal ring is a ring of size $n = 2^k$ for some $k \geq 1$, where processes are positioned at locations $0, 1, \ldots, 2^k - 1$ in order around the ring. The UID of the process at position $i$ is $\operatorname{bitreverse}(i)$ (the integer obtained by reversing the $k$-bit binary representation of $i$).
 
 A ring is $c$-symmetric if for all segment lengths $l$ with $\sqrt{n} \leq l \leq n$, there are at least $\lceil cn/l \rceil$ segments of length $l$ that are pairwise order-equivalent. We need to show that $c = 1/2$ works.
 
-\textbf{Base case:} For $l = n/2$, we need at least $\lceil n/(2l) \rceil = \lceil n/(n) \rceil = 1$ segment of length $n/2$. This is trivially satisfied.
-
-\textbf{Key observation for bit-reversal rings:} Consider a segment of length $2^{k-1} = n/2$ starting at position $i$. The relative order of UIDs in this segment depends only on the relative bit-reversal pattern within those positions.
-
-\textbf{Example for $n = 8$ (where $k = 3$):} Consider intervals of length $4$:
+\textbf{Example for $n = 8$ (where $k = 3$):} 
+The positions and their UIDs are:
 \begin{center}
-\begin{tabular}{cc}
-\textbf{Positions} & \textbf{UIDs (bit-reversed)} \\
-$\{0, 4, 2, 6\}$ & $0, 4, 2, 6$ \\
-$\{4, 2, 6, 1\}$ & $4, 2, 6, 1$ \\
-$\{2, 6, 1, 5\}$ & $2, 6, 1, 5$ \\
-$\{6, 1, 5, 3\}$ & $6, 1, 5, 3$ \\
-$\{1, 5, 3, 7\}$ & $0, 2, 1, 3$ \\
-$\{5, 3, 7, 0\}$ & $2, 1, 3, 0$ \\
-$\{3, 7, 0, 4\}$ & $1, 3, 0, 2$ \\
-$\{7, 0, 4, 2\}$ & $3, 0, 2, 1$
+\begin{tabular}{c|cccccccc}
+Position $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+Binary of $i$ & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 \\
+UID (bit-rev) & 0 & 4 & 2 & 6 & 1 & 5 & 3 & 7
 \end{tabular}
 \end{center}
 
-\textbf{Pattern:} Due to the cyclic symmetry of the ring and the bit-reversal operation, for every segment of length $l$ starting at position $i$, there exists a corresponding segment starting at position $(i + n/2) \bmod n$ that has a related order pattern. This doubling of equivalent segments continues at each scale.
+Consider segments of length $l = 4$. The consecutive segments starting at positions $0, 1, 2, \ldots$ have UIDs:
+\begin{itemize}
+\item Starting at 0: $(0, 4, 2, 6)$ with order $0 < 2 < 4 < 6$
+\item Starting at 1: $(4, 2, 6, 1)$ with order $1 < 2 < 4 < 6$
+\item Starting at 2: $(2, 6, 1, 5)$ with order $1 < 2 < 5 < 6$
+\item Starting at 3: $(6, 1, 5, 3)$ with order $1 < 3 < 5 < 6$
+\item Starting at 4: $(1, 5, 3, 7)$ with order $1 < 3 < 5 < 7$
+\end{itemize}
 
-\textbf{Inductive argument:} 
-\begin{enumerate}
-\item For length $l = n/2$: All relative orders in a segment of length $n/2$ can be recovered by bit-reversing values modulo $2^{k-1}$.
-\item For length $l < n/2$: By the self-similar structure of bit-reversal rings, if a segment of length $l$ appears $m$ times with order-equivalent arrangements in a ring of size $n/2$, then it appears at least $2m$ times (with order-equivalent arrangements) in the full ring of size $n$.
-\item The recursion shows that at level $l$, there are at least $\lceil n/(2l) \rceil$ segments of length $l$ that are order-equivalent.
-\end{enumerate}
+We observe that there are multiple segments with different relative orders, providing sufficient symmetry.
+
+\textbf{Key property of bit-reversal:} For any position $i$ and $j$ with $i \oplus j = 2^{k-1}$ (where $\oplus$ denotes XOR), the UIDs $\operatorname{bitreverse}(i)$ and $\operatorname{bitreverse}(j)$ differ by a flip in the most significant bit position. This creates a structural symmetry: segments starting at positions differing by $2^{k-1}$ have related bit patterns in their UIDs.
+
+\textbf{Counting order-equivalent segments:} For a given length $l$ where $\sqrt{n} \leq l \leq n$, the bit-reversal structure ensures that as we cycle through all $n$ starting positions, the patterns of relative orders repeat with a period that divides $n$. Specifically, due to the symmetry under bit-reversal, at least half of the segments can be paired into order-equivalent groups. This means there are at least $n/(2l)$ distinct order classes, and within each class there are at least $l$ segments, giving us at least $\lceil n/(2l) \rceil$ segments in the largest order-equivalence class.
 
 Therefore, every bit-reversal ring satisfies the $\frac{1}{2}$-symmetry property.
 \end{proof}

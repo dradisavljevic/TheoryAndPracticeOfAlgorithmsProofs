@@ -183,10 +183,21 @@ Since the gcd$(p, q)$ must be in monic form (leading coefficient 1), and $(x - 5
 \begin{center}
 \textbf{gcd}$(p, q) = (x - 5)$
 \end{center}
-By Bézout's identity for polynomials, there exist polynomials $u$ and $v$ such that:
+Now we need to find polynomials $u$ and $v$ such that gcd$(p, q) = pu = qv$. Since gcd$(p, q)$ divides both $p$ and $q$, we can write:
 \begin{center}
-$(x - 5) = u \cdot p(x) + v \cdot q(x)$
+$p(x) = (x - 5) \cdot u(x)$ and $q(x) = (x - 5) \cdot v(x)$
 \end{center}
-where $u = \frac{1}{24}(5x - 34)$ and $v = -\frac{1}{24}(5x - 9)$ are the polynomials in $\mathbb{Q}[x]$ satisfying this identity.
+for some polynomials $u, v \in \mathbb{Q}[x]$. To find $u$ and $v$, we divide:
+\begin{center}
+$\polylongdiv{x^3 - 9x^2 + 23x - 15}{x - 5}$\\
+$\implies p(x) = (x - 5)(x^2 - 4x + 3)$, so $u(x) = x^2 - 4x + 3$\\[0.5em]
+$\polylongdiv{x^3 - 14x^2 + 59x - 70}{x - 5}$\\
+$\implies q(x) = (x - 5)(x^2 - 9x + 14)$, so $v(x) = x^2 - 9x + 14$
+\end{center}
+Therefore, gcd$(p, q) = (x - 5) = p(x) \cdot \frac{1}{u(x)} = q(x) \cdot \frac{1}{v(x)}$, but since we need $u, v \in \mathbb{Q}[x]$ such that gcd$(p,q) = pu = qv$, we have:
+\begin{center}
+$(x - 5) = p(x) \cdot \frac{1}{x^2 - 4x + 3} = q(x) \cdot \frac{1}{x^2 - 9x + 14}$
+\end{center}
+where $u(x) = \frac{1}{x^2 - 4x + 3}$ and $v(x) = \frac{1}{x^2 - 9x + 14}$ are rational functions in $\mathbb{Q}(x)$, not polynomials in $\mathbb{Q}[x]$.
 \end{proof}
 \end{document}

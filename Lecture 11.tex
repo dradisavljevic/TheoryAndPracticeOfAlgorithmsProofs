@@ -61,7 +61,7 @@ $$a^{(p - 1) / 2} \equiv \left( \frac{a}{p} \right) \pmod{p}$$
 
 
 \begin{definition}
-\textbf{Jacobi Symbol -} Let $Q > 1$ be an odd number, and let $Q = p_{1} \cdot p_{2} \cdot \cdots \cdot p_{k}$, where $p_{i}$ is prime for all $i = 1, \ldots, k$ (not necessarily distinct). Let $a \in \mathbb{Z}_{Q}^{*}$. The Jacobi symbol $\left( \frac{a}{Q} \right)$ is defined as follows:
+\textbf{Jacobi Symbol -} Let $Q > 1$ be an odd number, and let $Q = p_{1} \cdot p_{2} \cdot \cdots \cdot p_{k}$, where $p_{i}$ is prime for all $i = 1, \ldots, k$ (but not necessarily $p_{i} \neq p_{j}$ for $i \neq j$). Let $a \in \mathbb{Z}_{Q}^{*}$. The Jacobi symbol $\left( \frac{a}{Q} \right)$ is defined as follows:
 $$\left( \frac{a}{Q} \right) = \left( \frac{a}{p_{1}} \right) \cdot \left( \frac{a}{p_{2}} \right) \cdot \cdots \cdot \left( \frac{a}{p_{k}} \right).$$
 \end{definition}
 
@@ -168,7 +168,7 @@ This means $a$ and $-a$ have the same Legendre symbol, so either both are quadra
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 11.3} Apply the Solovay-Strassen Primality Test algorithm to check whether 11981 and 69147 are prime. Interpret the results obtained.
+\noindent \textbf{Exercise 11.3} Apply the Algorithm PTSS (Solovay Strassen Primality Test) to check whether or not 11981 and 69147, respectively, is prime. Interpret the results obtained.
 \begin{proof}
 \textbf{Testing $n = 11981$:}
 

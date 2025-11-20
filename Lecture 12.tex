@@ -1,29 +1,6 @@
 \documentclass[a4paper]{article}
 
-\usepackage{amsmath,amsthm,amssymb,\section{Exercises}
-\noindent \textbf{Exercise 12.a)}  Non-uniform circuit families are unexpectedly powerful, since they can also ``compute'' non-computable functions like the halting problem.
-\begin{proof}
-The power of non-uniform circuits comes from the fact that they allow a different circuit for each input size, without requiring a uniform construction algorithm.
-
-Consider encoding an instance of the halting problem as follows: For each fixed input length $n$, we encode:
-\begin{itemize}
-\item The binary representation of a Turing machine description (first $k$ bits)
-\item The binary representation of an input to that machine (remaining $n-k$ bits)
-\end{itemize}
-
-For a uniform family of circuits, we would need a single algorithm (Turing machine) that, given $n$, outputs the circuit $C_n$ for that input length. Since the halting problem is undecidable, no such algorithm can exist.
-
-However, a non-uniform circuit family $(C_n)_{n \in \mathbb{N}}$ has no such requirement. For each $n$, the circuit $C_n$ is given independently without any constructive procedure. We can therefore define $C_n$ to correctly solve the halting problem for all instances that fit in $n$ bits, even though no algorithm generates these circuits.
-
-Specifically, the circuit $C_n$ could be designed with the answer to the halting problem hardcoded for all instances of size $n$. This is possible because:
-\begin{enumerate}
-\item For each fixed $n$, there are only finitely many problem instances.
-\item A circuit can be designed to output the correct answer for each specific instance (via lookup tables or hardcoded logic).
-\item No algorithm is required to construct these circuits.
-\end{enumerate}
-
-Thus, non-uniform circuits can ``compute'' uncomputable functions because they bypass the uniformity requirement that enforces algorithmic constructibility.
-\end{proof}ing, tikz, mdframed}
+\usepackage{amsmath,amsthm,amssymb, titling, tikz, mdframed}
 
 \title{\vspace{-2cm}Lecture XII\vspace{-2cm}}
 \date{}
@@ -41,18 +18,9 @@ Speed-up of the parallel algorithm: $SU(n) =_{df} \frac{T_{seq}(n)}{T_{par}(n)}$
 Efficiency of the parallel algorithm: $EFF(n) =_{df} \frac{SU(n)}{Pr(n)}$. \\
 Where $Pr(n)$ is number of processors, $T_{seq}(n)$ is sequential time of executing operation and $T_{par}(n)$ is parallel time.
 \begin{definition}
-\textbf{Boolean Circuit -} A Boolean circuit $C$ with $n$ inputs and $m$ outputs is a finite acyclic directed graph whose nodes are marked as follows: 
-\begin{itemize}
-\item All nodes with in-degree $0$ are marked by $x_{1}, \ldots, x_{n}$ or constants $0$, $1$ (input nodes). 
-\item Nodes with in-degree $1$ are marked by $\lnot$ (logical negation). 
-\item Nodes with in-degree $2$ are marked by either $\land$ or $\lor$ (logical AND and OR, respectively). 
-\item There are no nodes with in-degree greater than $2$. 
-\item Exactly $m$ nodes have out-degree $0$ and are marked by $y_{1}, \ldots, y_{m}$ (output nodes).
-\end{itemize}
-
-It is assumed that there is at least one path from every input node to an output node. 
-
-The circuit $C$ computes a function $f: \{ 0, 1 \}^{n} \rightarrow \{ 0, 1 \}^{m}$ as follows: Each input $x_{i}$ (for $1 \leq i \leq n$) is assigned a value $\nu (x_{i}) \in \{ 0, 1 \}$ representing the $i$-th bit of the input. Every other node $v$ is assigned a value $\nu (v) \in \{ 0, 1 \}$ obtained by applying the logical function marking node $v$ to the value(s) of the nodes with edges pointing to $v$. The function value is the tuple $(\nu(y_{1}), \ldots, \nu(y_{m}))$, where output node $y_{j}$ (for $1 \leq j \leq m$) contributes the $j$-th bit of the output.
+\textbf{Boolean Circuit -} A Boolean circuit $C$ with $n$ inputs and $m$ outputs is a finite acyclic direct graph whose nodes are marked as follows: All nodes with input valence $0$ are marked by $x_{1}, \ldots, x_{n}$ or constants $0$, $1$ (input nodes). Nodes with input valence $1$ are marked by $\lnot$ (logical negation). The nodes with input valence $2$ are either marked by $\land$ or $\lor$ (logical AND and OR, respectively). There are no nodes having an input valence greater than $2$. Exactly $m$ nodes have output valence $0$ and they are marked by $y_{1}, \ldots, y_{m}$ (output nodes). \\
+It is assumed that there is at least one path from every input node to an output node. \\
+Such circuit $C$ computes a function $f: \{ 0, 1 \}^{n} \rightarrow \{ 0, 1 \}^{m}$ in the following way: Input $x_{i}, 1 \leq i \leq n$, is assigned a value $\nu (x_{i})$ from $\{ 0, 1 \}$ representing it $i$th bit of the argument of function $f$. Every other node $\nu$ is assigned a value $\nu (v) \in \{ 0, 1 \}$ obtained by applying the logical function node $v$, and is marked with to the value(s) of the nodes incoming to $v$. The value of the function is the tuple $(\nu(y_{1}), \ldots, \nu(y_{m}))$, in which output node $y_{j}$, where $1 \leq j \leq m$, contributes the $j$th bit of the output.
 \end{definition}
 
 
@@ -99,7 +67,10 @@ The halting problem represents the problem of determining whether the program wi
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 12.b)} Let $(P, G) \oplus (P', G') = (P \land P', G' \lor (P' \land G))$ denote a binary operation on pairs. Prove that $\oplus$ is associative.
+\noindent \textbf{Exercise 12 b)} \tikz\draw[black,fill=black] (0,0) circle (.5ex); is associative. i.e.:
+\begin{center}
+$[(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{1},g_{1})] \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2}) = (p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); [(p_{1},g_{1}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})]$
+\end{center}
 \begin{proof}
 We prove that $\oplus$ is associative by computing both sides of the associativity equation and verifying they are equal.
 

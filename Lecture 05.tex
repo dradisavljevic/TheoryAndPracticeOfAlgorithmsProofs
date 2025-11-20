@@ -112,14 +112,21 @@ By Theorem 9(2), a square-free number $n$ is a Carmichael number if and only if 
 $(p - 1) \mid (pq - 1)$ \quad \text{and} \quad $(q - 1) \mid (pq - 1)$
 \end{center}
 
-From $(p - 1) \mid (pq - 1)$, there exists $k \in \mathbb{Z}$ such that $(p-1)k = pq - 1$. Also, $(p - 1) \mid pq(p-1)$ trivially, which gives us $(p-1)(q-1) \mid (pq-1)$. But since $pq - 1 = (p-1)q + (q-1)$, we have:
+We can write $pq - 1 = p(q - 1) + (p - 1)$. Since $(q - 1) \mid (pq - 1)$ and $(q - 1) \mid p(q - 1)$, we have:
 \begin{center}
-$(p-1) \mid (pq - 1 - (p-1)q) = (q - 1)$
+$(q - 1) \mid (pq - 1 - p(q - 1)) = (p - 1)$
 \end{center}
 
-This means $(p-1) \mid (q-1)$. However, since $p$ and $q$ are distinct primes with $p > q \geq 2$, we have $p \geq q + 1$, so $p - 1 \geq q > q - 1$. Therefore, $(p-1) > (q-1)$, and it is impossible for $(p-1)$ to divide a smaller positive number $(q-1)$ unless $q - 1 = 0$, which contradicts $q$ being a prime $\geq 2$.
+This means $(q - 1) \mid (p - 1)$. However, since $p$ and $q$ are distinct primes with $p > q \geq 2$, we have $p - 1 > q - 1 \geq 1$. For $(q - 1)$ to divide $(p - 1)$, there must exist a positive integer $k \geq 2$ such that $p - 1 = k(q - 1)$, so $p = k(q - 1) + 1$.
 
-Thus, $n$ cannot be a Carmichael number if $n = pq$ for primes $p, q$. Therefore, every Carmichael number must be the product of at least 3 distinct primes.
+Now consider the condition $(p - 1) \mid (pq - 1)$. We can write $pq - 1 = q(p - 1) + (q - 1)$. Since $(p - 1) \mid (pq - 1)$ and $(p - 1) \mid q(p - 1)$, we have:
+\begin{center}
+$(p - 1) \mid (q - 1)$
+\end{center}
+
+But we also showed $(q - 1) \mid (p - 1)$. Together, these imply $(p - 1) = (q - 1)$, which means $p = q$, contradicting the assumption that $p$ and $q$ are distinct primes.
+
+Thus, $n$ cannot be a Carmichael number if $n = pq$ for distinct primes $p, q$. Therefore, every Carmichael number must be the product of at least 3 distinct primes.
 \end{proof}
 
 
