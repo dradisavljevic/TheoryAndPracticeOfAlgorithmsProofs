@@ -138,7 +138,7 @@ $k \equiv l$ mod $n$
 \end{center}
 completing the proof of the cancellation law.\\
 To show the zero-divisor property, first consider a composite number $n$ and let $kl$ be a non-trivial factorization of $n$; i.e., $n = kl$ and $1 < k, l <n$. For such $k$ and $l$, we have $kl \equiv 0$ mod $n$ and neither $k$ nor $l$ is congruent to $0$ modulo $n$. Therefore the cancellation law does not hold.\\
-Assume that $n$ is prime and let $k$ and $L$ be two numbers such that $kl \equiv 0$ mod $n$. Then $n|kl$ and since $n$ is prime, either $n|k$ or $n|l$. Therefore, either $k \equiv 0$ mod $n$ or $l \equiv 0$ mod $n$. This proves the zero-divisor property.
+Assume that $n$ is prime and let $k$ and $l$ be two numbers such that $kl \equiv 0$ mod $n$. Then $n|kl$ and since $n$ is prime, either $n|k$ or $n|l$. Therefore, either $k \equiv 0$ mod $n$ or $l \equiv 0$ mod $n$. This proves the zero-divisor property.
 \end{proof}
 
 
@@ -158,7 +158,7 @@ Finally, we have to compute
 \begin{center}
 \begin{tabular}{c c c}
 $y$ & $\equiv$ & $\sum_{i=1}^{3}{n_{i}n_{i}^{-1}a_{i}}$ \\
-& $\equiv$ & $18884153 \cdot 1574 \cdot 3 + 15353707 \cdot 1129 \cdot 4 + 10194539 \cdot 717 \cdot 2$ \\
+& $\equiv$ & $18884153 \cdot 1547 \cdot 3 + 15353707 \cdot 1129 \cdot 4 + 10194539 \cdot 717 \cdot 2$ \\
 & $\equiv$ & $10024850743$ mod $54367476487$
 \end{tabular}
 \end{center}
@@ -230,11 +230,11 @@ $$\tilde{a}x_{0} \equiv \tilde{c}\ mod\ \tilde{b},$$
 where $x_{0} =_{df} y\tilde{c}$. Hence, there is $k \in \mathbb{Z}$ such that
 $$k\tilde{b} = \tilde{a}x_{0} - \tilde{c}.$$
 Multiplying both sides of the above equation by $d$ yields $k\tilde{b}d = \tilde{a}dx_{0} - \tilde{c}d$. Therefore, $kb = ax_{0} - c$ (recall that $\tilde{b}d = b$ and $\hat{c}d = c$). This means $ax_{0} \equiv c$ mod $b$. Consequently $x_{0}$ is also a solution of $ax \equiv c$ mod $b$.\\
-The remaining ($d - 1$) solutions of $ax \equiv c$ mod $b$ are obtained as follows: We set $x_{j} =_{df} x_{0} = j\tilde{b}$ for $j = 1, \ldots, d - 1$. So $x_{0} < x_{0} + \tilde{b} < \cdots < x_{0} + (d - 1)\tilde{b}$, and thus $x_{0}, x_{0} + \tilde{b}, \ldots, x_{0} + (d - 1)\tilde{b}$ are pairwise incongruent modulo $b$.\\
+The remaining ($d - 1$) solutions of $ax \equiv c$ mod $b$ are obtained as follows: We set $x_{j} =_{df} x_{0} + j\tilde{b}$ for $j = 1, \ldots, d - 1$. So $x_{0} < x_{0} + \tilde{b} < \cdots < x_{0} + (d - 1)\tilde{b}$, and thus $x_{0}, x_{0} + \tilde{b}, \ldots, x_{0} + (d - 1)\tilde{b}$ are pairwise incongruent modulo $b$.\\
 Since $j\tilde{b} \equiv 0$ mod $\tilde{b}$ for all $j \in \mathbb{Z}$, we also have $\tilde{a}(x_{0}+j\tilde{b}) \equiv \tilde{c}$ mod $\tilde{b}$, and consequently there are $k_{j}, j = 1, \ldots, d-1$, such that $k_{j}\tilde{b} = \tilde{a}(x_{0}+j\tilde{b}) - \tilde{c}$.\\
 Next, we multiply both sides of the latter equality by $d$ and obtain
 $$ k_{j}b = a(x_{0} + j\tilde{b}) - c,$$
-which implies $a(x_{0} + j \tilde{b}) \equiv c$ mod $b$. Thus $x_{0}, x_{0} + b, \ldots, x_{0} + (d - 1)\tilde{b}$ are all solutions of $ax \equiv c$ mod $b$.\\
+which implies $a(x_{0} + j \tilde{b}) \equiv c$ mod $b$. Thus $x_{0}, x_{0} + \tilde{b}, \ldots, x_{0} + (d - 1)\tilde{b}$ are all solutions of $ax \equiv c$ mod $b$.\\
 We claim that there are no other solutions. Suppose there is a $z$ with
 \begin{center}
 \begin{tabular}{c c c}
@@ -251,10 +251,14 @@ Necessity. Assume that $ax \equiv c$ mod $b$ is solvable. We have to show that $
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 2.4} Determine the complexity of computing all solutions of $ax \equiv c$ mod $b$ in dependence on the length of the input $a, c \in \mathbb{Z}$ and $b \in \mathbb{N}, b \geq 2$.
 \begin{proof}
-Since according to \textbf{Theorem 9} from slide 33, time complexity of calculating modular inverse can be computed in time $\mathcal{O}(max\{log\ a, log\ m\}^3)$, in this case complexity would be:
+To compute all solutions of $ax \equiv c$ mod $b$, we proceed as follows: First, we compute $d = \gcd(a, b)$ using Algorithm ECL, which takes time $\mathcal{O}((\log a)^3)$ by Theorem 7. Next, we check if $d | c$. If it does not divide $c$, there are no solutions. If $d | c$, then by Exercise 2.3, there are exactly $d$ solutions. \\
+To find one particular solution $x_0$, we use the extended Euclidean algorithm to find $x, y$ such that $ax + by = d$, and then compute $x_0 = \frac{xc}{d}$ mod $b$. The modular inverse computation takes time $\mathcal{O}(\max\{\log a, \log b\}^3)$ by Theorem 9. \\
+Once we have $x_0$, the remaining $d-1$ solutions are obtained by adding multiples of $\frac{b}{d}$, which requires only $\mathcal{O}(d)$ additional arithmetic operations.\\
+Therefore, the overall time complexity is:
 \begin{center}
-$\mathcal{O}(max\{log\ a, log\ c, log\ b\}^3)$
+$\mathcal{O}(\max\{\log a, \log c, \log b\}^3 + d)$
 \end{center}
+In the worst case, where $d$ can be as large as $\min(a, b)$, this reduces to $\mathcal{O}(\max\{\log a, \log b\}^3)$ when $d = O(1)$, or $\mathcal{O}(d)$ when computing all $d$ solutions explicitly becomes the bottleneck.
 \end{proof}
 
 
@@ -272,16 +276,18 @@ We have to compute $d = gcd(a,b)$. If $d$ does not divide $c$, we are done, sinc
 \begin{center}
 $x_{0, j} = \left( x_{0} + j \cdot \frac{b}{d} \right)$ mod $b$ , $j = 0, \ldots, d - 1$
 \end{center}
-We have $ax_{0,j} \equiv c$ mod $b$ for all $j = 0, \ldots, d- 1$. For each $x_{0,j}$, consider the residue class it generates, i.e., all integers $x_{0,j} + k \cdot b$, where $k \in \mathbb{Z}$. Hence,
+We have $ax_{0,j} \equiv c$ mod $b$ for all $j = 0, \ldots, d- 1$. These are exactly the $d$ distinct solutions of the congruence $ax \equiv c$ mod $b$ (by Exercise 2.3), and they are pairwise incongruent modulo $b$ since $0 < j \cdot \frac{b}{d} < b$ for $j = 0, \ldots, d-1$.\\
+For each $x_{0,j}$, consider the residue class it generates, i.e., all integers $x_{0,j} + k \cdot b$, where $k \in \mathbb{Z}$. For each such integer, we can compute the corresponding $y$ value:
+$$y = -\frac{a(x_{0,j} + k \cdot b) - c}{b} \in \mathbb{Z}$$
+This is an integer because $a(x_{0,j} + k \cdot b) \equiv c$ mod $b$. Therefore,
+$$a(x_{0,j} + k \cdot b) - c = mb$$
+for some $m \in \mathbb{Z}$, which gives us
+$$y = -m = -\frac{a(x_{0,j} + k \cdot b) - c}{b}.$$
+Thus, all solutions of $ax + by = c$ are given by
 \begin{center}
-$\frac{a(x_{0,j} + k \cdot b) - c}{b} \in \mathbb{Z}$ , and therefore \\
-$a(x_{0, j} + k \cdot b) - \frac{a(x_{0, j} + k \cdot b) - c}{b} \cdot b = c$
+$\left\lbrace \left( x_{0, j} + k \cdot b, -\frac{a(x_{0,j} + k \cdot b) - c}{b} \right) | k \in \mathbb{Z}, j = 0, \ldots, d - 1 \right\rbrace$.
 \end{center}
-Consequently all solutions of $ax + by = c$ are given by
-\begin{center}
-$\left\lbrace \left( x_{0, j} + k \cdot b, - \frac{a(x_{0,j} + k \cdot b) - c}{b} \right) | k \in \mathbb{Z}, j = 0, \ldots, d - 1 \right\rbrace$.
-\end{center}
-Thus, we have characterized the solution set of $ax + by = c$.
+Consequently, we have characterized the solution set of $ax + by = c$.
 \end{proof}
 \end{samepage}
 
@@ -356,7 +362,7 @@ Let's start by marking gcd($n$, $k$) = $d$. Then since group is Abelian we have 
 \begin{center}
 $(a^k)^{\frac{n}{d}} = (a^n)^{\frac{k}{d}}= e^{\frac{k}{d}} = e$
 \end{center}
-This tells us that ord($a^k$) $\leq \frac{n}{d}$. Next let's assume there is $m \in \mathbb{N}$ such that $(a^k)^m=a^{km}=e$, and let it be order of $a^k$, from which we have that $n \mid km$ so we also have that $\frac{n}{d} \mid \frac{km}{d}$. Since gcd($\frac{n}{d}$, $\frac{k}{d}$) = 1 it follows that $\frac{n}{d} \div m$ from where we have that $\frac{n}{d} \leq m$. Since $\frac{n}{d}$ is both less than equal and greater than equal than order of $a^k$ we can say that ord($a^k$) = $\frac{n}{d}$ which is what needed proving.
+This tells us that ord($a^k$) $\leq \frac{n}{d}$. Next let's assume there is $m \in \mathbb{N}$ such that $(a^k)^m=a^{km}=e$, and let it be order of $a^k$, from which we have that $n \mid km$ so we also have that $\frac{n}{d} \mid \frac{km}{d}$. Since gcd($\frac{n}{d}$, $\frac{k}{d}$) = 1 it follows that $\frac{n}{d} \mid m$ from where we have that $\frac{n}{d} \leq m$. Since $\frac{n}{d}$ is both less than equal and greater than equal than order of $a^k$ we can say that ord($a^k$) = $\frac{n}{d}$ which is what needed proving.
 \end{proof}
 
 

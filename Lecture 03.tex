@@ -93,7 +93,7 @@ And for them we have that $0 \leq $ deg $r\ <$ deg $q$ and $0 \leq $ deg $r'\ <$
 \begin{center}
 $r' - r	= q(u - u')$
 \end{center}
-From $r' - r	= q(u - u')$ we have that deg $(r' - r)$ = deg $q$ + deg $(u - u')$, which would imply that degree of either $r$ or $r'$ is greater than degree of $q$, which contradicts that deg $r$ $<$ deg $q$ or deg $r'$ $<$ deg $q$. This means that $u=u'$ and $r'=r$ which means that both $r$ and $u$ are unique polynomials.
+If $u \neq u'$, then deg$(r' - r) = $ deg$(q) + $ deg$(u - u') \geq$ deg$(q)$. However, since deg $(r' - r) \leq \max(\text{deg } r', \text{deg } r) <$ deg $q$, we have a contradiction. Therefore, we must have $u = u'$, which immediately implies $r' - r = 0$, so $r = r'$. Thus, both $u$ and $r$ are uniquely determined polynomials.
 
 \end{proof}
 
@@ -137,8 +137,8 @@ According to \textbf{Theorem 6}, there are $\varphi(p - 1)$ many different gener
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.3} Consider the group $\mathbb{Z}^{*}_{31}$. How many elements of this group have order 1, 7, 11, and 30, respectively?
 \begin{proof}
-Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 2}. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with $ord(7)$ and $ord(11)$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
-According to \textbf{Theorem 6}, there are $\varphi(p - 1)$ many different generators. There are 8 different numbers that are relatively prime to 31 (as a result of the $\varphi$ function - 3, 11, 12, 13, 17, 21, 22, 24, and all of them are generators, meaning they have order of 30 ($\varphi(30)=8$). (This can be tested by establishing 3 is a generator and then raising 3 to the power of those relatively prime numbers)\\
+Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 2}. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with ord$(a) = 7$ and ord$(a) = 11$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
+According to \textbf{Theorem 6}, there are $\varphi(p - 1) = \varphi(30)$ many different generators of $\mathbb{Z}^{*}_{31}$. Since $\varphi(30) = \varphi(2 \cdot 3 \cdot 5) = \varphi(2) \cdot \varphi(3) \cdot \varphi(5) = 1 \cdot 2 \cdot 4 = 8$, there are exactly 8 numbers coprime to 30 between 1 and 30, namely: 1, 7, 11, 13, 17, 19, 23, 29. Each of these corresponds to an element with order 30.\\
 So there are 1, 0, 0 and 8 elements with order of 1, 7, 11 and 30 respectively.
 \end{proof}
 
@@ -179,10 +179,14 @@ $\implies (x-5) = \frac{5}{24} \cdot (-5 + x - \frac{9}{5}) \cdot p(x) - \frac{5
 $\implies (x-5) = \frac{5}{24} \cdot (x - \frac{34}{5}) \cdot p(x) - \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot q(x)$\\
 $\implies (x-5) = \frac{1}{24} \cdot (5x - 34) \cdot p(x) - \frac{1}{24} \cdot (5x - 9) \cdot q(x)$
 \end{center}
-So the monic form is finally equal to:
+Since the gcd$(p, q)$ must be in monic form (leading coefficient 1), and $(x - 5)$ is already monic, we have:
 \begin{center}
-$ (x-5) = \frac{1}{24} \cdot (5x - 34) \cdot p(x) - \frac{1}{24} \cdot (5x - 9) \cdot q(x)$
+\textbf{gcd}$(p, q) = (x - 5)$
 \end{center}
-Where polynomials $u$ and $v$ are $u=\frac{1}{24}(5x - 34)$ and $v=-\frac{1}{24}(5x - 9)$ over a ring of rational numbers $\mathbb{Q}[x]$.
+By Bézout's identity for polynomials, there exist polynomials $u$ and $v$ such that:
+\begin{center}
+$(x - 5) = u \cdot p(x) + v \cdot q(x)$
+\end{center}
+where $u = \frac{1}{24}(5x - 34)$ and $v = -\frac{1}{24}(5x - 9)$ are the polynomials in $\mathbb{Q}[x]$ satisfying this identity.
 \end{proof}
 \end{document}

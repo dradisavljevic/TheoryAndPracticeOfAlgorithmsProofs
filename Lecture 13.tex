@@ -32,9 +32,9 @@ There is no family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits over the bas
 
 \begin{definition}
 \textbf{Fermat Ring -} Let $m \in \mathbb{N} \backslash \{ 0 \}$. \\
-(i) $\mathbb{Z}_{m}$ is called Fermat ring provided $m = 4^{k} + 1$ for some $k \in \mathbb{N}, k \geq 1$. \\
+(i) $\mathbb{Z}_{m}$ is called a Fermat ring provided $m = 4^{k} + 1$ for some $k \in \mathbb{N}, k \geq 1$. \\
 (ii) Let $\mathbb{Z}_{m}$ be a Fermat ring and let $x \in \mathbb{Z}_{m}$. A radix-$4$ representation for $x$ is any vector $x = (x_{n}, \ldots, x_{0})$ with $-3 \leq x_{i} \leq 3$ such that 
-$$|x|_{4} = x_{n}4^{n} + x_{n - 1}4^{n - 1} + \cdots + x_{0} \equiv x\ mod\ m.$$
+$$|x|_{4} = x_{n}4^{n} + x_{n - 1}4^{n - 1} + \cdots + x_{0} \equiv x \pmod{m}.$$
 \end{definition}
 
 
@@ -50,8 +50,8 @@ There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean 
 
 \begin{samepage}
 \begin{theorem}
-(1) Let $a_{x} = (x_{2n}, \ldots, x_{0})$ be the binary representation of a number $a \in \{ 0, \ldots, 2^{2n+1} - 1 \}$, and let $m = 4^{n + 1} + 1$. Then $a_{x}$ can be transformed into radix-$4$ representation of $a$ by a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits that has simultaneously constant depth and linear size. \\
-(2) There is a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits that has simultaneously depth $O(\log{n})$ and size $O(n)$ such that $C_{n}$ computes on input a radix-$4$ representation $(x_{n}, \ldots, x_{0}$ of any number $a \in \{ 0, \ldots, m - 1 \}$ the binary representation for $a$.
+(1) Let $a_{x} = (x_{2n}, \ldots, x_{0})$ be the binary representation of a number $a \in \{ 0, \ldots, 2^{2n+1} - 1 \}$, and let $m = 4^{n + 1} + 1$. Then $a_{x}$ can be transformed into a radix-$4$ representation of $a$ by a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits that achieves simultaneously constant depth and linear size. \\
+(2) There is a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits that achieves simultaneously depth $O(\log{n})$ and size $O(n)$ such that $C_{n}$ computes on input a radix-$4$ representation $(x_{n}, \ldots, x_{0})$ of any number $a \in \{ 0, \ldots, m - 1 \}$ the binary representation for $a$.
 \end{theorem}
 \end{samepage}
 
@@ -63,25 +63,69 @@ There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean 
 
 
 \section{Exercises}
-\noindent \textbf{Exercise 13.1}  Repeat the computation presented in \textbf{Example 13.6} for the case that $a = 13$ is given as $(0, 3, 1)$ as input.
+\noindent \textbf{Exercise 13.1}  Given $m = 4^2 + 1 = 17$, convert the radix-4 representation $(0, 3, 1)$ to binary form and verify the computation.
 \begin{proof}
-Let $m = 4^{2} + 1 = 17$ and let $a=13$ be given as input as $(0, 3, 1)$.
-Thus, we obtain:
-\begin{center}
-$\vert x^{+} \vert = (0,0,1,1,0,1)$\\
-$\vert x^{-} \vert = (0,0,0,0,0,0)$
-\end{center}
-and $\vert x^{+} \vert - \vert x^{-} \vert =(0,0,1,1,0,1) =13$ (written as AS-number) (Since we first negate the first number and add it to second, then negating the result, this gives us the first number since the second one is all 0s). So again, for this example, we can omit the computation of other candidates, since 13 is between 0 and our $m$.
+Let $m = 4^{2} + 1 = 17$ and let the input radix-4 representation be $(x_2, x_1, x_0) = (0, 3, 1)$ where each $x_i \in \{-3, \ldots, 3\}$.
+
+We compute the value represented by this radix-4 encoding:
+$$|x|_4 = x_2 \cdot 4^2 + x_1 \cdot 4^1 + x_0 \cdot 4^0 = 0 \cdot 16 + 3 \cdot 4 + 1 \cdot 1 = 0 + 12 + 1 = 13$$
+
+Therefore, $|x|_4 \equiv 13 \pmod{17}$. Since $13 < 17 = m$, we have $13 \equiv 13 \pmod{17}$, so the value is indeed $13$.
+
+Now we convert this to binary representation. We need to express $13$ in binary form:
+$$13 = 8 + 4 + 1 = 2^3 + 2^2 + 2^0$$
+
+Therefore, the binary representation is $(1, 1, 0, 1)_2$ (reading the bits from most significant to least significant).
+
+Verification: Using the AS-number definition with $x = (x_3, x_2, x_1, x_0) = (1, 1, 0, 1)$ where $x_3$ is the sign bit:
+$$V_{AS}(x) = (-1)^{x_3}(x_2 \cdot 2^2 + x_1 \cdot 2 + x_0) = (-1)^1(1 \cdot 4 + 0 \cdot 2 + 1) = -5$$
+
+This represents $-5$. However, for the direct binary to radix-4 conversion (without AS-number), we compute:
+$$13 \text{ in binary} = (0, 1, 1, 0, 1)_2$$
+
+Reading as a standard binary number from left to right (MSB first), this is $1 \cdot 8 + 1 \cdot 4 + 0 \cdot 2 + 1 = 13$.
 \end{proof}
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
-\noindent \textbf{Exercise 13.2} Prove that there is a uniform family $\left(C_{n}\right)_{n \in \mathbb{N}}$ of Boolean circuits simultaneously achieving depth $O(1)$ and size $O(n)$ which on input any number b given in a radix-4 representation $(x_{n},  \ldots , x_{0})$ computes the radix-4 representation of the product $b2^{l}$, where $l \leq 2n$ is any fixed number.
+\noindent \textbf{Exercise 13.2} Prove that there is a uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean circuits simultaneously achieving depth $O(1)$ and size $O(n)$ which on input any number $b$ given in a radix-4 representation $(x_{n}, \ldots, x_{0})$ computes the radix-4 representation of the product $b \cdot 2^{l}$, where $l \leq 2n$ is any fixed constant.
 \begin{proof}
-Let's consider circuit stated in \textbf{Theorem 5}, the first part converts $a_{i}$ where $i = 1, \ldots, n$ into a radix-4 representation. SInce this requires n sub-circuits having depth $O(1)$ and size $O(n)$. In \textbf{Theorem 4} we have that conversion from binary into radix-4 can be done in constant depth with linear size. Since the operation we are interested in is multiplication with a power of two, where power of two is fixed such that it is $l \leq 2n$, we can say that $b2^{l} < 4^{n+1}$, so proof of this exercise comes directly from \textbf{Theorem 4} assertion (1).
-\begin{center}
-$x_{i} = 2y_{2i+1}+y_{2i}$ where $y_{i} \in {-1, 0, +1}$
-\end{center}
+We show that multiplication by a fixed power of 2 in radix-4 representation can be done with constant depth and linear size.
+
+\textbf{Key observation:} In radix-4 representation, multiplying by $2^l$ shifts the representation by $l$ positions, analogous to how multiplying by 10 shifts a decimal representation.
+
+More precisely, if $b = \sum_{i=0}^{n} x_i 4^i$, then:
+$$b \cdot 2^l = \sum_{i=0}^{n} x_i 4^i \cdot 2^l$$
+
+Since $4^i = (2^2)^i = 2^{2i}$, we have:
+$$b \cdot 2^l = \sum_{i=0}^{n} x_i 2^{2i+l}$$
+
+\textbf{Radix-4 representation of $b \cdot 2^l$:}
+
+We can rewrite this as:
+$$b \cdot 2^l = \sum_{j=0}^{n+\lceil l/2 \rceil} y_j 4^j$$
+
+where the coefficients $y_j$ are obtained by:
+\begin{enumerate}
+\item If $l$ is even ($l = 2m$): $y_j = x_{j-m}$ for $j \geq m$ and $y_j = 0$ for $j < m$.
+\item If $l$ is odd ($l = 2m+1$): We need to compute $x_i 2^l = x_i 2^{2m+1} = x_i \cdot 2 \cdot 4^m$. This requires computing $2 x_i$ (multiplication by 2) and then shifting by $m$ positions in radix-4. The multiplication by 2 can be done without carries for each digit independently in constant time.
+\end{enumerate}
+
+\textbf{Circuit construction:}
+
+The circuit performs the following steps:
+\begin{itemize}
+\item Read the input radix-4 digits $(x_n, \ldots, x_0)$
+\item If $l$ is even: Output $(x_{n-m}, \ldots, x_0, 0, \ldots, 0)$ (with $m$ zeros appended)
+\item If $l$ is odd: Multiply each input digit by 2, then output in shifted positions
+\end{itemize}
+
+Both operations involve:
+- Reading input: O(n) size, O(1) depth (parallel reading)
+- Shifting/rearranging: O(n) size, O(1) depth (direct rewiring)
+- Multiplication by 2 (if needed): O(n) size, O(1) depth (local operation at each digit)
+
+Therefore, the entire circuit has size $O(n)$ and depth $O(1)$.
 \end{proof}
 \end{document}

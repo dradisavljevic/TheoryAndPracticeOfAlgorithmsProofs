@@ -95,12 +95,17 @@ The order of every finite Abelian field is a power of its characteristic.
 \section{Exercises}
 \noindent \textbf{Exercise 4.1} Find an irreducible polynomial of degree 2 over $\mathbb{Z}_{7}$.
 \begin{proof}
-Polynomials of degree 2 or 3 are irreducible iff they have no roots\footnote{Theorem and proof that polynomials of degree 2 or 3 are irreducible iff they have no roots - http://mathonline.wikidot.com/reducible-and-irreducible-polynomials-over-a-field}. If we take a look at elements in $\mathbb{Z}_{7}$, and square them, we can see that there are no nonzero squares other than 1, 2 and 4 mod 7. So, the following polynomials have no solutions in $\mathbb{Z}_{7}$:
+Polynomials of degree 2 or 3 are irreducible if and only if they have no roots in the field. First, we determine the quadratic residues modulo 7 by computing $a^2$ mod 7 for all $a \in \mathbb{Z}_7$:
 \begin{center}
-$x^2 - 3 = 0$\\
-$x^2 - 5 = 0$\\
-$x^2 - 6 = 0$	
+$1^2 \equiv 1, \quad 2^2 \equiv 4, \quad 3^2 \equiv 2, \quad 4^2 \equiv 2, \quad 5^2 \equiv 4, \quad 6^2 \equiv 1 \pmod{7}$
 \end{center}
+Thus the quadratic residues in $\mathbb{Z}_7$ are $\{1, 2, 4\}$. The non-residues are $\{3, 5, 6\}$.
+
+Therefore, a polynomial $x^2 - a$ has no solution in $\mathbb{Z}_7$ if and only if $a$ is a non-residue. The following degree 2 polynomials are irreducible over $\mathbb{Z}_7$:
+\begin{center}
+$x^2 - 3, \quad x^2 - 5, \quad x^2 - 6$
+\end{center}
+For example, we can verify that $x^2 - 3$ is irreducible by checking that it has no roots: $0^2 - 3 \equiv 4$, $1^2 - 3 \equiv 5$, $2^2 - 3 \equiv 1$, $3^2 - 3 \equiv 6$, $4^2 - 3 \equiv 6$, $5^2 - 3 \equiv 1$, $6^2 - 3 \equiv 5$ (all nonzero mod 7). Thus $x^2 - 3$ is an irreducible polynomial of degree 2 over $\mathbb{Z}_7$.
 \end{proof}
 
 
@@ -108,12 +113,18 @@ $x^2 - 6 = 0$
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 4.2} Find out whether or not there is a finite field having 8 elements. In case your answer is affirmative, construct such a finite field.
 \begin{proof}
-Since 8 is a power of a prime number ($2^3$), we know that finite field with 8 elements exists. Since 8 is a power of 2, we need a 3rd degree polynomial $f$ which is irreducible over $\mathbb{Z}_{2}[x]$. Since polynomials of degree 2 or 3 are irreducible iff they have no roots, so we need to find a polynomial that has no roots. We take $x^3 + x + 1$, if we test it for elements of $\mathbb{Z}_{2}[x]$
+Since 8 is a power of a prime number ($2^3$), we know that a finite field with 8 elements exists by Theorem 14. We need to construct a 3rd degree polynomial $f$ which is irreducible over $\mathbb{Z}_{2}[x]$. By the criterion for polynomials of degree 2 or 3, a polynomial is irreducible if and only if it has no roots in the field. We test $f(x) = x^3 + x + 1$ for all elements of $\mathbb{Z}_{2}$:
 \begin{center}
-$p(0) = 1 \neq 0$\\
-$p(1) = 1 \neq 0$	
+$f(0) = 0^3 + 0 + 1 = 1 \neq 0$ (mod 2)\\
+$f(1) = 1^3 + 1 + 1 = 1 \neq 0$ (mod 2)
 \end{center}
-Meaning the said polynomial is irreducible and can be taken for the purpose (other option would be $x^3 + x^2 + 1$). We form the field by using $\frac{\mathbb{Z}_{2}[x]}{x^3 + x + 1}$. In this field, if we introduce a relation that $x^3 = x + 1$ we can construct a table of elements (elements are possible residuals of our polynomial $x^3 + x + 1$) below:
+Since $x^3 + x + 1$ has no roots in $\mathbb{Z}_2$, it is irreducible over $\mathbb{Z}_{2}[x]$. 
+
+We construct the finite field as the quotient ring $\mathbb{F}_8 = \mathbb{Z}_{2}[x]/(x^3 + x + 1)$. The elements of this field are residue classes of polynomials of degree less than 3 with coefficients in $\mathbb{Z}_2$, namely:
+\begin{center}
+$\{0, 1, x, x+1, x^2, x^2+1, x^2+x, x^2+x+1\}$
+\end{center}
+In this field, we have the relation $x^3 = x + 1$. The multiplication table is:
 \begin{center}
 \centering
 \resizebox{\textwidth}{!}{\begin{tabular}{ c c c c c c c c c  }
@@ -128,7 +139,7 @@ Meaning the said polynomial is irreducible and can be taken for the purpose (oth
 \textbf{$x^2$+$x$ + 1} & 0 & $x^2$ + $x$ + 1 & $x^2$ + 1 & $x$ & 1 & $x^2$ + $x$ & $x^2$ & $x$ + 1
 \end{tabular}}
 \end{center}
-Since field relies on operations from the prime field we used, it satisfies all the conditions of the field. From the above table it is also visible which elements are inverses of which element.
+Since $x^3 + x + 1$ is irreducible over $\mathbb{Z}_2$, the quotient ring $\mathbb{Z}_{2}[x]/(x^3 + x + 1)$ is a field. The multiplication table shows that every nonzero element has a multiplicative inverse (visible by finding the 1 in each row), confirming the field structure. Thus, $\mathbb{F}_8$ is a finite field with 8 elements.
 \end{proof}
 
 
@@ -136,6 +147,15 @@ Since field relies on operations from the prime field we used, it satisfies all 
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 4.3} Find out whether or not there is a finite field having 27, 36, 51, and 2401 elements, respectively. Justify your answer.
 \begin{proof}
-While finite fields with 27 and 2401 elements exist, there are no finite fields with 36 or 51 elements. Reason for this lies in the definition of \textbf{Finite fields}\footnote{Finite Fields - https://mathworld.wolfram.com/FiniteField.html}. The order of a finite field is always a prime or a power of a prime. Since 27 and 2401 are powers of primes, 3 and 7 respectively ($3^3,\ 7^4$) we can say that fields with 27 and 2401 elements exist. On the other hand, both 36 and 51 are neither a prime nor powers of prime, so we can say that no such finite field with 36 or 51 elements exists.
+By Theorem 14, the order of every finite Abelian field must be of the form $p^n$ where $p$ is a prime and $n \in \mathbb{N}^{+}$. We check each case:
+
+\begin{itemize}
+\item \textbf{27 elements:} Since $27 = 3^3$, a finite field with 27 elements exists.
+\item \textbf{36 elements:} Since $36 = 2^2 \cdot 3^2$, this is not a prime power, so no finite field with 36 elements exists.
+\item \textbf{51 elements:} Since $51 = 3 \cdot 17$, this is not a prime power, so no finite field with 51 elements exists.
+\item \textbf{2401 elements:} Since $2401 = 7^4$, a finite field with 2401 elements exists.
+\end{itemize}
+
+Therefore, finite fields exist for orders 27 and 2401, but not for orders 36 or 51.
 \end{proof}
 \end{document}
