@@ -15,7 +15,7 @@
 \maketitle
 \section{Lecture Summary}
 \begin{theorem}
-There exists an algorithm TS solving the leader election problem in time $nu_{min}$ and with communication complexity $n$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1,$ is known to the algorithm.
+There exists an algorithm TS solving the leader election problem in time $n u_{\min}$ and with communication complexity $O(n)$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is known to the algorithm.
 \end{theorem}
 
 
@@ -27,7 +27,7 @@ The computation proceeds in phases $1, 2, \ldots,$ where each phase consists of 
 
 
 \begin{theorem}
-There exists an algorithm VS solving the leader election problem in time $n2^{u_{min}}$ and with communication complexity $O(n)$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is not known to the algorithm.
+There exists an algorithm VS solving the leader election problem in time $n 2^{u_{min}}$ and with communication complexity $O(n)$ for every system $A$ of $n$ processes arranged in a ring, where $n \in \mathbb{N}, n > 1$, is not known to the algorithm.
 \end{theorem}
 
 
@@ -57,6 +57,7 @@ Let $n \in \mathbb{N}, n > 1$ and let $A$ be a comparison-based algorithm execut
 \begin{theorem}
 Let $n \in \mathbb{N}, n > 1$, and let $A$ be a comparison-based algorithm that elects a leader in rings of size $n$. Then there is an execution of $A$ in which $A$ sends $\Omega(n \log{n})$ messages by the time the leader is elected.
 \end{theorem}
+
 
 
 

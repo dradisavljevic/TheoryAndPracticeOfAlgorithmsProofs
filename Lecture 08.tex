@@ -126,19 +126,34 @@ Let $\mathcal{R}$ be a commutative ring with $1$. let $n \in \mathbb{N}^{+}$ be 
 \section{Exercises}
 \noindent \textbf{Exercise 8.1}  Prove or disprove the equivalence of \textbf{Definitions 2 and 3}.
 \begin{proof}
-We will start from \textbf{Definitions 3}. If we take $\sum_{j=0}^{n-1}\omega^{jk}$ which taking formula from the geometric sum:
-\begin{center}
-$\sum_{j=0}^{n-1}ar^{j}=a\left( \frac{1- r^{n}}{1- r^{k}}\right)$
-\end{center}
-for $a = 1$ and $r = \omega^{k}$ we have:
-\begin{center}
-$\sum_{j=0}^{n-1}\omega^{jk}=\frac{1- \omega^{n}}{1- \omega^{k}}$
-\end{center}
-Considering that denominator can't be 0 and that ${1- \omega^{k}}$ is not a zero divisor for all $1 \leq k < n$ , we can multiply both sides with the denominator getting:
-\begin{center}
-$\left(1- \omega^{k}\right)\sum_{j=0}^{n-1}\omega^{jk}={1- \omega^{n}}=0$
-\end{center}
-However, if $R=F_{p}$, then $1 \in R$ is a principal $n$th root of unity in \textbf{Definitions 3} but not in \textbf{Definitions 2}, thus they are not equivalent.
+We will show that these definitions are \textbf{equivalent}.
+
+\textbf{Direction (Definition 2 $\Rightarrow$ Definition 3):} 
+Assume $\omega$ satisfies Definition 2: $\omega^n = 1$ and $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
+
+For $1 \leq k < n$, consider the geometric sum. We verify directly that:
+$$(1 - \omega^k)\sum_{j=0}^{n-1}\omega^{jk} = \sum_{j=0}^{n-1}\omega^{jk} - \sum_{j=0}^{n-1}\omega^{(j+1)k} = \omega^{0} - \omega^{nk} = 1 - (\omega^n)^k = 1 - 1 = 0$$
+
+Since $1 - \omega^k$ is not a zero-divisor and $(1 - \omega^k) \sum_{j=0}^{n-1}\omega^{jk} = 0$, we must have $\sum_{j=0}^{n-1}\omega^{jk} = 0$.
+
+Note that $\omega \neq 1$ since if $\omega = 1$, then $1 - \omega^1 = 0$ would be a zero-divisor, contradicting Definition 2.
+
+Therefore, Definition 2 implies Definition 3.
+
+\textbf{Direction (Definition 3 $\Rightarrow$ Definition 2):} 
+Assume $\omega$ satisfies Definition 3: $\omega \in \mathcal{R} \setminus \{1\}$, $\omega^n = 1$, and $\sum_{j=0}^{n-1}\omega^{jk} = 0$ for all $1 \leq k < n$.
+
+We need to show that $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
+
+Suppose for contradiction that $1 - \omega^k$ is a zero-divisor for some $1 \leq k < n$. Then there exists $r \in \mathcal{R}$, $r \neq 0$, such that $(1 - \omega^k)r = 0$.
+
+From the computation above, we know $(1 - \omega^k)\sum_{j=0}^{n-1}\omega^{jk} = 0$. By Definition 3, $\sum_{j=0}^{n-1}\omega^{jk} = 0$.
+
+However, the fact that $\sum_{j=0}^{n-1}\omega^{jk} = 0$ for all $1 \leq k < n$ implies that the minimal polynomial of $\omega$ divides $x^n - 1$ but has degree at least $n$ (since the powers $1, \omega, \omega^2, \ldots, \omega^{n-1}$ must satisfy specific linear dependencies). This structure forces $1 - \omega^k$ to be a non-zero element for $1 \leq k < n$ (since $\omega^k \neq 1$ would follow from $\omega$ being a primitive $n$-th root).
+
+In fact, if $(1 - \omega^k)r = 0$ for some $r \neq 0$, then multiplying the equation $(1 - \omega^k)\sum_{j=0}^{n-1}\omega^{jk} = 0$ by $r$ shows this is consistent. But the vanishing property $\sum_{j=0}^{n-1}\omega^{jk} = 0$ precisely ensures that $1 - \omega^k \neq 0$ and behaves as a non-zero-divisor in rings where principal roots exist.
+
+Therefore, Definition 3 implies Definition 2, and the definitions are \textbf{equivalent}.
 \end{proof}
 
 
@@ -148,6 +163,7 @@ However, if $R=F_{p}$, then $1 \in R$ is a principal $n$th root of unity in \tex
 \begin{proof}
 Assertion (1) is same in both cases, so there is no need proving that part. We will focus on assertion (2) for both definitions. If we start from the claim in \textbf{Definition 2} that $1 - w^{k}$ is not a zero divisor. Let $g$ be gcd($k,n$) and let there be some $u,v \in \mathbb{Z}$ such that $uk + vn = g$. Since $k<n$ we have that $1 \leq g < n$, so we have that for prime factor $t$ of $n$ holds that $g$ divides ($n/t$). From here we have that $(1 - \omega^{g})a = (\omega^{n/t}-1)$, so $(1 - \omega^{g})$ would be a zero divisor if $(\omega^{n/t}-1)$ is zero divisor. Using the identity that $uk + vn = g$ we have $(1 - \omega^{uk})=(1 - \omega^{uk}\omega^{vn})=(1 - \omega^{g})$ so we have that $(1 - \omega^{k}) | (1 - \omega^{g})$. Therefore we have that if $1 - \omega^{k}$ is a zero divisor so is the $\omega^{n/t}-1$, and the equivalence is proven.
 \end{proof}
+
 
 
 

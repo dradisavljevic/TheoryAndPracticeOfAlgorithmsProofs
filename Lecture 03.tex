@@ -83,7 +83,7 @@ $p = uq + r$, where deg $r<$ deg $q$.
 Moreover, let $p \in \mathbb{F}[x]$, then, for any $a \in F$, the substitution of $x$, by $a$ defines an element of $F$ which we denote by $p(a)$. The element $p(a)$ is obtained by performing the field operations once the substitution has been carried out, e.g., let $p \in \mathbb{Z}_{7}[x]$, say $p(x) = 6x^{2} + 5x + 1$. Then $p(1) = 6 + 5 + 1 = 5$.
 \begin{proof}
 Since every field satisfies associativity and commutativity of additive and multiplicative operations, possesses additive and multiplicative identity and inverse elements and satisfies distributivity of the multiplicative operation over addition we can say that every Field is a ring, while not all rings are fields. So the claim that if $\mathbb{F}$ is a field then $\mathbb{F}[x]$ is a ring is true.\\
-Second part is what is known as \textbf{Nonmonic Polynomial Division Algorithm}. We are gonna prove now that polynomials $u$ and $r$ are in fact unique where deg $r$ $<$ deg $q$.\\
+Second part is what is known as \textbf{Nonmonic Polynomial Division Algorithm}. We now prove that polynomials $u$ and $r$ are in fact unique where deg $r$ $<$ deg $q$.\\
 Let's say we have two polynomials that satisfy the equation:
 \begin{center}
 $r = p - uq$\\
@@ -137,8 +137,8 @@ According to \textbf{Theorem 6}, there are $\varphi(p - 1)$ many different gener
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 3.3} Consider the group $\mathbb{Z}^{*}_{31}$. How many elements of this group have order 1, 7, 11, and 30, respectively?
 \begin{proof}
-Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 2}. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with $ord(7)$ and $ord(11)$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
-According to \textbf{Theorem 6}, there are $\varphi(p - 1)$ many different generators. There are 8 different numbers that are relatively prime to 31 (as a result of the $\varphi$ function - 3, 11, 12, 13, 17, 21, 22, 24, and all of them are generators, meaning they have order of 30 ($\varphi(30)=8$). (This can be tested by establishing 3 is a generator and then raising 3 to the power of those relatively prime numbers)\\
+Since 31 is a prime number, we know that order of the group is 30 according to \textbf{Corollary 2}. Also, according to \textbf{Lagrange's Theorem} order of every element in $\mathbb{Z}^{*}_{31}$ divides the order of $\mathbb{Z}^{*}_{31}$. Since order of the group is 30, elements can have order 1, 2, 3, 5, 6, 10, 15 and 30. Since 7 and 11 don't divide 30, we can immediately tell that number of elements in this group with ord$(a) = 7$ and ord$(a) = 11$ is equal to 0. We can also tell that the only element when raised to the power of 1 gives identity element, which is also 1, in this group is 1. So there is only 1 element in the group with order 1. All that is left is to check for order 30.\\
+According to \textbf{Theorem 6}, there are $\varphi(p - 1) = \varphi(30)$ many different generators of $\mathbb{Z}^{*}_{31}$. Since $\varphi(30) = \varphi(2 \cdot 3 \cdot 5) = \varphi(2) \cdot \varphi(3) \cdot \varphi(5) = 1 \cdot 2 \cdot 4 = 8$, there are exactly 8 numbers coprime to 30 between 1 and 30, namely: 1, 7, 11, 13, 17, 19, 23, 29. Each of these corresponds to an element with order 30.\\
 So there are 1, 0, 0 and 8 elements with order of 1, 7, 11 and 30 respectively.
 \end{proof}
 

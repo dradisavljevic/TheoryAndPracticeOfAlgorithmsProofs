@@ -105,13 +105,13 @@ Let ($G, \circ$) be any finite group with neutral element $e$, and let $a \in G$
 (3) $(a \circ b) \mathcal{*} c = (a \circ c) \mathcal{*} (b \circ c)$ and $a \mathcal{*} (b \circ c) = (a \mathcal{*} c) \circ (b \mathcal{*} c)$\\
 (4) $a \circ 0 = 0 \circ a = a$ ($0$ is the \textbf{neutral element} with respect to $\circ$);\\
 (5) $a \mathcal{*} 1 = 1 \mathcal{*} a = a$ ($1$ is the \textbf{identity element} with respect to $\mathcal{*}$);\\
-(6) for each $a \in R$ there exists an element $-a \in R$ such tat $a \circ (-a) = (-a) \circ a = 0$ ($-a$ is the \textbf{additive inverse} of $a$).
+(6) for each $a \in R$ there exists an element $-a \in R$ such that $a \circ (-a) = (-a) \circ a = 0$ ($-a$ is the \textbf{additive inverse} of $a$).
 \end{definition}
 $\mathcal{R} =(R, \circ, \mathcal{*}, 0, 1)$ is a ring if ($R, \circ$) is an Abelian group, ($R, \mathcal{*}$) is a semi-group, and the laws of distributivity are satisfied. If axiom 5 is satisfied, we call it a ring with identity element. If the multiplicative operation is commutative, then we call ring a \textbf{commutative ring}.
 
 
 \begin{definition}
-\textbf{Field -} Let $F \neq \emptyset$ be any set containing two distinguished elements $0$ and $1$, $0 \neq 1$, and let $\circ$, $\mathcal{*}$: $F \times F \to F$ be two binary operations. We call $\mathbb{F} = (F, \circ, \mathcal{*}$) a field if:\\
+\textbf{Field -} Let $F \neq \emptyset$ be any set containing two distinguished elements $0$ and $1$, $0 \neq 1$, and let $\circ$, $\mathcal{*}$: $F \times F \to F$ be two binary operations. We call $\mathbb{F} = (F, \circ, \mathcal{*})$ a field if:\\
 (1) ($F, \circ$) is an Abelian group (with neutral element $0$).\\
 (2) ($F \backslash \{0\}, \mathcal{*}$) is a group (with neutral element $1$).\\
 (3) The following distributive laws are satisfied:
@@ -145,7 +145,7 @@ From here it is easy to see that ($\mathbb{Z}_{m}, +, \cdot$) constitutes a comm
 
 
 \begin{theorem}
-Let $m \in mathbb{N}^{+}$, let $a, b, c, d \in \mathbb{Z}$ be any integers such that $a \equiv b$ mod $m$ and $c \equiv d$ mod $m$, and let $n \in \mathbb{N}$. Then we have the following:\\
+Let $m \in \mathbb{N}^{+}$, let $a, b, c, d \in \mathbb{Z}$ be any integers such that $a \equiv b$ mod $m$ and $c \equiv d$ mod $m$, and let $n \in \mathbb{N}$. Then we have the following:\\
 (1) $a + c \equiv b + d$ mod $m$;\\
 (2) $a - c \equiv b - d$ mod $m$;\\
 (3) $ac \equiv bd$ mod $m$;\\
@@ -158,9 +158,13 @@ Let $m \in mathbb{N}^{+}$, let $a, b, c, d \in \mathbb{Z}$ be any integers such 
 \section{Exercises}
 \noindent \textbf{Exercise 1.1} Prove or disprove the following: $f(x) = o(g(n))$ if and only if $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$.
 \begin{proof}
-Let $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0$, meaning that as n increases towards infinity, $\frac{f(n)}{g(n)}$ approaches $0$. This means that in order for this to be true, the following statement must be true $g(n) > f(n)$ for very large n, so that the fraction $\frac{f(n)}{g(n)}$ is sufficiently small. In other words, $g(n)$ grows faster than $f(n)$ which can be expressed as $f(x) = o(g(n))$. \\
-Now let $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ meaning that as $n$ increases limit of the fraction $\frac{f(n)}{g(n)}$ equals to either some constant $c$ that is not $0$ or approaches infinity. In the first case, where limit yields a constant $c$, it can be written as both $\Lim{n \to \infty} \frac{f(n)}{g(n)}>0$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}<\infty$ meaning that $g(n)$ is both upper and lower bound of $f(n)$, or in other words an exact bound, which can be written as $f(x) = \Theta(g(n))$. Since $g(n)$ is an upper bound of $f(n)$, this means that $f(x) \neq o(g(n))$. In the case of the limit being equal to infinity for a very large n, the statement $g(n) < f(n)$ must hold true, in other words $f(x) = O(g(n))$, which further implies $f(x) \neq o(g(n))$. In both cases we have that if $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0$ then also $f(x) \neq o(g(n))$. \\
-Considering both $\Lim{n \to \infty} \frac{f(n)}{g(n)}=0 \implies f(x) = o(g(n))$ and $\Lim{n \to \infty} \frac{f(n)}{g(n)}\neq0 \implies f(x) \neq o(g(n))$, we can say that $f(x) = o(g(n)) \iff \Lim{n \to \infty} \frac{f(n)}{g(n)}=0$ which is what was needed to be proven.
+We prove both directions using the definition of $o(g(n))$ from Definition 1: $f(n) \in o(g(n))$ iff for every constant $c > 0$, there exists a constant $n_{0} > 0$ such that $0 \leq f(n) \leq cg(n)$ for all $n \geq n_{0}$.
+
+\noindent \textbf{($\Rightarrow$)} Assume $\Lim{n \to \infty} \frac{f(n)}{g(n)} = 0$. We must show that $f(n) = o(g(n))$. Let $c > 0$ be arbitrary. By the definition of limit, there exists $n_{0} > 0$ such that $\left|\frac{f(n)}{g(n)} - 0\right| < c$ for all $n \geq n_{0}$. This implies $\frac{f(n)}{g(n)} < c$, and thus $f(n) < c \cdot g(n)$ for all $n \geq n_{0}$. Since $c$ was arbitrary, this holds for every $c > 0$, so $f(n) = o(g(n))$.
+
+\noindent \textbf{($\Leftarrow$)} Assume $f(n) = o(g(n))$. We must show that $\Lim{n \to \infty} \frac{f(n)}{g(n)} = 0$. Let $\varepsilon > 0$ be arbitrary. By the definition of $o(g(n))$, taking $c = \varepsilon$, there exists $n_{0} > 0$ such that $0 \leq f(n) \leq \varepsilon \cdot g(n)$ for all $n \geq n_{0}$. Therefore, $0 \leq \frac{f(n)}{g(n)} \leq \varepsilon$ for all $n \geq n_{0}$. Since $\varepsilon$ was arbitrary, this shows $\Lim{n \to \infty} \frac{f(n)}{g(n)} = 0$.
+
+Thus, we have proven both directions, and the equivalence holds.
 \end{proof}
 \end{samepage}
 
@@ -190,7 +194,7 @@ $$A \times_{n} I_{n} = \left( \sum_{k=1}^{n}{a_{ik}i_{kj}}\right) = (a_{ij}) = \
 Next we show that $-A =_{df} (-a_{ij})$ is the additive inverse of the matrix $A$. Using that $a + (-a) = (-a) +a = 0$ for every $a \in R$, and the definition of matrix addition, we have
 $$A +_{n} (-A) = (a_{ij} + (-a_{ij})) = ((-a_{ij}) + a_{ij}) = 0_{n} .$$
 We continue with the associativity of matrix multiplication. Here we use that the ring multiplication is associative and that the laws of distributivity hold in $\mathcal{R}$. Note that now $i, j, l = 1, \ldots , n$. We obtain for the element at position ($i, l$) of the matrix product the following:
-$$A \times_{n} (B \times_{n} C) = \left(\sum_{j=1}^{n}{a_{ij}} \cdot \left( \sum_{k=1}^{n}{b_{jk}c_{kl}}\right)\right) = \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{a_{ij} \cdot b_{jk} \cdot c_{kl}} \right)=$$\\ $$= \left(\sum_{k=1}^{n}\sum_{j=1}^{n}{a_{ij} \cdot b_{jk} \cdot c_{kl}}\right) = \left( \sum_{k=1}^{n}\left(\sum_{j=1}^{n}{a_{ij} \cdot b_{jk}} \right) \cdot c_{kl} \right) = (A \times_{n} B) \times_{n} C.$$
+$$A \times_{n} (B \times_{n} C) = \left(\sum_{j=1}^{n}{a_{ij}} \cdot \left( \sum_{k=1}^{n}{b_{jk}c_{kl}}\right)\right) = \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{a_{ij} \cdot (b_{jk} \cdot c_{kl})} \right)= \left(\sum_{j=1}^{n}\sum_{k=1}^{n}{(a_{ij} \cdot b_{jk}) \cdot c_{kl}} \right)=$$\\ $$= \left(\sum_{k=1}^{n}\sum_{j=1}^{n}{(a_{ij} \cdot b_{jk}) \cdot c_{kl}}\right) = \left( \sum_{k=1}^{n}\left(\sum_{j=1}^{n}{a_{ij} \cdot b_{jk}} \right) \cdot c_{kl} \right) = (A \times_{n} B) \times_{n} C.$$
 To finish the proof of the necessity we also have to show the laws of distributivity for the ring $\mathcal{M}_{n}$. These laws are a direct consequence of the corresponding laws in $\mathcal{R}$. So we show here just one.
 $$(A +_{n} B) \times_{n} C = \left(\sum_{k=1}^{n}{(a_{ik}+b_{ik}) \cdot c_{kj}}\right) = \left(\sum_{k=1}^{n}{a_{ik}c_{kj}+b_{ik}c_{kj})}\right)=$$\\ $$= \left(\sum_{k=1}^{n}{a_{ik}c_{kj}}\right) + \left(\sum_{k=1}^{n}{b_{ik}c_{kj}}\right) = A \times_{n} C +_{n} B \times_{n} C,$$
 and the necessity is shown.\\
@@ -232,7 +236,11 @@ Consequently, $a^{m} = e$ is possible iff $r=0$, which is equivalent to $m \equi
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.5} Show that $\sum_{k=0}^{998} k^3$ is divisible by $999$.
 \begin{proof}
-Since for $k=0$ $k3$ also equals $0$, we can rewrite the following sum as $\sum_{k=1}^{998} k^3$. Now, according to \textbf{Faulhaber's Formula}\footnote{Faulhaber's Formula - https://mathworld.wolfram.com/FaulhabersFormula.html} we can express $\sum_{k=1}^{998} k^3$ as $\frac{998^2 999^2}{4}$ due to $\sum_{k=1}^{n} k^3=\left( \frac{n(n+1)}{2}\right)^2$. From there we see that this equals $499^2 \cdot 999^2$ which is obviously divisible by $999$.
+Since for $k=0$ we have $k^3 = 0$, we can rewrite the sum as $\sum_{k=1}^{998} k^3$. By \textbf{Faulhaber's Formula}\footnote{Faulhaber's Formula - https://mathworld.wolfram.com/FaulhabersFormula.html}, we have
+$$\sum_{k=1}^{n} k^3 = \left(\frac{n(n+1)}{2}\right)^2.$$
+Setting $n = 998$, we obtain
+$$\sum_{k=1}^{998} k^3 = \left(\frac{998 \cdot 999}{2}\right)^2 = (499 \cdot 999)^2.$$
+Since $(499 \cdot 999)^2 = 499^2 \cdot 999^2$, it is obvious that this is divisible by $999$.
 \end{proof}
 
 
@@ -241,7 +249,7 @@ Since for $k=0$ $k3$ also equals $0$, we can rewrite the following sum as $\sum_
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.6} Show that every integer written in decimal representation is divisible by $3$ if and only if the sum of its digits is divisible by $3$.
 \begin{proof}
-Since the divisibility by 3 is not affected by the sign, it suffices to consider $z= \sum_{i=0}^{n}{z_{i}10^{i}}$, where $z_{i} \in \{0,1,\ldots,0\}$ for all $i = 0, \ldots, n$. Then by the reflexivity of "$\equiv$" we have
+Since the divisibility by 3 is not affected by the sign, it suffices to consider $z= \sum_{i=0}^{n}{z_{i}10^{i}}$, where $z_{i} \in \{0,1,\ldots,9\}$ for all $i = 0, \ldots, n$. Then by the reflexivity of "$\equiv$" we have
 \begin{equation}
 z_{i} \equiv z_{i}\ mod\ 3\ for\ all\ i = 0, \ldots n.
 \end{equation}
@@ -249,7 +257,7 @@ Clearly, $10 \equiv 1$ mod $3$ and thus, Property (4) of \textbf{Theorem 5} impl
 \begin{equation}
 10^{i} \equiv 1^{i} \equiv 1\ mod\ 3\ for\ all\ i = 0, \ldots n.
 \end{equation}
-Next we apply Property (1) of \textbf{Theorem 5} to (1) and (2) exactly $n$ many times and obtain $\sum_{i=0}^{n}{z_{i}10^{i}} \equiv \sum_{i=0}^{n}{z_{i}}$ mod $3$. Hence we have shown that every integer written in decimal notation is divisible by $3$ iff the sum of its digits is divisible by $3$. 
+Next we apply Property (3) of \textbf{Theorem 5} to (1) and (2) to get $z_i 10^i \equiv z_i \cdot 1 \equiv z_i \pmod 3$. Then we apply Property (1) of \textbf{Theorem 5} repeatedly and obtain $\sum_{i=0}^{n}{z_{i}10^{i}} \equiv \sum_{i=0}^{n}{z_{i}}$ mod $3$. This means $z \equiv \sum_{i=0}^{n} z_i \pmod 3$. Therefore, $z$ is divisible by $3$ if and only if $z \equiv 0 \pmod 3$, which is true if and only if the sum of its digits $\sum_{i=0}^{n} z_i$ is also congruent to $0 \pmod 3$. Hence we have shown that every integer written in decimal notation is divisible by $3$ iff the sum of its digits is divisible by $3$. 
 \end{proof}
 
 
@@ -265,7 +273,7 @@ as before, but (2) translates into
 \begin{equation}
 2^{i} \equiv (-1)^{i}\ mod\ 3\ for\ all\ i=0, \ldots, n.
 \end{equation}
-Thus, now we obtain $\sum_{i=0}^{n}{z_{i}2^{i}} \equiv \sum_{i=0}^{n}{(-1)^{n}z_{i}}$ mod $3$.
+Thus, now we obtain $\sum_{i=0}^{n}{z_{i}2^{i}} \equiv \sum_{i=0}^{n}{(-1)^{i}z_{i}}$ mod $3$.
 \end{proof}
 
 
@@ -289,8 +297,9 @@ Thus the last two digits of $7^{50}$ are $49$.
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 1.9} Show that $3^{22}-2^{20}$ is divisible by $7$.
 \begin{proof}
-We observe that $2^{3} \equiv 1$ mod $7$ and thus $2^{18} \equiv 1$ mod $7$ (from \textbf{Theorem 5}). Therefore, we have $2^{20} \equiv 4$ mod $7$.\\
-Next $3^{2} \equiv 2$ mod $7$ and so $3^{6} \equiv 2^{3} \equiv 1$ mod $7$. Hence, we obtain $3^{18} \equiv 1$ mod $7$. Finally, since $3^{4} \equiv 4$ mod $7$, we thus have $3^{22} \equiv 4$ mod $7$. Consequently, we directly see that $3^{22} - 2^{20} \equiv 4 -4 \equiv 0$ mod $7$.
+We first compute $2^{20}$ mod $7$. We observe that $2^{3} \equiv 8 \equiv 1$ mod $7$. By Property (4) of \textbf{Theorem 5}, we have $2^{18} = (2^{3})^{6} \equiv 1^{6} \equiv 1$ mod $7$. Therefore, by Property (3) of \textbf{Theorem 5}, we have $2^{20} = 2^{18} \cdot 2^{2} \equiv 1 \cdot 4 \equiv 4$ mod $7$.\\
+Next, we compute $3^{22}$ mod $7$. We observe that $3^{2} \equiv 9 \equiv 2$ mod $7$. Thus, $3^{6} = (3^{2})^{3} \equiv 2^{3} \equiv 8 \equiv 1$ mod $7$. By Property (4) of \textbf{Theorem 5}, we have $3^{18} = (3^{6})^{3} \equiv 1^{3} \equiv 1$ mod $7$. We also observe that $3^{4} = 81 \equiv 4$ mod $7$.\\
+Therefore, by Property (3) of \textbf{Theorem 5}, we have $3^{22} = 3^{18} \cdot 3^{4} \equiv 1 \cdot 4 \equiv 4$ mod $7$. Consequently, we have $3^{22} - 2^{20} \equiv 4 - 4 \equiv 0$ mod $7$, which shows that $3^{22} - 2^{20}$ is divisible by $7$.
 \end{proof}
 
 

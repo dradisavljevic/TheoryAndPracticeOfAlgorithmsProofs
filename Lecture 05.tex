@@ -87,7 +87,7 @@ Since $\mathbb{Z}_{2^{2}}^{*} = \mathbb{Z}_{4}^{*} = \{1, 3 \}$, it suffices to 
 Case $2$. $p > 2$\\
 By \textbf{Corollary 2 from Lecture 3} we know that $\mathbb{Z}_{p}^{*}$ is a cyclic group of order $p - 1$. Let $g \in \mathbb{Z}_{p}^{*}$ be a generator for $\mathbb{Z}_{p}^{*}$. Thus, it suffices to show the following claim:\\
 Claim $1$. Either $g$ or $g + p$ is a generator for $\mathbb{Z}_{p^{2}}^{*}$.\\
-Let $n$ be the order of $g$ in $\mathbb{Z}_{p^{2}}^{*}$. Then $g^{n} \equiv 1$ mod $p^{2}$, and consequently we also have $g^{n} \equiv 1$ mod $p$. So $p - 1$ must divide $n$. Moreover since $n$ is the order of $g$ in $\mathbb{Z}_{p^{2}}^{*}$, we also know that $N$ divides $\varphi (p^{2})$ (this comes from \textbf{Corollary 1 from Lecture 1}). By \textbf{Theorem 11 from Lecture 2} we know that $\varphi (p^{2}) = p(p - 1)$, and hence, $n|p(p - 1)$. Thus, we have both $(p - 1)|n$ and $n|p(p - 1)$, and consequently either $n = p - 1$ or $n = p(p - 1)$.\\
+Let $n$ be the order of $g$ in $\mathbb{Z}_{p^{2}}^{*}$. Then $g^{n} \equiv 1$ mod $p^{2}$, and consequently we also have $g^{n} \equiv 1$ mod $p$. So $p - 1$ must divide $n$. Moreover since $n$ is the order of $g$ in $\mathbb{Z}_{p^{2}}^{*}$, we also know that $n$ divides $\varphi (p^{2})$ (this comes from \textbf{Corollary 1 from Lecture 1}). By \textbf{Theorem 11 from Lecture 2} we know that $\varphi (p^{2}) = p(p - 1)$, and hence, $n|p(p - 1)$. Thus, we have both $(p - 1)|n$ and $n|p(p - 1)$, and consequently either $n = p - 1$ or $n = p(p - 1)$.\\
 If $n = p(p - 1)$, then $g$ is also a generator for $\mathbb{Z}_{p^{2}}^{*}$, and we are done.\\
 Now, assume $n = p - 1$. Therefore, we know that
 $$g^{p - 1} \equiv 1\ mod\ p^{2}$$
@@ -105,24 +105,28 @@ Taking this all together, we see that $s^{p - 1} \equiv 1 - pg^{p-2}$ mod $p^{2}
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 5.2} Every Carmichael number is the product of at least 3 distinct primes.
 \begin{proof}
-Since Carmichael numbers are not prime, let's try to prove that there is a Carmichael number that has a form of $a=pq$, where both $p$ and $q$ are distinct prime numbers, or in other words, show that Carmichael number is product of at least two distinct primes. According to the first assertion of \textbf{Theorem 9}, Carmichael numbers are square-free, so $p$ and $q$ have to be distinct. Also, let's assume that $p$ is a larger prime of the two, in other words $p > q$.\\
-According to the second assertion of the \textbf{Theorem 9} we have that $a$ is a Carmichael number iff ($p$-1) divides ($a$-1) for ever $p$ that divides $a$. For this to be true, since $a = pq$, we have:
+We prove that no Carmichael number can be the product of exactly 2 distinct primes. Suppose, for contradiction, that $n = pq$ is a Carmichael number where $p$ and $q$ are distinct primes with $p > q$. By definition and Theorem 9(2), $n$ is square-free, so $p$ and $q$ are indeed distinct.
+
+By Theorem 9(2), a square-free number $n$ is a Carmichael number if and only if $(p - 1) \mid (n - 1)$ for every prime $p$ dividing $n$. Applying this to $n = pq$:
 \begin{center}
-$(p-1) \mid (pq - 1)$
+$(p - 1) \mid (pq - 1)$ \quad \text{and} \quad $(q - 1) \mid (pq - 1)$
 \end{center}
-Since prime $p$ divides $pq$. From here we have that there is some integer $k$ such that:
+
+We can write $pq - 1 = p(q - 1) + (p - 1)$. Since $(q - 1) \mid (pq - 1)$ and $(q - 1) \mid p(q - 1)$, we have:
 \begin{center}
-$(p-1)k = pq - 1$
+$(q - 1) \mid (pq - 1 - p(q - 1)) = (p - 1)$
 \end{center}
-And if we multiply $(p-1)$ with a prime $q$, we would get:
+
+This means $(q - 1) \mid (p - 1)$. However, since $p$ and $q$ are distinct primes with $p > q \geq 2$, we have $p - 1 > q - 1 \geq 1$. For $(q - 1)$ to divide $(p - 1)$, there must exist a positive integer $k \geq 2$ such that $p - 1 = k(q - 1)$, so $p = k(q - 1) + 1$.
+
+Now consider the condition $(p - 1) \mid (pq - 1)$. We can write $pq - 1 = q(p - 1) + (q - 1)$. Since $(p - 1) \mid (pq - 1)$ and $(p - 1) \mid q(p - 1)$, we have:
 \begin{center}
-$(p-1)q = pq - q$
+$(p - 1) \mid (q - 1)$
 \end{center}
-If we subtract the last two equations we will get:
-\begin{center}
-$(p-1)(k-q) = q - 1$
-\end{center}
-Which would mean that $(p-1) \mid (q-1)$, which is impossible since $p$ is a larger prime of the two distinct primes. This means that there is no Carmichael number that is product of two distinct primes, meaning that Carmichael number is product of at least three distinct primes.
+
+But we also showed $(q - 1) \mid (p - 1)$. Together, these imply $(p - 1) = (q - 1)$, which means $p = q$, contradicting the assumption that $p$ and $q$ are distinct primes.
+
+Thus, $n$ cannot be a Carmichael number if $n = pq$ for distinct primes $p, q$. Therefore, every Carmichael number must be the product of at least 3 distinct primes.
 \end{proof}
 
 
@@ -130,31 +134,45 @@ Which would mean that $(p-1) \mid (q-1)$, which is impossible since $p$ is a lar
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 5.3} Prove equation (2) in \textbf{Example 5.1}.
 \begin{proof}
-The equations (2) from the said example is as follows:
+The equation (2) from the said example is as follows:
 \begin{center}
 $x(x + 1)(x^3 + x + 1)(x^3 + x^2 + 1) = x^8 - x$
 \end{center}
-over $\mathbb{Z}_{2}$. Since in $\mathbb{Z}_{2}$ 1+1 = 0, we have that:
+over $\mathbb{Z}_{2}$. In $\mathbb{Z}_2$, we have $1 + 1 = 0$, which implies $-1 \equiv 1 \pmod{2}$ and $2x \equiv 0 \pmod{2}$ for any $x$.
+
+We expand the left-hand side step by step:
 \begin{center}
-$-1 = 1$\\
-$2x = 0$
+$x(x + 1)(x^3 + x + 1)(x^3 + x^2 + 1)$
 \end{center}
-With that in mind we can expand the left hand side of the equation:
+
+First, multiply $x(x + 1) = x^2 + x$. Then multiply by $(x^3 + x + 1)$:
 \begin{center}
-$x(x + 1)(x^3 + x + 1)(x^3 + x^2 + 1) = x^8 - x$\\
-$(x^2 + x)(x^3 + x + 1)(x^3 + x^2 + 1) = x^8 - x$\\
-$(x^5 + x^3 + x^2 + x^4 + x^2 + x)(x^3 + x^2 + 1) = x^8 - x$
+$(x^2 + x)(x^3 + x + 1) = x^5 + x^3 + x^2 + x^4 + x^2 + x = x^5 + x^4 + x^3 + x$
 \end{center}
-Since we have that $x^2 + x^2 = 0$ over $\mathbb{Z}_{2}$ this is equal to:
+where we used $x^2 + x^2 = 2x^2 \equiv 0 \pmod{2}$ to cancel like terms.
+
+Next, multiply by $(x^3 + x^2 + 1)$:
 \begin{center}
-$(x^5 + x^4 + x^3 + x)(x^3 + x^2 + 1) = x^8 - x$\\
-$(x^8 + x^7 + x^5 + x^7 + x^6 + x^4 + x^6 + x^5 + x^3 + x^4 + x^3 + x) = x^8 - x$
+$(x^5 + x^4 + x^3 + x)(x^3 + x^2 + 1)$
 \end{center}
-Again, considering that $2x^7=0$, $2x^4 = 0$, $2x^3 = 0$, $2x^6 = 0$ and $2x^5=0$ over $\mathbb{Z}_{2}$ this is same as:
+
+Expanding:
 \begin{center}
-$x^8 + x = x^8 - x$
+$= x^8 + x^7 + x^5 + x^7 + x^6 + x^4 + x^6 + x^5 + x^3 + x^4 + x^3 + x$
 \end{center}
-And since in $\mathbb{Z}_{2}$ -1 = 1, the above equation is true, which is what needed proving.
+
+Now, collecting terms and using $2y \equiv 0 \pmod{2}$ for any $y$, the terms that appear twice cancel:
+- $x^7$ appears twice: $x^7 + x^7 \equiv 0$
+- $x^6$ appears twice: $x^6 + x^6 \equiv 0$
+- $x^5$ appears twice: $x^5 + x^5 \equiv 0$
+- $x^4$ appears twice: $x^4 + x^4 \equiv 0$
+- $x^3$ appears twice: $x^3 + x^3 \equiv 0$
+
+Therefore, we are left with:
+\begin{center}
+$x^8 + x \equiv x^8 - x \pmod{2}$
+\end{center}
+where the last equality holds because $-x \equiv x \pmod{2}$ (since $-1 \equiv 1 \pmod{2}$). Thus, the equation is proven.
 \end{proof}
 
 
@@ -162,22 +180,34 @@ And since in $\mathbb{Z}_{2}$ -1 = 1, the above equation is true, which is what 
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 5.4} Calculate $5^{71}$ mod 31 and provide your solution in the way of the example given at page 39.
 \begin{proof}
-We start by representing 71 in binary form. Since 71 = 64 + 4 + 2 + 1, we know that in binary system it looks like $0100\ 0111_{2}$. So after taking that $y_0 = 1$ we can calculate:
+We use binary exponentiation. First, we write 71 in binary: $71 = 64 + 4 + 2 + 1 = 2^6 + 2^2 + 2^1 + 2^0$, so $71 = (1000111)_2$ in binary.
+
+We compute successive squares of 5 modulo 31:
 \begin{center}
-$y_1 \equiv 5^1 \equiv 5$ mod 31\\
-$y_2 \equiv 5^2 \equiv 25 \equiv -6$ mod 31\\
-$y_3 \equiv 5^3 \equiv 125 \equiv 26 \equiv -5$ mod 31\\
-$y_4 \equiv 5^4 \equiv (-6)^2 \equiv 36 \equiv 5$ mod 31\\
-$y_5 \equiv 5^5 \equiv 3125 \equiv 25 \equiv -6$ mod 31\\
-$y_6 \equiv 5^6 \equiv (-5)^2 \equiv 25 \equiv -6$ mod 31\\
-$y_7 \equiv 5^7 \equiv 78125 \equiv 5$ mod 31\\
+$y_0 = 5^{2^0} = 5^1 \equiv 5 \pmod{31}$\\
+$y_1 = 5^{2^1} = 5^2 \equiv 25 \pmod{31}$\\
+$y_2 = 5^{2^2} = 5^4 \equiv 25^2 = 625 \equiv 625 - 20 \cdot 31 = 625 - 620 = 5 \pmod{31}$\\
+$y_3 = 5^{2^3} = 5^8 \equiv 5^2 = 25 \pmod{31}$\\
+$y_4 = 5^{2^4} = 5^{16} \equiv 25^2 = 625 \equiv 5 \pmod{31}$\\
+$y_5 = 5^{2^5} = 5^{32} \equiv 5^2 = 25 \pmod{31}$\\
+$y_6 = 5^{2^6} = 5^{64} \equiv 25^2 = 625 \equiv 5 \pmod{31}$
 \end{center}
-So finally we have that:
+
+Since $71 = (1000111)_2$, we have $5^{71} = 5^{64} \cdot 5^4 \cdot 5^2 \cdot 5^1$. Using the computed values:
 \begin{center}
-$5^{71} \equiv 5^{64+4+2+1} \equiv 5^{64}5^{4}5^{2}5^{1} \equiv 5 \cdot 5 \cdot (-6) \cdot 5 \equiv 5 \cdot 5 \cdot 25 \cdot 5 \equiv 5^5$
+$5^{71} \equiv y_6 \cdot y_2 \cdot y_1 \cdot y_0 \equiv 5 \cdot 5 \cdot 25 \cdot 5 \pmod{31}$
 \end{center}
-So we have that $5^71 \equiv 5^5 \equiv 25$ mod 31.\\
-This could also be done by noticing that 31 is a prime number, which would mean that $5^{30}$ is 1, and $5^{60}$ is $1^2$ mod 31 (\textbf{Fermat's Little Theorem}). So we would look at $5^{71}$ as $5^{11}$ mod 31.
+
+Computing step by step:
+\begin{center}
+$5 \cdot 5 = 25$\\
+$25 \cdot 25 = 625 \equiv 5 \pmod{31}$\\
+$5 \cdot 5 = 25$
+\end{center}
+
+Therefore, $5^{71} \equiv 25 \pmod{31}$.
+
+\textbf{Verification using Fermat's Little Theorem:} Since 31 is prime, by Fermat's Little Theorem, $5^{30} \equiv 1 \pmod{31}$. We can verify by computing $71 = 2 \cdot 30 + 11$, so $5^{71} = (5^{30})^2 \cdot 5^{11} \equiv 5^{11} \pmod{31}$. Computing $5^{11} = 5^8 \cdot 5^2 \cdot 5 \equiv 25 \cdot 25 \cdot 5 = 625 \cdot 5 \equiv 5 \cdot 5 = 25 \pmod{31}$, which confirms our result.
 \end{proof}
 
 
@@ -188,7 +218,39 @@ This could also be done by noticing that 31 is a prime number, which would mean 
 If $n$ is pseudo-prime to the bases $b_1$ and $b_2$ such that gcd($b_1$, $n$) = 1 and gcd($b_2$, $n$) = 1, then $n$ is also pseudo-prime to the bases $b_{1}b_{2}$, $b_{1}b_{2}^{-1}$, and $b_{1}^{-1}b_{2}$.
 \end{center}
 \begin{proof}
-Since $n$ is a composite number for which $b_{1}^{n-1} \equiv 1$ mod $n$ and $b_{2}^{n-1} \equiv 1$ mod $n$, or in other words $b_{1}^n \equiv b_{1}$ mod $n$ and $b_{2}^n \equiv b_{2}$ mod $n$, this implies that $(b_{1}b_{2})^n = b_{1}^{n}b_{2}^{n} \equiv b_{1}b_{2}$ mod $n$, which is same as $(b_{1}b_{2})^{n-1} \equiv 1$ mod $n$, meaning $n$ is also pseudo-prime to the base $b_{1}b_{2}$.\\
-Having $n$ be pseudo-prime to the bases $b_1$ and $b_2$ implies that $b_1^{-n} = {(b_1^{n})}^{-1} \equiv b_1^{-1}$ mod $n$ and $b_2^{-n} = {(b_2^{n})}^{-1} \equiv b_2^{-1}$ mod $n$ respectively, or that $n$ is pseudo-prime to bases $b_{1}^{-1}$ and $b_{2}^{-1}$ also. From this and the proof that $n$ is pseudo-prime for the base $b_{1}b_{2}$ we have that it is also pseudo-prime for base $b_{1}b_{2}^{-1}$, and $b_{1}^{-1}b_{2}$, which is what needed proof.
+By definition, $n$ is pseudo-prime to base $b$ if $b^{n-1} \equiv 1 \pmod{n}$. Given that $n$ is pseudo-prime to bases $b_1$ and $b_2$, we have:
+$$b_1^{n-1} \equiv 1 \pmod{n} \quad \text{and} \quad b_2^{n-1} \equiv 1 \pmod{n}$$
+
+\textbf{For base $b_1 b_2$:}
+\begin{center}
+$(b_1 b_2)^{n-1} = b_1^{n-1} b_2^{n-1} \equiv 1 \cdot 1 = 1 \pmod{n}$
+\end{center}
+Therefore, $n$ is pseudo-prime to base $b_1 b_2$.
+
+\textbf{For base $b_1^{-1}$:}
+From $b_1^{n-1} \equiv 1 \pmod{n}$, we can take the inverse of both sides:
+\begin{center}
+$(b_1^{n-1})^{-1} \equiv 1^{-1} \pmod{n}
+\end{center}
+This gives us $(b_1^{-1})^{n-1} \equiv 1 \pmod{n}$, so $n$ is pseudo-prime to base $b_1^{-1}$.
+
+\textbf{For base $b_2^{-1}$:}
+Similarly, from $b_2^{n-1} \equiv 1 \pmod{n}$, we obtain $(b_2^{-1})^{n-1} \equiv 1 \pmod{n}$, so $n$ is pseudo-prime to base $b_2^{-1}$.
+
+\textbf{For base $b_1 b_2^{-1}$:}
+Since $n$ is pseudo-prime to bases $b_1$ and $b_2^{-1}$:
+\begin{center}
+$(b_1 b_2^{-1})^{n-1} = b_1^{n-1} (b_2^{-1})^{n-1} \equiv 1 \cdot 1 = 1 \pmod{n}$
+\end{center}
+Therefore, $n$ is pseudo-prime to base $b_1 b_2^{-1}$.
+
+\textbf{For base $b_1^{-1} b_2$:}
+Since $n$ is pseudo-prime to bases $b_1^{-1}$ and $b_2$:
+\begin{center}
+$(b_1^{-1} b_2)^{n-1} = (b_1^{-1})^{n-1} b_2^{n-1} \equiv 1 \cdot 1 = 1 \pmod{n}$
+\end{center}
+Therefore, $n$ is pseudo-prime to base $b_1^{-1} b_2$.
+
+This completes the proof of Assertion (2).
 \end{proof}
 \end{document}

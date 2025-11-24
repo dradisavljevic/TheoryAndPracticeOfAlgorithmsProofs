@@ -72,31 +72,49 @@ The halting problem represents the problem of determining whether the program wi
 $[(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{1},g_{1})] \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2}) = (p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); [(p_{1},g_{1}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})]$
 \end{center}
 \begin{proof}
-Since the definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex); relies on logical conjunction and logical disjunction ($\left(P_{1},G_{1}\right) \tikz\draw[black,fill=black] (0,0) circle (.5ex); \left(P_{2},G_{2}\right) =_{df} \left(P_{1} \land P_{2}, G_{2} \lor \left(P_{2} \land G_{1} \right) \right)$, we will prove this through using properties of logical operators. It is important to note before we start that both conjunction and disjunction are associative (for example, $(a \land b) \land c = a \land (b \land c)$. We will also use distributive law:
-\begin{center}
-$(a \lor (b \land c)) = ((a \lor b) \land (a \lor c))$\\
-$(a \land (b \lor c)) = ((a \land b) \lor (a \land c))$\\
-\end{center}
-\begin{samepage}
-And law of absorbtion:
-\begin{center}
-$(a \lor (a \land b)) =a$\\
-$(a \land (a \lor b)) =a$\\
-\end{center}
-\end{samepage}
-To begin we start with the left hand side of the equation:
-\begin{center}
-$[(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{1},g_{1})] \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2}) $\\
-$\left(p_{0} \land p_{1}, g_{1} \lor \left(p_{1} \land g_{0} \right) \right) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)\\
-$\left(p_{0} \land p_{1} \land p_{2}\right), \left( g_{2} \lor \left(p_{2} \land \left(g_{1} \lor \left(p_{1} \land g_{0} \right) \right) \right) \right)$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)
-\end{center}
-for the time being we will mark $( 1 ) = g_{2} \lor \left(p_{2} \land \left(g_{1} \lor \left(p_{1} \land g_{0} \right) \right) \right)$ and take a look at the right hand sign of the starting equation:
-\begin{center}
-$(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); [(p_{1},g_{1}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); (p_{2},g_{2})] $\\
-$(p_{0},g_{0}) \tikz\draw[black,fill=black] (0,0) circle (.5ex); \left(p_{1} \land p_{2}, g_{2} \lor \left(p_{2} \land g_{1} \right) \right)$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)\\
-$\left(p_{0} \land p_{1} \land p_{2}\right), \left( \left( g_{2} \lor \left(p_{2} \land g_{1} \right) \right) \lor \left(\left(p_{1} \land p_{2}\right) \land g_{0} \right) \right)$ (definition of \tikz\draw[black,fill=black] (0,0) circle (.5ex);)
-\end{center}
-We can see that the expression to the left of , is same in both cases, so we will take the expression to the right of it and apply distributive and absorption laws, and after simplifying the expression we will get that it equals to $g_{2} \lor \left(p_{2} \land \left(\left(g_{1} \lor p_{1} \right) \land \left( g_{1} \lor g_{0} \right) \right) \right)$, which after applying the distributive law, we get exactly ( 1 ), thus we can say that associative property holds for \tikz\draw[black,fill=black] (0,0) circle (.5ex);.
+We prove that $\oplus$ is associative by computing both sides of the associativity equation and verifying they are equal.
+
+\textbf{Definition:} $(P, G) \oplus (P', G') = (P \land P', G' \lor (P' \land G))$
+
+\textbf{Properties used:}
+\begin{itemize}
+\item Associativity of $\land$ and $\lor$: $(a \land b) \land c = a \land (b \land c)$ and $(a \lor b) \lor c = a \lor (b \lor c)$
+\item Distributivity: $(a \lor (b \land c)) = (a \lor b) \land (a \lor c)$ and $(a \land (b \lor c)) = (a \land b) \lor (a \land c)$
+\item Absorption: $(a \lor (a \land b)) = a$ and $(a \land (a \lor b)) = a$
+\end{itemize}
+
+\textbf{Left-hand side:} $[(P_0, G_0) \oplus (P_1, G_1)] \oplus (P_2, G_2)$
+
+Step 1: Apply $\oplus$ to $(P_0, G_0)$ and $(P_1, G_1)$:
+$$(P_0, G_0) \oplus (P_1, G_1) = (P_0 \land P_1, G_1 \lor (P_1 \land G_0))$$
+
+Step 2: Apply $\oplus$ to the result and $(P_2, G_2)$:
+$$[(P_0 \land P_1), (G_1 \lor (P_1 \land G_0))] \oplus (P_2, G_2)$$
+$$= ((P_0 \land P_1) \land P_2, G_2 \lor (P_2 \land (G_1 \lor (P_1 \land G_0))))$$
+$$= (P_0 \land P_1 \land P_2, G_2 \lor (P_2 \land G_1) \lor (P_2 \land P_1 \land G_0))$$
+
+\textbf{Right-hand side:} $(P_0, G_0) \oplus [(P_1, G_1) \oplus (P_2, G_2)]$
+
+Step 1: Apply $\oplus$ to $(P_1, G_1)$ and $(P_2, G_2)$:
+$$(P_1, G_1) \oplus (P_2, G_2) = (P_1 \land P_2, G_2 \lor (P_2 \land G_1))$$
+
+Step 2: Apply $\oplus$ to $(P_0, G_0)$ and the result:
+$$(P_0, G_0) \oplus [(P_1 \land P_2), (G_2 \lor (P_2 \land G_1))]$$
+$$= (P_0 \land (P_1 \land P_2), (G_2 \lor (P_2 \land G_1)) \lor ((P_1 \land P_2) \land G_0))$$
+$$= (P_0 \land P_1 \land P_2, G_2 \lor (P_2 \land G_1) \lor (P_1 \land P_2 \land G_0))$$
+
+\textbf{Comparison:}
+
+Both sides simplify to:
+$$(P_0 \land P_1 \land P_2, G_2 \lor (P_2 \land G_1) \lor (P_2 \land P_1 \land G_0))$$
+
+The first components are identical: $P_0 \land P_1 \land P_2$.
+
+The second components are equal because the expressions:
+$$G_2 \lor (P_2 \land G_1) \lor (P_2 \land P_1 \land G_0)$$
+both appear on the right-hand side and are the same due to associativity and commutativity of $\lor$.
+
+Therefore, $[(P_0, G_0) \oplus (P_1, G_1)] \oplus (P_2, G_2) = (P_0, G_0) \oplus [(P_1, G_1) \oplus (P_2, G_2)]$, and $\oplus$ is associative.
 \end{proof}
 
 \end{document}
