@@ -161,72 +161,16 @@ Therefore, Definition 3 implies Definition 2, and the definitions are \textbf{eq
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 8.2} Prove equivalence of \textbf{Definition 8} and \textbf{Definition 2}.
 \begin{proof}
-Assertion (1) is identical in both definitions, so we focus on proving the equivalence of assertion (2).
-
-\textbf{Direction (Definition 2 $\Rightarrow$ Definition 8):}
-Assume Definition 2: $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
-
-Let $t$ be any prime divisor of $n$, and consider $n/t$. Since $t$ divides $n$, we have $1 \leq n/t < n$. Therefore, by Definition 2, $1 - \omega^{n/t}$ is not a zero-divisor in $\mathcal{R}$.
-
-Thus Definition 2 implies Definition 8.
-
-\textbf{Direction (Definition 8 $\Rightarrow$ Definition 2):}
-Assume Definition 8: $\omega^{n/t} - 1$ is not a zero-divisor for every prime divisor $t$ of $n$.
-
-We must show that $1 - \omega^k$ is not a zero-divisor for all $1 \leq k < n$.
-
-Let $1 \leq k < n$. We use the following algebraic identity. For any $a, b$ with $a | b$, we have:
-$$x^b - 1 = (x^a - 1)(x^{b-a} + x^{b-2a} + \cdots + x^a + 1)$$
-
-when $b = ma$ for integer $m$. More generally, $x^a - 1$ divides $x^b - 1$ algebraically whenever $a | b$.
-
-The key insight is that for $1 \leq k < n$, we can express $\omega^k - 1$ in terms of factors involving $\omega^{n/p} - 1$ for prime divisors $p$ of $n$.
-
-Specifically, consider the factorization in the polynomial ring $\mathbb{Z}[x]$:
-$$x^n - 1 = \prod_{d | n} \Phi_d(x)$$
-where $\Phi_d(x)$ are cyclotomic polynomials.
-
-For any $k$ with $1 \leq k < n$, the element $\omega^k - 1$ can be written as:
-$$\omega^k - 1 = (\omega - 1)(\omega^{k-1} + \omega^{k-2} + \cdots + \omega + 1)$$
-
-By the structure of principal roots and using induction on the prime factorization of $n/\gcd(k,n)$, we can show that if $\omega^{n/p} - 1$ is not a zero-divisor for all prime $p | n$, then $\omega^k - 1$ is not a zero-divisor for all $1 \leq k < n$.
-
-The detailed argument requires showing that the algebraic dependencies between different powers of $\omega$ preserve the non-zero-divisor property, which follows from the fact that $\omega$ satisfies $\omega^n = 1$ and the prescribed conditions on prime-index powers.
-
-Thus Definition 8 implies Definition 2.
+Assertion (1) is same in both cases, so there is no need proving that part. We will focus on assertion (2) for both definitions. If we start from the claim in \textbf{Definition 2} that $1 - w^{k}$ is not a zero divisor. Let $g$ be gcd($k,n$) and let there be some $u,v \in \mathbb{Z}$ such that $uk + vn = g$. Since $k<n$ we have that $1 \leq g < n$, so we have that for prime factor $t$ of $n$ holds that $g$ divides ($n/t$). From here we have that $(1 - \omega^{g})a = (\omega^{n/t}-1)$, so $(1 - \omega^{g})$ would be a zero divisor if $(\omega^{n/t}-1)$ is zero divisor. Using the identity that $uk + vn = g$ we have $(1 - \omega^{uk})=(1 - \omega^{uk}\omega^{vn})=(1 - \omega^{g})$ so we have that $(1 - \omega^{k}) | (1 - \omega^{g})$. Therefore we have that if $1 - \omega^{k}$ is a zero divisor so is the $\omega^{n/t}-1$, and the equivalence is proven.
 \end{proof}
+
 
 
 
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 8.3} Let $n$ and $\omega$ be positive powers of $2$, and let $m = \omega^{n/2} + 1$. Prove the equivalence of \textbf{Definitions 8 and 3} for the ring $\mathbb{Z}_{m}$.
 \begin{proof}
-We must show that in $\mathbb{Z}_m$, $\omega$ satisfies Definition 8 if and only if it satisfies Definition 3.
-
-\textbf{Direction (Definition 8 $\Rightarrow$ Definition 3):}
-Assume $\omega$ satisfies Definition 8 in $\mathbb{Z}_m$: $\omega^n = 1$ and $\omega^{n/t} - 1$ is not a zero-divisor for every prime divisor $t$ of $n$.
-
-Since $n$ is a power of 2 (say $n = 2^k$), the only prime divisor of $n$ is $2$. Thus $\omega^{n/2} - 1$ is not a zero-divisor in $\mathbb{Z}_m$.
-
-By Exercise 8.2, Definition 8 implies Definition 2 (i.e., $1 - \omega^j$ is not a zero-divisor for all $1 \leq j < n$).
-
-By Exercise 8.1, Definition 2 implies Definition 3 (i.e., $\sum_{j=0}^{n-1}\omega^{jk} = 0$ for all $1 \leq k < n$).
-
-Therefore, Definition 8 implies Definition 3.
-
-\textbf{Direction (Definition 3 $\Rightarrow$ Definition 8):}
-Assume $\omega$ satisfies Definition 3 in $\mathbb{Z}_m$: $\omega^n = 1$ and $\sum_{j=0}^{n-1}\omega^{jk} = 0$ for all $1 \leq k < n$.
-
-By Exercise 8.1, Definition 3 implies Definition 2 (with the caveat that our counterexample showed non-equivalence in general, but in $\mathbb{Z}_m$ with $n = 2^k$, Definition 3 does imply Definition 2).
-
-Specifically, for any $1 \leq k < n$, we have $\sum_{j=0}^{n-1}\omega^{jk} = 0$ in $\mathbb{Z}_m$. By the geometric sum identity (valid when the denominator is not a zero-divisor):
-$$\sum_{j=0}^{n-1}\omega^{jk} = \frac{1 - \omega^{nk}}{1 - \omega^k} = \frac{0}{1 - \omega^k} = 0$$
-
-For this equation to hold when $1 - \omega^k$ could potentially be a zero-divisor, we would need special structure. However, by Lemma 4 and Lemma 5, for $n$ and $\omega$ powers of 2 with $m = \omega^{n/2} + 1$, the geometric sum satisfies $\sum_{j=0}^{n-1}\omega^{jp} \equiv 0 \pmod{m}$ for all $1 \leq p < n$, which ensures $1 - \omega^k$ cannot be a zero-divisor (otherwise the geometric series formula would fail).
-
-Thus by Exercise 8.2, Definition 2 implies Definition 8.
-
-Therefore, Definitions 3 and 8 are equivalent in $\mathbb{Z}_m$.
+From exercises 8.1 and 8.2, we have proven equivalences and non equivalences of the theorem. In ring $\mathbb{Z}_{m}$ where $m=\omega^{n/2}+1$ and $\omega$ and $n$ are powers of two, the claim stated at the end of exercise 1 does not hold. So from exercise 1 and exercise two, we have that these two definitions are equivalent. Or rather for setting $(\omega^{n/t}-1)$ we have that $(\omega^{n/t}-1)\sum^{n-1}_{j=0}\omega^{jn/t}=0$, and since $(\omega^{n/t}-1)$ is non zero divisor for every $t$ we have that $\sum^{n-1}_{j=0}\omega^{jn/t}=0$, getting \textbf{Definition 3}.
 \end{proof}
 
 
@@ -234,37 +178,20 @@ Therefore, Definitions 3 and 8 are equivalent in $\mathbb{Z}_m$.
 \noindent\rule{12cm}{0.4pt}\\
 \noindent \textbf{Exercise 8.4}  Show Assertion (1) of \textbf{Theorem 5}.
 \begin{proof}
-We prove that the positive convolution $\vec{a} \otimes \vec{b} = F^{-1}(F(\vec{a}) \odot F(\vec{b}))$, where $\odot$ denotes pointwise multiplication.
-
-By Theorem 4 and Definition 5, we pad both vectors to dimension $2n$: $\vec{a} = (a_0, \ldots, a_{n-1}, 0, \ldots, 0)^T$ and $\vec{b} = (b_0, \ldots, b_{n-1}, 0, \ldots, 0)^T$.
-
-Let $\omega = \psi^2$ where $\psi$ is a principal $2n$-th root of unity. The discrete Fourier transform with this primitive root yields:
-$$\widehat{a}_l = \sum_{j=0}^{2n-1}a_j\omega^{lj},\quad \widehat{b}_l = \sum_{j=0}^{2n-1}b_j\omega^{lj}$$
-
-The pointwise product is:
-$$\widehat{a}_l \cdot \widehat{b}_l = \left(\sum_{j=0}^{2n-1}a_j\omega^{lj}\right) \left(\sum_{k=0}^{2n-1}b_k\omega^{lk}\right) = \sum_{j=0}^{2n-1}\sum_{k=0}^{2n-1}a_jb_k\omega^{l(j+k)}$$
-
-By Definition 6, the convolution is $\vec{a} \otimes \vec{b} = (c_0, \ldots, c_{2n-1})^T$ where:
-$$c_p = \sum_{j=0}^{p} a_j b_{p-j}$$
-for $p = 0, \ldots, 2n-1$, with $a_j = 0$ and $b_j = 0$ for $j \geq n$.
-
-The Fourier transform of the convolution is:
-$$\widehat{c}_l = \sum_{p=0}^{2n-1} c_p \omega^{lp} = \sum_{p=0}^{2n-1} \left(\sum_{j=0}^{p} a_j b_{p-j}\right) \omega^{lp}$$
-
-Reordering the double sum (swapping the order of summation):
-$$= \sum_{j=0}^{2n-1} \sum_{p=j}^{2n-1} a_j b_{p-j} \omega^{lp}$$
-
-Substituting $k = p - j$ (so $p = k + j$):
-$$= \sum_{j=0}^{2n-1} \sum_{k=0}^{2n-1-j} a_j b_k \omega^{l(k+j)}$$
-
-Since $a_j = 0$ for $j \geq n$ and $b_k = 0$ for $k \geq n$, the nonzero terms occur only when $j < n$ and $k < n$:
-$$= \sum_{j=0}^{n-1} \sum_{k=0}^{n-1} a_j b_k \omega^{l(j+k)}$$
-
-This equals $\widehat{a}_l \cdot \widehat{b}_l$, since:
-$$\widehat{a}_l \cdot \widehat{b}_l = \sum_{j=0}^{2n-1}\sum_{k=0}^{2n-1}a_j b_k \omega^{l(j+k)} = \sum_{j=0}^{n-1}\sum_{k=0}^{n-1}a_j b_k \omega^{l(j+k)}$$
-(where the outer sums collapse due to zero padding).
-
-Therefore:
-$$\vec{a} \otimes \vec{b} = F^{-1}(F(\vec{a}) \odot F(\vec{b}))$$
+Relying on \textbf{Theorem 4}, we have:
+\begin{center}
+Let $(\widehat{a}_0,...,\widehat{a}_{m-1})^{T} =_{df}F(\vec(a))$ and $(\widehat{b}_0,...,\widehat{b}_{m-1})^{T} =_{df}F(\vec(b))$
+\end{center}
+We can represent it as:
+$$\widehat{a}_l = \sum_{j=0}^{m-1}a_j\psi^{2lj},\ and\ \widehat{b}_l = \sum_{j=0}^{m-1}b_j\psi^{2lj}$$
+consequently having:
+$$\widehat{a}_l\widehat{b}_l = \sum_{j=0}^{m-1}\sum_{k=0}^{m-1}a_jb_k\psi^{2l(j+k)}$$
+From \textbf{Definition 6} we set $\vec{a} \otimes \vec{b} =_{df}(c_0,...,c_{m-1})^T$ and furthermore $F\left(\vec{a} \otimes \vec{b}\right) =_{df}(\widehat{c}_0,...,\widehat{c}_{m-1})^T$ then it suffices to show that $F\left(\vec{a} \otimes \vec{b}\right) = F(\vec{a})\ \tikz\draw[black,fill=black] (0,0) circle (.5ex);\ F(\vec{b})$. By \textbf{Definition 6} we also get $c_{p}=  \sum_{j=0}^{p}a_{j}b_{p-j}$ for all $ 0 \leq p < 2m-1$, then setting $b_{p-j} =_{df} 0$ for all $p < j$ we have
+$$\widehat{c}_l = \sum_{p=0}^{m-1}c_p\psi^{2lp} =  \sum_{p=0}^{m-1}\sum_{j=0}^{p}a_{j}b_{p-j}\psi^{2lp} =  \sum_{p=0}^{m-1}\sum_{j=0}^{m-1}a_{j}b_{p-j}\psi^{2lp} =  \sum_{j=0}^{m-1}\sum_{p=0}^{m-1}a_{j}b_{p-j}\psi^{2lp}$$
+If we let $k = p-j$ so for $p =0$ we have $ k = -j$, and also we have that $p=k+j$, so for $p = m - 1$ we obtain that $k = m - 1 - j$ thus having:
+$$=  \sum_{j=0}^{m-1}\sum_{k= -j}^{m-1-j}a_{j}b_{k}\psi^{2l(k+j)} = \sum_{j=0}^{m-1}\sum_{k= -j}^{m-1-j}a_{j}b_{k}\psi^{2l(j+k)}$$
+Since $b_{k}=0$ for any $k$, we have that second summations upper index does not depend on $j$, and since $b_{p-j} =_{df} 0$ for all $p < j$ we can set the lower index of second summation to 0 , then we have
+$$\widehat{c}_l  =  \sum_{j=0}^{m-1}\sum_{k= 0}^{m-1}a_{j}b_{k}\psi^{2l(k+j)}=\widehat{a}_l\widehat{b}_l$$
+And the assertion is shown.
 \end{proof}
 \end{document}

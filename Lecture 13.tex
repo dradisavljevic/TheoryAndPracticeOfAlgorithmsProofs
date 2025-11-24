@@ -64,21 +64,17 @@ There exists a log-space uniform family $(C_{n})_{n \in \mathbb{N}}$ of Boolean 
 
 \section{Exercises}
 \noindent \textbf{Exercise 13.1}  Repeat the computation presented in \textbf{Example 13.6} for the case that $a = 13$ is given as $(0, 3, 1)$ as input.
+\noindent \textbf{Exercise 13.1}  Repeat the computation presented in \textbf{Example 13.6} for the case that $a = 13$ is given as $(0, 3, 1)$ as input.
 \begin{proof}
-Let $m = 4^{2} + 1 = 17$ and let the input radix-4 representation be $(x_2, x_1, x_0) = (0, 3, 1)$ where each $x_i \in \{-3, \ldots, 3\}$.
-
-We compute the value represented by this radix-4 encoding:
-$$|x|_4 = x_2 \cdot 4^2 + x_1 \cdot 4^1 + x_0 \cdot 4^0 = 0 \cdot 16 + 3 \cdot 4 + 1 \cdot 1 = 0 + 12 + 1 = 13$$
-
-Therefore, $|x|_4 \equiv 13 \pmod{17}$. Since $13 < 17 = m$, we have $13 \equiv 13 \pmod{17}$, so the value is indeed $13$.
-
-Now we convert this to binary representation. We need to express $13$ in binary form:
-$$13 = 8 + 4 + 1 = 2^3 + 2^2 + 2^0$$
-
-Therefore, the binary representation is $(1, 1, 0, 1)_2$ (reading the bits from most significant to least significant).
-
-Verification: We check that $1101_2 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = 8 + 4 + 0 + 1 = 13$, which confirms our conversion is correct.
+Let $m = 4^{2} + 1 = 17$ and let $a=13$ be given as input as $(0, 3, 1)$.
+Thus, we obtain:
+\begin{center}
+$\vert x^{+} \vert = (0,0,1,1,0,1)$\\
+$\vert x^{-} \vert = (0,0,0,0,0,0)$
+\end{center}
+and $\vert x^{+} \vert - \vert x^{-} \vert =(0,0,1,1,0,1) =13$ (written as AS-number) (Since we first negate the first number and add it to second, then negating the result, this gives us the first number since the second one is all 0s). So again, for this example, we can omit the computation of other candidates, since 13 is between 0 and our $m$.
 \end{proof}
+
 
 
 

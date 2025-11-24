@@ -64,36 +64,22 @@ Let $n \in \mathbb{N}, n > 1$, and let $A$ be a comparison-based algorithm that 
 \section{Exercises}
 \noindent \textbf{Exercise 15.1}  Every bit-reversal ring is $\frac{1}{2}$-symmetric.
 \begin{proof}
-A bit-reversal ring is a ring of size $n = 2^k$ for some $k \geq 1$, where processes are positioned at locations $0, 1, \ldots, 2^k - 1$ in order around the ring. The UID of the process at position $i$ is $\operatorname{bitreverse}(i)$ (the integer obtained by reversing the $k$-bit binary representation of $i$).
-
-A ring is $c$-symmetric if for all segment lengths $l$ with $\sqrt{n} \leq l \leq n$, there are at least $\lceil cn/l \rceil$ segments of length $l$ that are pairwise order-equivalent. We need to show that $c = 1/2$ works.
-
-\textbf{Example for $n = 8$ (where $k = 3$):} 
-The positions and their UIDs are:
+From the information that we are talking about bit-reversal ring we have that $n=2^{k}$, or that $n$ is a power of $2$. Next, from definition of symmetry we have that for all $l$, such that $\sqrt{n} \leq l \leq n$ where $l$ is length, there are at least $\lfloor cn/l \rfloor$ where c=$\frac{1}{2}$ and $n=2^{k}$, thus giving $\lfloor 2^{k-1}/l \rfloor$ segments in the ring that are order equivalent to $S$, including $S$ itself.\\
+To prove the claim for all $l$ we can assume the upper bound to be $n/2$ instead of $n$ since $\lceil \frac{n/2}{l} \rceil$ is equal to 1 for $l=n/2$. Trivial case is also for $n=1$ so we can assume $n \geq 2$.\\
+The relative order of elements in the interval of length $n/2$ starting at $i$ is the same as the relative order of elements in the ring of length $n/2$, when read from position $i$. We can list intervals of length 4 in a ring of length 8 as follows:
 \begin{center}
-\begin{tabular}{c|cccccccc}
-Position $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
-\hline
-Binary of $i$ & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 \\
-UID (bit-rev) & 0 & 4 & 2 & 6 & 1 & 5 & 3 & 7
+\begin{tabular}{ c c }
+0,4,2,6 & 0,2,1,3 \\
+4,2,6,1 & 2,1,3,0 \\
+2,6,1,5 & 1,3,0,2 \\
+6,1,5,3 & 3,0,2,1 \\
+1,5,3,7 & 0,2,1,3 \\
+5,3,7,0 & 2,1,3,0 \\
+3,7,0,4 & 1,3,0,2 \\
+7,0,4,2 & 3,0,2,1
 \end{tabular}
 \end{center}
-
-Consider segments of length $l = 4$. The consecutive segments starting at positions $0, 1, 2, \ldots$ have UIDs:
-\begin{itemize}
-\item Starting at 0: $(0, 4, 2, 6)$ with order $0 < 2 < 4 < 6$
-\item Starting at 1: $(4, 2, 6, 1)$ with order $1 < 2 < 4 < 6$
-\item Starting at 2: $(2, 6, 1, 5)$ with order $1 < 2 < 5 < 6$
-\item Starting at 3: $(6, 1, 5, 3)$ with order $1 < 3 < 5 < 6$
-\item Starting at 4: $(1, 5, 3, 7)$ with order $1 < 3 < 5 < 7$
-\end{itemize}
-
-We observe that there are multiple segments with different relative orders, providing sufficient symmetry.
-
-\textbf{Key property of bit-reversal:} For any position $i$ and $j$ with $i \oplus j = 2^{k-1}$ (where $\oplus$ denotes XOR), the UIDs $\operatorname{bitreverse}(i)$ and $\operatorname{bitreverse}(j)$ differ by a flip in the most significant bit position. This creates a structural symmetry: segments starting at positions differing by $2^{k-1}$ have related bit patterns in their UIDs.
-
-\textbf{Counting order-equivalent segments:} For a given length $l$ where $\sqrt{n} \leq l \leq n$, the bit-reversal structure ensures that as we cycle through all $n$ starting positions, the patterns of relative orders repeat with a period that divides $n$. Specifically, due to the symmetry under bit-reversal, at least half of the segments can be paired into order-equivalent groups. This means there are at least $n/(2l)$ distinct order classes, and within each class there are at least $l$ segments, giving us at least $\lceil n/(2l) \rceil$ segments in the largest order-equivalence class.
-
-Therefore, every bit-reversal ring satisfies the $\frac{1}{2}$-symmetry property.
+Here we can see that intervals on the left doesn't contain a pair of elements that are different only in their least significant bit. One way to ignore the least significant bit is to divide the numbers by 2, and then we would get intervals on the right.\\
+This property immediately implies a similar property for all intervals of length $l \leq n/2$. The relative order of elements in the interval of length $l$ starting at $i$ is the same as the relative order of elements in the interval of length $l$ starting at $i$ mod $n/2$ in the ring of length $n/2$. By induction, from here we can get that an interval of length $l \leq n/2$ has at least this many order equivalent intervals, thus getting $2\lceil \frac{n/4}{l} \rceil \geq \lceil \frac{n/2}{l} \rceil$, meaning that every bit-reversal ring is in fact $\frac{1}{2}$-symmetric.
 \end{proof}
 \end{document}

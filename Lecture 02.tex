@@ -276,18 +276,16 @@ We have to compute $d = gcd(a,b)$. If $d$ does not divide $c$, we are done, sinc
 \begin{center}
 $x_{0, j} = \left( x_{0} + j \cdot \frac{b}{d} \right)$ mod $b$ , $j = 0, \ldots, d - 1$
 \end{center}
-We have $ax_{0,j} \equiv c$ mod $b$ for all $j = 0, \ldots, d- 1$. These are exactly the $d$ distinct solutions of the congruence $ax \equiv c$ mod $b$ (by Exercise 2.3), and they are pairwise incongruent modulo $b$ since $0 < j \cdot \frac{b}{d} < b$ for $j = 0, \ldots, d-1$.\\
-For each $x_{0,j}$, consider the residue class it generates, i.e., all integers $x_{0,j} + k \cdot b$, where $k \in \mathbb{Z}$. For each such integer, we can compute the corresponding $y$ value:
-$$y = -\frac{a(x_{0,j} + k \cdot b) - c}{b} \in \mathbb{Z}$$
-This is an integer because $a(x_{0,j} + k \cdot b) \equiv c$ mod $b$. Therefore,
-$$a(x_{0,j} + k \cdot b) - c = mb$$
-for some $m \in \mathbb{Z}$, which gives us
-$$y = -m = -\frac{a(x_{0,j} + k \cdot b) - c}{b}.$$
-Thus, all solutions of $ax + by = c$ are given by
+We have $ax_{0,j} \equiv c$ mod $b$ for all $j = 0, \ldots, d- 1$. For each $x_{0,j}$, consider the residue class it generates, i.e., all integers $x_{0,j} + k \cdot b$, where $k \in \mathbb{Z}$. Hence,
 \begin{center}
-$\left\lbrace \left( x_{0, j} + k \cdot b, -\frac{a(x_{0,j} + k \cdot b) - c}{b} \right) | k \in \mathbb{Z}, j = 0, \ldots, d - 1 \right\rbrace$.
+$\frac{a(x_{0,j} + k \cdot b) - c}{b} \in \mathbb{Z}$ , and therefore \\
+$a(x_{0, j} + k \cdot b) - \frac{a(x_{0, j} + k \cdot b) - c}{b} \cdot b = c$
 \end{center}
-Consequently, we have characterized the solution set of $ax + by = c$.
+Consequently all solutions of $ax + by = c$ are given by
+\begin{center}
+$\left\lbrace \left( x_{0, j} + k \cdot b, - \frac{a(x_{0,j} + k \cdot b) - c}{b} \right) | k \in \mathbb{Z}, j = 0, \ldots, d - 1 \right\rbrace$.
+\end{center}
+Thus, we have characterized the solution set of $ax + by = c$.
 \end{proof}
 \end{samepage}
 
@@ -373,6 +371,6 @@ This tells us that ord($a^k$) $\leq \frac{n}{d}$. Next let's assume there is $m 
 We observe that
 $$ n^{5} - n = (n - 1)n(n+1)(n^{2} +1).$$
 Note that the first three factors constitute three successive numbers. Therefore, the product $(n-1)n(n+1)$ is always divisible by $2$ and by $3$. Furthermore, in this product one factor is either also divisible by $5$ or we have $n \equiv \pm 2$ mod $5$. In the first case, we are done.\\
-In the second case we conclude that $n^{2} \equiv 4 \equiv -1$ mod $5$. Consequently since we also know that $1 \equiv 1$ mod $5$, we see that $n^{2} + 1 \equiv 0$ mod $5$. So, the product is again divisible by $5$. Finally $2, 3,$ and $5$ are prime numbers and so their least common multiple is $30$. Hence, the product is always divisible by $30$.
+In the second case we conclude that $n^{2} \equiv 4 \equiv -1$ mod $5$. Consequently since we also know that $1 \equiv 1$ mod $5$, we see by \textbf{Theorem 5} that $n^{2} + 1 \equiv 0$ mod $5$. So, the product is again divisible by $5$. Finally $2, 3,$ and $5$ are prime numbers and so their least common multiple is $30$. Hence, the product is always divisible by $30$.
 \end{proof}
 \end{document}

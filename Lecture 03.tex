@@ -83,7 +83,7 @@ $p = uq + r$, where deg $r<$ deg $q$.
 Moreover, let $p \in \mathbb{F}[x]$, then, for any $a \in F$, the substitution of $x$, by $a$ defines an element of $F$ which we denote by $p(a)$. The element $p(a)$ is obtained by performing the field operations once the substitution has been carried out, e.g., let $p \in \mathbb{Z}_{7}[x]$, say $p(x) = 6x^{2} + 5x + 1$. Then $p(1) = 6 + 5 + 1 = 5$.
 \begin{proof}
 Since every field satisfies associativity and commutativity of additive and multiplicative operations, possesses additive and multiplicative identity and inverse elements and satisfies distributivity of the multiplicative operation over addition we can say that every Field is a ring, while not all rings are fields. So the claim that if $\mathbb{F}$ is a field then $\mathbb{F}[x]$ is a ring is true.\\
-Second part is what is known as \textbf{Nonmonic Polynomial Division Algorithm}. We are gonna prove now that polynomials $u$ and $r$ are in fact unique where deg $r$ $<$ deg $q$.\\
+Second part is what is known as \textbf{Nonmonic Polynomial Division Algorithm}. We now prove that polynomials $u$ and $r$ are in fact unique where deg $r$ $<$ deg $q$.\\
 Let's say we have two polynomials that satisfy the equation:
 \begin{center}
 $r = p - uq$\\
@@ -93,7 +93,7 @@ And for them we have that $0 \leq $ deg $r\ <$ deg $q$ and $0 \leq $ deg $r'\ <$
 \begin{center}
 $r' - r	= q(u - u')$
 \end{center}
-If $u \neq u'$, then deg$(r' - r) = $ deg$(q) + $ deg$(u - u') \geq$ deg$(q)$. However, since deg $(r' - r) \leq \max(\text{deg } r', \text{deg } r) <$ deg $q$, we have a contradiction. Therefore, we must have $u = u'$, which immediately implies $r' - r = 0$, so $r = r'$. Thus, both $u$ and $r$ are uniquely determined polynomials.
+From $r' - r	= q(u - u')$ we have that deg $(r' - r)$ = deg $q$ + deg $(u - u')$, which would imply that degree of either $r$ or $r'$ is greater than degree of $q$, which contradicts that deg $r$ $<$ deg $q$ or deg $r'$ $<$ deg $q$. This means that $u=u'$ and $r'=r$ which means that both $r$ and $u$ are unique polynomials.
 
 \end{proof}
 
@@ -179,25 +179,10 @@ $\implies (x-5) = \frac{5}{24} \cdot (-5 + x - \frac{9}{5}) \cdot p(x) - \frac{5
 $\implies (x-5) = \frac{5}{24} \cdot (x - \frac{34}{5}) \cdot p(x) - \frac{5}{24} \cdot (x - \frac{9}{5}) \cdot q(x)$\\
 $\implies (x-5) = \frac{1}{24} \cdot (5x - 34) \cdot p(x) - \frac{1}{24} \cdot (5x - 9) \cdot q(x)$
 \end{center}
-Since the gcd$(p, q)$ must be in monic form (leading coefficient 1), and $(x - 5)$ is already monic, we have:
+So the monic form is finally equal to:
 \begin{center}
-\textbf{gcd}$(p, q) = (x - 5)$
+$ (x-5) = \frac{1}{24} \cdot (5x - 34) \cdot p(x) - \frac{1}{24} \cdot (5x - 9) \cdot q(x)$
 \end{center}
-Now we need to find polynomials $u$ and $v$ such that gcd$(p, q) = pu = qv$. Since gcd$(p, q)$ divides both $p$ and $q$, we can write:
-\begin{center}
-$p(x) = (x - 5) \cdot u(x)$ and $q(x) = (x - 5) \cdot v(x)$
-\end{center}
-for some polynomials $u, v \in \mathbb{Q}[x]$. To find $u$ and $v$, we divide:
-\begin{center}
-$\polylongdiv{x^3 - 9x^2 + 23x - 15}{x - 5}$\\
-$\implies p(x) = (x - 5)(x^2 - 4x + 3)$, so $u(x) = x^2 - 4x + 3$\\[0.5em]
-$\polylongdiv{x^3 - 14x^2 + 59x - 70}{x - 5}$\\
-$\implies q(x) = (x - 5)(x^2 - 9x + 14)$, so $v(x) = x^2 - 9x + 14$
-\end{center}
-Therefore, gcd$(p, q) = (x - 5) = p(x) \cdot \frac{1}{u(x)} = q(x) \cdot \frac{1}{v(x)}$, but since we need $u, v \in \mathbb{Q}[x]$ such that gcd$(p,q) = pu = qv$, we have:
-\begin{center}
-$(x - 5) = p(x) \cdot \frac{1}{x^2 - 4x + 3} = q(x) \cdot \frac{1}{x^2 - 9x + 14}$
-\end{center}
-where $u(x) = \frac{1}{x^2 - 4x + 3}$ and $v(x) = \frac{1}{x^2 - 9x + 14}$ are rational functions in $\mathbb{Q}(x)$, not polynomials in $\mathbb{Q}[x]$.
+Where polynomials $u$ and $v$ are $u=\frac{1}{24}(5x - 34)$ and $v=-\frac{1}{24}(5x - 9)$ over a ring of rational numbers $\mathbb{Q}[x]$.
 \end{proof}
 \end{document}
